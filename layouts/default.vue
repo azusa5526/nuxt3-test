@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col h-screen">
-    <AppHeader class="shrink-0 fixed" />
-    <main class="pt-[var(--app-header-height)] grow">
-      <slot></slot>
-    </main>
-    <AppFooter class="shrink-0" />
-  </div>
+	<div class="flex h-screen flex-col">
+		<AppHeader class="fixed shrink-0" />
+		<main class="grow pt-[var(--app-header-height)]">
+			<slot></slot>
+		</main>
+		<AppFooter class="shrink-0" />
+	</div>
 </template>

@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 :root {
-  --app-header-height: 56px
+	--app-header-height: 56px;
 }
