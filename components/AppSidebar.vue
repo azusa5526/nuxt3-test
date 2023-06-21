@@ -9,7 +9,7 @@
 
 		<Teleport to="body">
 			<button
-				class="fixed left-[calc(var(--app-sidebar-width)+10px)] top-4 z-50 text-black/40 duration-200"
+				class="fixed left-[calc(var(--app-sidebar-width)+10px)] top-4 z-50 block text-black/40 duration-200 lg:hidden"
 				:class="
 					isDrawerShow
 						? 'translate-x-0 opacity-100'
@@ -18,7 +18,7 @@
 			>
 				<SvgIcon use="clear" class="h-8 w-8"></SvgIcon>
 			</button>
-			<div v-if="isDrawerShow" class="fixed inset-0 z-30 bg-white/60"></div>
+			<div v-if="isDrawerShow" class="fixed inset-0 z-30 block bg-white/60 lg:hidden"></div>
 		</Teleport>
 	</div>
 </template>
