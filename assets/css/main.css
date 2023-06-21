@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 :root {
-	--app-header-height: 56px;
-	--app-sidebar-width: 256px;
+	--app-header-height: 64px;
+	--app-sidebar-width: 330px;
+}
+@media screen(sm) {
+}
+@media screen(md) {
+}
+@media screen(lg) {
+	:root {
+		--app-header-height: 88px;
+	}
 }

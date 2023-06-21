@@ -1,6 +1,6 @@
 <template>
 	<div class="flex h-screen flex-col">
-		<AppSidebar class="block w-[--app-sidebar-width] bg-white xl:hidden" />
+		<AppSidebar class="block w-[--app-sidebar-width] bg-white lg:hidden" />
 		<AppHeader class="fixed shrink-0" />
 		<main class="grow">
 			<slot></slot>
