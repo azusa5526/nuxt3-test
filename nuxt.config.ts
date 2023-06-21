@@ -1,3 +1,6 @@
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'; // https://github.com/vbenjs/vite-plugin-svg-icons
+import path from 'path';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	devtools: { enabled: true },
@@ -11,7 +14,7 @@ export default defineNuxtConfig({
 		},
 	},
 	css: ['~/assets/css/main.css'],
-	modules: ['@pinia/nuxt'],
+	modules: ['@pinia/nuxt',],
 	pinia: {
 		autoImports: [
 			// automatically imports `defineStore`
@@ -19,4 +22,14 @@ export default defineNuxtConfig({
 			['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
 		],
 	},
+	vite: {
+		plugins: [
+			createSvgIconsPlugin({
+				iconDirs: [path.resolve(process.cwd(), 'assets/svg-icon')],
+				symbolId: 'icon-[dir]-[name]',
+				inject: 'body-last',
+				customDomId: '__svg__icons__dom__',
+			}),
+		]
+	}
 });
