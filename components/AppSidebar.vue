@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useMouseInElement } from '@vueuse/core';
+import { useMouseInElement, useEventListener } from '@vueuse/core';
 import { useAppStore } from '@/store/app';
 import { storeToRefs } from 'pinia';
 
@@ -35,14 +35,8 @@ const target = ref(null);
 const { isOutside } = useMouseInElement(target);
 
 onMounted(() => {
-	window.addEventListener('click', blurSidebar);
+	useEventListener(document, 'click', () => {
+		if (isOutside.value) isDrawerShow.value = false;
+	});
 });
-
-onBeforeUnmount(() => {
-	window.removeEventListener('click', blurSidebar);
-});
-
-function blurSidebar() {
-	if (isOutside.value) isDrawerShow.value = false;
-}
 </script>
