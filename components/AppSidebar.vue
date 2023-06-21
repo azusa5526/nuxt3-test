@@ -1,11 +1,25 @@
 <template>
 	<div
 		ref="target"
-		class="fixed inset-0 z-20 flex h-screen flex-col overflow-y-scroll duration-200"
+		class="fixed inset-0 z-30 flex h-screen flex-col overflow-y-scroll duration-200"
 		:class="isDrawerShow ? 'translate-x-0' : '!translate-x-[calc(var(--app-sidebar-width)*-1)]'"
 	>
 		<h2>Title</h2>
 		<AppSidebarList></AppSidebarList>
+
+		<Teleport to="body">
+			<button
+				class="fixed left-[calc(var(--app-sidebar-width)+10px)] top-4 z-50 text-black/40 duration-200"
+				:class="
+					isDrawerShow
+						? 'translate-x-0 opacity-100'
+						: 'pointer-events-none !translate-x-[calc(var(--app-sidebar-width)*-1)] opacity-0'
+				"
+			>
+				<SvgIcon use="clear" class="h-8 w-8"></SvgIcon>
+			</button>
+			<div v-if="isDrawerShow" class="fixed inset-0 z-30 bg-white/60"></div>
+		</Teleport>
 	</div>
 </template>
 
