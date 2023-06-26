@@ -1,7 +1,9 @@
 <template>
 	<div
-		class="flex h-[var(--app-header-height)] w-screen justify-between text-white duration-300 hover:bg-white hover:text-black"
-		:class="isScrollPositionTop ? 'bg-transparent text-white' : 'bg-white !text-black'"
+		class="flex h-[var(--app-header-height)] w-screen justify-between text-white duration-300 hover:bg-white hover:text-black hover:shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]"
+		:class="
+			isScrollPositionTop ? 'bg-transparent text-white' : 'bg-white !text-black shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]'
+		"
 	>
 		<div class="flex items-center">
 			<button
@@ -16,24 +18,27 @@
 			</h1>
 			<ul class="flex h-full items-center">
 				<li
-					@mouseover="hoveredMenuItem = menuItem"
+					@mouseover="hoveredHeaderItem = headerItem"
 					class="mx-5 flex h-full cursor-pointer items-center whitespace-nowrap"
-					v-for="menuItem in menuItems"
-					:key="menuItem.displayName"
+					v-for="headerItem in headerItems"
+					:key="headerItem.displayName"
 				>
-					{{ menuItem.displayName }}
+					{{ headerItem.displayName }}
 
-					<Transition name="slide-fade" mode="out-in">
-						<ul
-							@mouseleave="hoveredMenuItem = undefined"
-							v-show="hoveredMenuItem && hoveredMenuItem.displayName === menuItem.displayName"
-							class="absolute left-0 top-0 -z-10 h-80 w-full bg-white p-5 pt-[var(--app-header-height)]"
-						>
-							{{
-								hoveredMenuItem?.displayName
-							}}
-						</ul>
-					</Transition>
+					<template v-if="headerItem.menuComponent">
+						<Transition name="slide-fade" mode="out-in">
+							<ul
+								@mouseleave="hoveredHeaderItem = undefined"
+								v-show="hoveredHeaderItem && hoveredHeaderItem.displayName === headerItem.displayName"
+								class="absolute left-0 top-0 -z-10 h-[420px] w-full bg-white p-5 pt-[var(--app-header-height)] shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]"
+							>
+								{{
+									headerItem.menuComponent
+								}}
+								<component :is="headerItem.menuComponent"></component>
+							</ul>
+						</Transition>
+					</template>
 				</li>
 			</ul>
 		</div>
@@ -59,24 +64,26 @@ const isTopHandler = throttle(() => {
 	document.body.getBoundingClientRect().y === 0
 		? (isScrollPositionTop.value = true)
 		: (isScrollPositionTop.value = false);
-
-	console.log(isScrollPositionTop.value);
 }, 200);
 
-const menuItems = [
-	{ displayName: '個人向け製品 A' },
+const CorporateProductMenu = resolveComponent('CorporateProductMenu');
+const PersonalProductMenu = resolveComponent('PersonalProductMenu');
+
+const headerItems = [
+	{ displayName: '個人向け製品 A', menuComponent: 'PersonalProductMenu' },
 	{ displayName: '個人向け製品 B' },
-	{ displayName: '個人向け製品 C' },
+	{ displayName: '個人向け製品 C', menuComponent: 'CorporateProductMenu' },
 	{ displayName: '個人向け製品 D' },
 	{ displayName: '個人向け製品 E' },
 	{ displayName: '個人向け製品 F' },
 ];
 
-type MenuItem = {
+type HeaderItem = {
 	displayName: string;
+	menuComponent?: string;
 };
 
-const hoveredMenuItem = ref<MenuItem | undefined>();
+const hoveredHeaderItem = ref<HeaderItem | undefined>();
 
 function test() {
 	console.log('test');
