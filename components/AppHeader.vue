@@ -17,19 +17,19 @@
 				audio-Technica
 			</h1>
 			<ul class="flex h-full items-center">
-				<!-- <li
+				<li
 					@mouseover="hoveredHeaderItem = headerItem"
 					@mouseleave="hoveredHeaderItem = undefined"
 					class="text-underline-decorator mx-5 flex h-full cursor-pointer items-center whitespace-nowrap"
 					v-for="headerItem in headerItems"
 					:key="headerItem.displayName"
-				> -->
-				<li
+				>
+					<!-- <li
 					@mouseover="hoveredHeaderItem = headerItem"
 					class="mx-5 flex h-full cursor-pointer items-center whitespace-nowrap"
 					v-for="headerItem in headerItems"
 					:key="headerItem.displayName"
-				>
+				> -->
 					<span>{{ headerItem.displayName }}</span>
 
 					<template v-if="headerItem.menuComponent">
@@ -92,8 +92,8 @@ type HeaderItem = {
 	menuComponent?: Component;
 };
 
-// const hoveredHeaderItem = ref<HeaderItem | undefined>();
-const hoveredHeaderItem = ref<HeaderItem | undefined>(headerItems[0]);
+const hoveredHeaderItem = ref<HeaderItem | undefined>();
+// const hoveredHeaderItem = ref<HeaderItem | undefined>(headerItems[0]);
 
 function test() {
 	console.log('leave');
