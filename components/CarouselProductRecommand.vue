@@ -15,15 +15,7 @@
 						<p class="mb-2">{{ carouselItem.model_number }}</p>
 
 						<ul class="mb-2 flex" v-if="carouselItem.colors.length">
-							<li v-for="color in carouselItem.colors" class="flex h-6 w-6">
-								<div
-									v-for="code in color.codes"
-									:style="`background-color: #${code}; width: calc(100%/${code.length});`"
-									class="h-6"
-								>
-									1
-								</div>
-							</li>
+							<li v-for="color in carouselItem.colors" class="flex h-6 w-6 rounded-[50%]" :style="testStyle()"></li>
 						</ul>
 
 						<p class="my-2">￥{{ carouselItem.price }} (税込)</p>
@@ -128,4 +120,32 @@ const carouselItems = [
 		],
 	},
 ];
+
+onMounted(() => {
+	window.addEventListener('keydown', (event: KeyboardEvent) => {
+		if (event.key === 'd') {
+			console.log(testStyle());
+		}
+	});
+});
+
+function testStyle() {
+	const codes = ['#8bd12a', '#f2cf00', '#36c', '#f24949'];
+	let str = '';
+
+	codes.forEach((code, index, array) => {
+		if (index === 0) {
+			str = str + `${code} ${(1 / array.length) * 100}%, `;
+			console.log('ZERO', str);
+		} else if (index + 1 === array.length) {
+			str = str + `${code} 0`;
+			console.log('E', str);
+		} else {
+			str = str + `${code} 0, ${code} ${((index + 1) / array.length) * 100}%, `;
+			console.log('M', str);
+		}
+	});
+	console.log(`background: linear-gradient(120deg, ${str})`);
+	return `background: linear-gradient(120deg, ${str})`;
+}
 </script>
