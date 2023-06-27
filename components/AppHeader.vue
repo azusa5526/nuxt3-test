@@ -17,20 +17,26 @@
 				audio-Technica
 			</h1>
 			<ul class="flex h-full items-center">
-				<li
+				<!-- <li
 					@mouseover="hoveredHeaderItem = headerItem"
 					@mouseleave="hoveredHeaderItem = undefined"
+					class="text-underline-decorator mx-5 flex h-full cursor-pointer items-center whitespace-nowrap"
+					v-for="headerItem in headerItems"
+					:key="headerItem.displayName"
+				> -->
+				<li
+					@mouseover="hoveredHeaderItem = headerItem"
 					class="mx-5 flex h-full cursor-pointer items-center whitespace-nowrap"
 					v-for="headerItem in headerItems"
 					:key="headerItem.displayName"
 				>
-					{{ headerItem.displayName }}
+					<span>{{ headerItem.displayName }}</span>
 
 					<template v-if="headerItem.menuComponent">
 						<Transition name="slide-fade" mode="out-in">
 							<ul
 								v-show="hoveredHeaderItem && hoveredHeaderItem.displayName === headerItem.displayName"
-								class="absolute left-0 top-0 -z-10 h-[420px] w-full cursor-default bg-white p-5 pt-[var(--app-header-height)] shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]"
+								class="absolute left-0 top-0 -z-10 flex h-[510px] w-full cursor-default justify-center bg-white p-5 pt-[var(--app-header-height)] shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]"
 							>
 								<component :is="headerItem.menuComponent"></component>
 							</ul>
@@ -38,6 +44,12 @@
 					</template>
 				</li>
 			</ul>
+		</div>
+
+		<div class="mr-7 flex items-center [&>button:hover]:opacity-40 [&>button]:p-2.5">
+			<button><SvgIcon use="account_circle" class="h-6 w-6"></SvgIcon></button>
+			<button><SvgIcon use="search" class="h-6 w-6"></SvgIcon></button>
+			<button><SvgIcon use="shopping_cart" class="h-6 w-6"></SvgIcon></button>
 		</div>
 	</div>
 </template>
@@ -67,12 +79,12 @@ const isTopHandler = throttle(() => {
 }, 200);
 
 const headerItems = [
-	{ displayName: '個人向け製品 A', menuComponent: PersonalProductMenu },
-	{ displayName: '個人向け製品 B' },
-	{ displayName: '個人向け製品 C', menuComponent: CorporateProductMenu },
-	{ displayName: '個人向け製品 D' },
-	{ displayName: '個人向け製品 E' },
-	{ displayName: '個人向け製品 F' },
+	{ displayName: '個人向け製品', menuComponent: PersonalProductMenu },
+	{ displayName: 'サポート' },
+	{ displayName: '法人向け製品', menuComponent: CorporateProductMenu },
+	{ displayName: 'ニュース' },
+	{ displayName: '企業情報' },
+	{ displayName: 'Always Listening' },
 ];
 
 type HeaderItem = {
@@ -80,7 +92,8 @@ type HeaderItem = {
 	menuComponent?: Component;
 };
 
-const hoveredHeaderItem = ref<HeaderItem | undefined>();
+// const hoveredHeaderItem = ref<HeaderItem | undefined>();
+const hoveredHeaderItem = ref<HeaderItem | undefined>(headerItems[0]);
 
 function test() {
 	console.log('leave');
@@ -98,7 +111,35 @@ function test() {
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-	transform: translateY(-100px);
+	transform: translateY(-70px);
 	opacity: 0;
 }
+</style>
+
+<style lang="scss" scoped>
+// .text-underline-decorator {
+// 	:first-child {
+// 		position: relative;
+
+// 		&::after {
+// 			content: '';
+// 			width: 100%;
+// 			height: 1px;
+// 			background-color: black;
+// 			position: absolute;
+// 			bottom: 0;
+// 			left: 0;
+// 			transition-duration: 200ms;
+// 			opacity: 0;
+// 			transform: translateY(8px);
+// 		}
+// 	}
+
+// 	&:hover {
+// 		span::after {
+// 			transform: translateY(4px);
+// 			opacity: 1;
+// 		}
+// 	}
+// }
 </style>
