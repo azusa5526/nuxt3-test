@@ -19,6 +19,7 @@
 			<ul class="flex h-full items-center">
 				<li
 					@mouseover="hoveredHeaderItem = headerItem"
+					@mouseleave="hoveredHeaderItem = undefined"
 					class="mx-5 flex h-full cursor-pointer items-center whitespace-nowrap"
 					v-for="headerItem in headerItems"
 					:key="headerItem.displayName"
@@ -28,13 +29,9 @@
 					<template v-if="headerItem.menuComponent">
 						<Transition name="slide-fade" mode="out-in">
 							<ul
-								@mouseleave="hoveredHeaderItem = undefined"
 								v-show="hoveredHeaderItem && hoveredHeaderItem.displayName === headerItem.displayName"
-								class="absolute left-0 top-0 -z-10 h-[420px] w-full bg-white p-5 pt-[var(--app-header-height)] shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]"
+								class="absolute left-0 top-0 -z-10 h-[420px] w-full cursor-default bg-white p-5 pt-[var(--app-header-height)] shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]"
 							>
-								{{
-									headerItem.menuComponent
-								}}
 								<component :is="headerItem.menuComponent"></component>
 							</ul>
 						</Transition>
@@ -50,6 +47,9 @@ import { useAppStore } from '@/store/app';
 import { storeToRefs } from 'pinia';
 import { throttle } from 'lodash';
 import { useEventListener } from '@vueuse/core';
+import type { Component } from 'vue';
+import PersonalProductMenu from '@/components/PersonalProductMenu.vue';
+import CorporateProductMenu from '@/components/CorporateProductMenu.vue';
 
 const appStore = useAppStore();
 const { isDrawerShow } = storeToRefs(appStore);
@@ -66,13 +66,10 @@ const isTopHandler = throttle(() => {
 		: (isScrollPositionTop.value = false);
 }, 200);
 
-const CorporateProductMenu = resolveComponent('CorporateProductMenu');
-const PersonalProductMenu = resolveComponent('PersonalProductMenu');
-
 const headerItems = [
-	{ displayName: '個人向け製品 A', menuComponent: 'PersonalProductMenu' },
+	{ displayName: '個人向け製品 A', menuComponent: PersonalProductMenu },
 	{ displayName: '個人向け製品 B' },
-	{ displayName: '個人向け製品 C', menuComponent: 'CorporateProductMenu' },
+	{ displayName: '個人向け製品 C', menuComponent: CorporateProductMenu },
 	{ displayName: '個人向け製品 D' },
 	{ displayName: '個人向け製品 E' },
 	{ displayName: '個人向け製品 F' },
@@ -80,13 +77,13 @@ const headerItems = [
 
 type HeaderItem = {
 	displayName: string;
-	menuComponent?: string;
+	menuComponent?: Component;
 };
 
 const hoveredHeaderItem = ref<HeaderItem | undefined>();
 
 function test() {
-	console.log('test');
+	console.log('leave');
 }
 </script>
 
