@@ -5,7 +5,7 @@
 				:href="carouselItem.routeUrl"
 				v-for="(carouselItem, index) in carouselItems"
 				:key="index"
-				class="flex h-[800px] w-full shrink-0 grow-0"
+				class="flex h-[80vh] max-h-[800] min-h-[600px] w-full shrink-0 grow-0"
 			>
 				<img
 					class="block h-auto w-full select-none object-cover"
