@@ -1,5 +1,5 @@
 <template>
-	<div class="grid grid-cols-3 place-content-stretch !gap-10">
+	<div class="grid grid-cols-3 place-content-stretch gap-10">
 		<div v-for="(navItem, index) in navItems" :key="index">
 			<a href="#" class="hover:opacity-70" draggable="false">
 				<div class="relative">
