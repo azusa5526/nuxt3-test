@@ -1,10 +1,160 @@
 <template>
-	<div class="bg-yellow-200">
-		<CarouselHome class="mb-10"></CarouselHome>
-		<CarouselProductRecommand class="mx-auto max-w-[1300px]"></CarouselProductRecommand>
+	<div>
+		<CarouselHome></CarouselHome>
+		<div class="pb-12 pt-9 text-center">
+			<a href="#" class="text-lg">製品に関する大切なお知らせ</a>
+		</div>
+
+		<div class="pb-12">
+			<div class="my-10 text-center">おすすめアイテム</div>
+			<CarouselProduct :carousel-products="productRecommand" class="mx-auto max-w-[1300px]"></CarouselProduct>
+		</div>
+
+		<div class="pb-12">
+			<div class="my-10 text-center">オンラインストア限定</div>
+			<CarouselProduct
+				:carousel-products="productOnlineStoreOnly"
+				class="mx-auto max-w-[1300px] pb-12"
+			></CarouselProduct>
+		</div>
 
 		<div v-for="n in 5" class="py-20"></div>
 	</div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const productRecommand = [
+	{
+		image_url: 'https://dummyimage.com/300X300/e52260/fff',
+		page: 'ATH-GDL3_NAR',
+		price: '50,000',
+		product_id: 50,
+		name: 'ゲーミングヘッドセット',
+		model_number: 'ATH-GDL3 NAR',
+		colors: [
+			{
+				codes: ['#f5185b'],
+				image_url: 'https://dummyimage.com/300X300/e52260/fff',
+				product_branch_id: 3391,
+			},
+			{
+				codes: ['#eef518', '#18f532'],
+				image_url: 'https://dummyimage.com/300X300/e52260/fff',
+				product_branch_id: 3392,
+			},
+			{
+				codes: ['#f70c56', '#0ceff7', '#e3f70c'],
+				image_url: 'https://dummyimage.com/300X300/e52260/fff',
+				product_branch_id: 3395,
+			},
+			{
+				codes: ['#ffffff'],
+				image_url: 'https://dummyimage.com/300X300/e52260/fff',
+				product_branch_id: 3393,
+			},
+		],
+	},
+	{
+		image_url: 'https://dummyimage.com/300X300/e62260/fff',
+		page: 'ATH-GDL3_NAR',
+		price: '50',
+		product_id: 50,
+		name: 'ゲーミングヘッドセット',
+		model_number: 'ATH-GDL3 NAR',
+	},
+	{
+		image_url: 'https://dummyimage.com/300X300/e62260/fff',
+		page: 'ATH-GDL3_NAR',
+		price: '50',
+		product_id: 50,
+		name: 'ゲーミングヘッドセット',
+		model_number: 'ATH-GDL3 NAR',
+		colors: [
+			{
+				codes: ['#0ceff7'],
+				image_url: 'https://dummyimage.com/300X300/e52260/fff',
+				product_branch_id: 3391,
+			},
+		],
+	},
+	{
+		image_url: 'https://dummyimage.com/300X300/e62260/fff',
+		page: 'ATH-GDL3_NAR',
+		price: '50',
+		product_id: 50,
+		name: 'ゲーミングヘッドセット',
+		model_number: 'ATH-GDL3 NAR',
+	},
+	{
+		image_url: 'https://dummyimage.com/300X300/e62260/fff',
+		page: 'ATH-GDL3_NAR',
+		price: '50',
+		product_id: 50,
+		name: 'ゲーミングヘッドセット',
+		model_number: 'ATH-GDL3 NAR',
+		colors: [
+			{
+				codes: ['#66cdaa'],
+				image_url: 'https://dummyimage.com/300X300/e52260/fff',
+				product_branch_id: 3391,
+			},
+		],
+	},
+	{
+		image_url: 'https://dummyimage.com/300X300/e62260/fff',
+		page: 'ATH-GDL3_NAR',
+		price: '50',
+		product_id: 50,
+		name: 'ゲーミングヘッドセット',
+		model_number: 'ATH-GDL3 NAR',
+	},
+];
+const productOnlineStoreOnly = [
+	{
+		image_url: 'https://dummyimage.com/300X300/e62260/fff',
+		page: 'ATH-GDL3_NAR',
+		price: '50',
+		product_id: 50,
+		name: 'ゲーミングヘッドセット',
+		model_number: 'ATH-GDL3 NAR',
+		colors: [
+			{
+				codes: ['#0ceff7'],
+				image_url: 'https://dummyimage.com/300X300/e52260/fff',
+				product_branch_id: 3391,
+			},
+		],
+	},
+	{
+		image_url: 'https://dummyimage.com/300X300/e62260/fff',
+		page: 'ATH-GDL3_NAR',
+		price: '50',
+		product_id: 50,
+		name: 'ゲーミングヘッドセット',
+		model_number: 'ATH-GDL3 NAR',
+	},
+	{
+		image_url: 'https://dummyimage.com/300X300/e62260/fff',
+		page: 'ATH-GDL3_NAR',
+		price: '50',
+		product_id: 50,
+		name: 'ゲーミングヘッドセット',
+		model_number: 'ATH-GDL3 NAR',
+		colors: [
+			{
+				codes: ['#66cdaa'],
+				image_url: 'https://dummyimage.com/300X300/e52260/fff',
+				product_branch_id: 3391,
+			},
+		],
+	},
+	{
+		image_url: 'https://dummyimage.com/300X300/e62260/fff',
+		page: 'ATH-GDL3_NAR',
+		price: '50',
+		product_id: 50,
+		name: 'ゲーミングヘッドセット',
+		model_number: 'ATH-GDL3 NAR',
+	},
+];
+</script>
