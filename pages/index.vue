@@ -18,7 +18,9 @@
 			></CarouselProduct>
 		</div>
 
-		<div v-for="n in 5" class="py-20"></div>
+		<div class="mx-auto max-w-[1400px] px-5 py-24">
+			<NavContents></NavContents>
+		</div>
 	</div>
 </template>
 
