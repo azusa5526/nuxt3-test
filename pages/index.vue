@@ -19,12 +19,42 @@
 		</div>
 
 		<div class="mx-auto max-w-[1400px] px-5 py-24">
+			<div class="my-10 text-center">ナビコンテンツ</div>
 			<NavContents></NavContents>
 		</div>
 
 		<div class="mx-auto max-w-[80vw] py-24">
+			<div class="my-10 text-center">トピックス</div>
 			<Topics></Topics>
 		</div>
+
+		<a href="#">
+			<div class="relative py-16">
+				<div>
+					良い音で、
+					<br class="block lg:hidden" />
+					大人はもっと楽しくなる。
+				</div>
+				<div>
+					WIRED EARPHONES/ HEADPHONES
+					<br class="block lg:hidden" />
+					PREMIUM LINEUP
+				</div>
+				<div>
+					自分の価値観や美意識にこだわりをもって暮らす方々の
+					<br class="block lg:hidden" />
+					良い音の楽しみ方を公開中！
+				</div>
+
+				<div>MORE</div>
+
+				<!-- <img
+					class="absolute w-full select-none object-contain"
+					draggable="false"
+					src="https://dummyimage.com/1920X494/26e3fc/fff"
+				/> -->
+			</div>
+		</a>
 	</div>
 </template>
 
