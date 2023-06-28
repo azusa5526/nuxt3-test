@@ -21,6 +21,10 @@
 		<div class="mx-auto max-w-[1400px] px-5 py-24">
 			<NavContents></NavContents>
 		</div>
+
+		<div class="mx-auto max-w-[80vw] py-24">
+			<Topics></Topics>
+		</div>
 	</div>
 </template>
 
