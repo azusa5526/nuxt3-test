@@ -81,11 +81,11 @@ onMounted(() => {
 });
 
 watchEffect(() => {
-	if (emblaApi.value) emblaApi.value.on('select', onScrollHandler);
+	if (emblaApi.value) emblaApi.value.on('scroll', onScrollHandler);
 });
 
 const removeonScrollListener = () => {
-	if (emblaApi.value) emblaApi.value.off('select', onScrollHandler);
+	if (emblaApi.value) emblaApi.value.off('scroll', onScrollHandler);
 };
 
 onUnmounted(() => {
