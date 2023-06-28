@@ -13,7 +13,7 @@
 
 				<div>
 					<div class="py-5 text-center font-bold">{{ navItem.title }}</div>
-					<div v-html="navItem.contents"></div>
+					<div class="break-all" v-html="navItem.contents"></div>
 				</div>
 			</a>
 		</div>
