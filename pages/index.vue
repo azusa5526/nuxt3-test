@@ -12,10 +12,7 @@
 
 		<div class="pb-12">
 			<div class="my-10 text-center">オンラインストア限定</div>
-			<CarouselProduct
-				:carousel-products="productOnlineStoreOnly"
-				class="mx-auto max-w-[1300px] pb-12"
-			></CarouselProduct>
+			<CarouselProduct :carousel-products="productOnlineStoreOnly" class="mx-auto max-w-[1300px]"></CarouselProduct>
 		</div>
 
 		<div class="mx-auto max-w-[1400px] px-5 py-24">
@@ -28,25 +25,30 @@
 			<Topics></Topics>
 		</div>
 
-		<a href="#">
-			<div class="relative py-16">
-				<div>
-					良い音で、
-					<br class="block lg:hidden" />
-					大人はもっと楽しくなる。
-				</div>
-				<div>
-					WIRED EARPHONES/ HEADPHONES
-					<br class="block lg:hidden" />
-					PREMIUM LINEUP
-				</div>
-				<div>
-					自分の価値観や美意識にこだわりをもって暮らす方々の
-					<br class="block lg:hidden" />
-					良い音の楽しみ方を公開中！
-				</div>
+		<a href="#" draggable="false">
+			<div class="relative bg-[url('https://dummyimage.com/1920X494/26e3fc/fff')] bg-cover bg-center py-16">
+				<div class="ml-[13%] text-white">
+					<div class="mb-6 text-2xl">
+						良い音で、
+						<br class="block lg:hidden" />
+						大人はもっと楽しくなる。
+					</div>
+					<div class="mb-6">
+						WIRED EARPHONES/ HEADPHONES
+						<br class="block lg:hidden" />
+						PREMIUM LINEUP
+					</div>
+					<div class="mb-10">
+						自分の価値観や美意識にこだわりをもって暮らす方々の
+						<br />
+						良い音の楽しみ方を公開中！
+					</div>
 
-				<div>MORE</div>
+					<div class="text-sm">MORE</div>
+				</div>
+			</div>
+		</a>
+
 		<div class="bg-gray-200 py-24">
 			<div class="my-10 text-center">新製品</div>
 			<CarouselProductNew :carousel-products="productNew" class="mx-auto max-w-[1300px]"></CarouselProductNew>
@@ -57,13 +59,21 @@
 			<News></News>
 		</div>
 
-				<!-- <img
-					class="absolute w-full select-none object-contain"
-					draggable="false"
-					src="https://dummyimage.com/1920X494/26e3fc/fff"
-				/> -->
+		<div class="relative mx-auto flex w-[65vw] max-w-[1020px] py-24">
+			<div class="absolute left-1/2 top-[36px] h-24 w-24 -translate-x-1/2 bg-white px-4">
+				<PiniaIcon class="h-full w-full"></PiniaIcon>
 			</div>
-		</a>
+
+			<a href="#" class="w-full border border-black pb-10 pt-12 text-center text-2xl">製品に関する大切なお知らせ ></a>
+		</div>
+
+		<div class="mx-auto flex max-w-[1260px] flex-col items-center py-24">
+			<div class="my-4">Connect with Audio-Technica</div>
+			<div class="flex">
+				<SvgIcon v-for="n in 5" :key="n" use="account_circle" class="mx-6 mb-7 h-9 w-9 hover:opacity-70" />
+			</div>
+			<img class="mb-4 block h-auto w-44 hover:opacity-70" src="https://dummyimage.com/768X173/e52260/fff" alt="" />
+		</div>
 	</div>
 </template>
 
