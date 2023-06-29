@@ -47,6 +47,15 @@
 				</div>
 
 				<div>MORE</div>
+		<div class="bg-gray-200 py-24">
+			<div class="my-10 text-center">新製品</div>
+			<CarouselProductNew :carousel-products="productNew" class="mx-auto max-w-[1300px]"></CarouselProductNew>
+		</div>
+
+		<div class="mx-auto max-w-[1260px] py-24">
+			<div class="my-24 text-center">ニュース</div>
+			<News></News>
+		</div>
 
 				<!-- <img
 					class="absolute w-full select-none object-contain"
@@ -191,6 +200,71 @@ const productOnlineStoreOnly = [
 		product_id: 50,
 		name: 'ゲーミングヘッドセット',
 		model_number: 'ATH-GDL3 NAR',
+	},
+];
+const productNew = [
+	{
+		image_url: 'https://dummyimage.com/300X300/fff/000',
+		page: 'ATH-WB2022',
+		description: '60周年記念モデル | 心震わす感動を、ワイヤレスと有線で。前人未踏のハイエンドデジタル接続ヘッドホン。',
+		release_date: '2023年01月20日',
+		product_id: 50,
+		name: 'ワイヤレスヘッドホン',
+		model_number: 'ATH-WB2022',
+	},
+	{
+		image_url: 'https://dummyimage.com/300X300/fff/000',
+		page: 'ATH-WB2022',
+		description: '60周年記念モデル | 心震わす感動を、ワイヤレスと有線で。前人未踏のハイエンドデジタル接続ヘッドホン。',
+		release_date: '2023年01月20日',
+		product_id: 50,
+		name: 'ワイヤレスヘッドホン',
+		model_number: 'ATH-WB2022',
+	},
+	{
+		image_url: 'https://dummyimage.com/300X300/fff/000',
+		page: 'ATH-WB2022',
+		description: '60周年記念モデル | 心震わす感動を、ワイヤレスと有線で。前人未踏のハイエンドデジタル接続ヘッドホン。',
+		release_date: '2023年01月20日',
+		product_id: 50,
+		name: 'ワイヤレスヘッドホン',
+		model_number: 'ATH-WB2022',
+	},
+	{
+		image_url: 'https://dummyimage.com/300X300/fff/000',
+		page: 'ATH-WB2022',
+		description: '60周年記念モデル | 心震わす感動を、ワイヤレスと有線で。前人未踏のハイエンドデジタル接続ヘッドホン。',
+		release_date: '2023年01月20日',
+		product_id: 50,
+		name: 'ワイヤレスヘッドホン',
+		model_number: 'ATH-WB2022',
+	},
+	{
+		image_url: 'https://dummyimage.com/300X300/fff/000',
+		page: 'ATH-WB2022',
+		description: '60周年記念モデル | 心震わす感動を、ワイヤレスと有線で。前人未踏のハイエンドデジタル接続ヘッドホン。',
+		release_date: '2023年01月20日',
+		product_id: 50,
+		name: 'ワイヤレスヘッドホン',
+		model_number: 'ATH-WB2022',
+	},
+	{
+		image_url: 'https://dummyimage.com/300X300/fff/000',
+		page: 'ATH-WB2022',
+		description: '60周年記念モデル | 心震わす感動を、ワイヤレスと有線で。前人未踏のハイエンドデジタル接続ヘッドホン。',
+		release_date: '2023年01月20日',
+		product_id: 50,
+		name: 'ワイヤレスヘッドホン',
+		model_number: 'ATH-WB2022',
+	},
+	{
+		image_url: 'https://dummyimage.com/300X300/fff/000',
+		page: 'ATH-WB2022',
+		description: '60周年記念モデル | 心震わす感動を、ワイヤレスと有線で。前人未踏のハイエンドデジタル接続ヘッドホン。',
+		release_date: '2023年01月20日',
+		product_id: 50,
+		name: 'ワイヤレスヘッドホン',
+		model_number: 'ATH-WB2022',
 	},
 ];
 </script>
