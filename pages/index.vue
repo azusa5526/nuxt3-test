@@ -69,10 +69,14 @@
 
 		<div class="mx-auto flex max-w-[1260px] flex-col items-center py-24">
 			<div class="my-4">Connect with Audio-Technica</div>
-			<div class="flex">
-				<SvgIcon v-for="n in 5" :key="n" use="account_circle" class="mx-6 mb-7 h-9 w-9 hover:opacity-70" />
+			<div class="mb-7 flex">
+				<a href="#" v-for="n in 5" :key="n" class="mx-6">
+					<SvgIcon use="account_circle" class="h-9 w-9 hover:opacity-70" />
+				</a>
 			</div>
-			<img class="mb-4 block h-auto w-44 hover:opacity-70" src="https://dummyimage.com/768X173/e52260/fff" alt="" />
+			<a href="#" class="mb-4">
+				<img class="block h-auto w-44 hover:opacity-70" src="https://dummyimage.com/768X173/e52260/fff" alt="" />
+			</a>
 		</div>
 	</div>
 </template>
