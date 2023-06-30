@@ -14,10 +14,13 @@
 			>
 				Toggle
 			</button>
-			<h1 class="ml-5 mr-20 flex items-center text-xl font-bold">
-				<PiniaIcon class="!m-0 !mb-2 h-12 w-12"></PiniaIcon>
-				audio-Technica
-			</h1>
+			<NuxtLink class="ml-5 mr-20 hover:opacity-70" :to="{ name: 'home' }">
+				<h1 class="flex items-center text-xl font-bold">
+					<PiniaIcon class="!m-0 !mb-2 h-12 w-12"></PiniaIcon>
+					audio-Technica
+				</h1>
+			</NuxtLink>
+
 			<ul class="flex h-full items-center">
 				<li
 					@mouseover="hoveredHeaderItem = headerItem"
