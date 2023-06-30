@@ -26,13 +26,10 @@
 					v-for="headerItem in headerItems"
 					:key="headerItem.displayName"
 				>
-					<!-- <li
-					@mouseover="hoveredHeaderItem = headerItem"
-					class="mx-5 flex h-full cursor-pointer items-center whitespace-nowrap"
-					v-for="headerItem in headerItems"
-					:key="headerItem.displayName"
-				> -->
-					<span>{{ headerItem.displayName }}</span>
+					<NuxtLink v-if="headerItem.routeName" :to="{ name: headerItem.routeName }">
+						{{ headerItem.displayName }}
+					</NuxtLink>
+					<span v-else>{{ headerItem.displayName }}</span>
 
 					<template v-if="headerItem.menuComponent">
 						<Transition name="slide-fade" mode="out-in">
@@ -84,15 +81,16 @@ const isTopHandler = throttle(() => {
 
 const headerItems = [
 	{ displayName: '個人向け製品', menuComponent: PersonalProductMenu },
-	{ displayName: 'サポート' },
+	{ displayName: 'サポート', routeName: 'support' },
 	{ displayName: '法人向け製品', menuComponent: CorporateProductMenu },
-	{ displayName: 'ニュース' },
-	{ displayName: '企業情報' },
+	{ displayName: 'ニュース', routeName: 'news' },
+	{ displayName: '企業情報', routeName: 'corp' },
 	{ displayName: 'Always Listening' },
 ];
 
 type HeaderItem = {
 	displayName: string;
+	routeName?: string;
 	menuComponent?: Component;
 };
 
