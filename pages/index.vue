@@ -82,6 +82,10 @@
 </template>
 
 <script lang="ts" setup>
+definePageMeta({
+	name: 'home',
+});
+
 const productRecommand = [
 	{
 		image_url: 'https://dummyimage.com/300X300/e52260/fff',
