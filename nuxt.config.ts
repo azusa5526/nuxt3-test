@@ -15,6 +15,14 @@ export default defineNuxtConfig({
 	},
 	css: ['~/assets/css/main.css'],
 	modules: ['@pinia/nuxt',],
+  nitro: {
+    plugins: ["~/server/database.ts"],
+  },
+  runtimeConfig: {
+    apiSecret: {
+      MONGO_URL: process.env.MONGO_URL,
+    },
+  },
 	pinia: {
 		autoImports: [
 			// automatically imports `defineStore`
