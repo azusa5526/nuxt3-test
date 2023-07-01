@@ -2,7 +2,7 @@
 	<div
 		class="flex h-[var(--app-header-height)] w-screen justify-between text-white duration-300 hover:bg-white hover:text-black hover:shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]"
 		:class="
-			isPageHome && isScrollPositionTop
+			isHome && isScrollPositionTop
 				? 'bg-transparent text-white'
 				: 'bg-white !text-black shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]'
 		"
@@ -66,7 +66,7 @@ import PersonalProductMenu from '@/components/PersonalProductMenu.vue';
 import CorporateProductMenu from '@/components/CorporateProductMenu.vue';
 
 const route = useRoute();
-const isPageHome = route.name === 'home';
+const isHome = computed(() => route.name === 'home');
 const appStore = useAppStore();
 const { isDrawerShow } = storeToRefs(appStore);
 
