@@ -3,7 +3,7 @@ import path from 'path';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	devtools: { enabled: true },
+	devtools: { enabled: false },
 	typescript: {
 		shim: false,
 	},
@@ -14,15 +14,15 @@ export default defineNuxtConfig({
 		},
 	},
 	css: ['~/assets/css/main.css'],
-	modules: ['@pinia/nuxt',],
-  nitro: {
-    plugins: ["~/server/database.ts"],
-  },
-  runtimeConfig: {
-    apiSecret: {
-      MONGO_URL: process.env.MONGO_URL,
-    },
-  },
+	modules: ['@pinia/nuxt'],
+	nitro: {
+		plugins: ['~/server/database.ts'],
+	},
+	runtimeConfig: {
+		apiSecret: {
+			MONGO_URL: process.env.MONGO_URL,
+		},
+	},
 	pinia: {
 		autoImports: [
 			// automatically imports `defineStore`
@@ -38,6 +38,6 @@ export default defineNuxtConfig({
 				inject: 'body-last',
 				customDomId: '__svg__icons__dom__',
 			}),
-		]
-	}
+		],
+	},
 });
