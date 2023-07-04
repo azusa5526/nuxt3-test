@@ -1,4 +1,5 @@
 import { Topic } from './models/topic';
+import { Category } from './models/category';
 
 async function initTopic() {
 	const topicCount = await Topic.count();
@@ -24,4 +25,79 @@ async function initTopic() {
 	}
 }
 
-export { initTopic };
+async function initCategory() {
+	const categoryCount = await Category.count();
+	if (!categoryCount) {
+		console.log('Do initCategory');
+		Category.create([
+			{
+				image_url: 'https://dummyimage.com/500X370/34eb83/fff',
+				name: 'headphones',
+				route: '/category/headphone/',
+				order: 1,
+				sub_categories: [
+					{
+						name: 'ワイヤード',
+						route: '/category/headphone/wired/',
+						order: 1,
+					},
+					{
+						name: 'ワイヤレス',
+						route: '/category/headphone/wireless/',
+						order: 2,
+					},
+					{
+						name: 'DJ/モニター',
+						route: '/category/headphone/dj-monitor/',
+						order: 3,
+					},
+					{
+						name: 'ハイエンド',
+						route: '/category/headphone/highend/',
+						order: 4,
+					},
+					{
+						name: 'アクセサリー',
+						route: '/category/headphone/accessorie/',
+						order: 5,
+					},
+				],
+			},
+			{
+				image_url: 'https://dummyimage.com/500X370/34eb83/fff',
+				name: 'earphones',
+				route: '/category/earphone/',
+				order: 2,
+				sub_categories: [
+					{
+						name: 'ワイヤード',
+						route: '/category/earphone/wired/',
+						order: 1,
+					},
+					{
+						name: 'ワイヤレス',
+						route: '/category/earphone/wireless/',
+						order: 2,
+					},
+					{
+						name: '完全ワイヤレス',
+						route: '/category/earphone/true-wireless/',
+						order: 3,
+					},
+					{
+						name: 'ハイエンド',
+						route: '/category/earphone/highend/',
+						order: 4,
+					},
+					{
+						name: 'アクセサリー',
+						route: '/category/earphone/accessorie/',
+						order: 5,
+					},
+				],
+			},
+		]);
+	}
+}
+
+export { initTopic, initCategory };

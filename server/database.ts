@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { initTopic } from './seed';
+import { initTopic, initCategory } from './seed';
 
 export default async () => {
 	try {
@@ -8,6 +8,7 @@ export default async () => {
 		await mongoose.connect(useRuntimeConfig().apiSecret.MONGO_URL);
 		console.log('Successfully connected to DB.');
 		await initTopic();
+		await initCategory();
 	} catch (error) {
 		console.error('mongoose err', error);
 		return createError({ statusCode: 500, statusMessage: 'Something went wrong.' });
