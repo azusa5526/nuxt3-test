@@ -1,13 +1,8 @@
 import mongoose from 'mongoose';
 import { ICategory } from '../../types';
+import { ISubCategories } from '../../types';
 
-interface SubCategory {
-	name: string;
-	route: string;
-	order: number;
-}
-
-const embeddedSubCategory = new mongoose.Schema<SubCategory>({
+const embeddedSubCategory = new mongoose.Schema<ISubCategories>({
 	name: { type: String, required: true },
 	route: { type: String, required: true },
 	order: { type: Number, required: true },
