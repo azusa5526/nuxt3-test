@@ -21,3 +21,38 @@ export interface ISubCategories {
 	route: string;
 	order: number;
 }
+
+export interface IProductBranch {
+	color: Types.Array<string>;
+	image_url: string;
+	model: string;
+	is_release: boolean;
+	release_at?: string;
+	stock_quantity?: number;
+	price: string;
+}
+
+export interface IProductPart {
+	name: string;
+	price: string;
+	route?: string;
+	note?: string;
+}
+
+export interface IProduct {
+	name: string;
+	model: string;
+	route: string;
+	tag_ids?: string[];
+	image_url: string;
+	spec_route?: string;
+	introduce_route?: string;
+	branch?: Types.DocumentArray<IProductBranch>;
+	label?: {
+		text: string;
+		bg_color: string;
+		font_color: string;
+	};
+	images?: string[];
+	parts?: IProductPart[];
+}

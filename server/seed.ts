@@ -1,5 +1,6 @@
 import { Topic } from './models/topic';
 import { Category } from './models/category';
+import { Product } from './models/product';
 
 async function initTopic() {
 	const topicCount = await Topic.count();
@@ -100,4 +101,66 @@ async function initCategory() {
 	}
 }
 
-export { initTopic, initCategory };
+async function initProduct() {
+	const productCount = await Product.count();
+	if (!productCount) {
+		console.log('Do initProduct');
+		Product.create([
+			{
+				name: 'プロフェッショナルモニターヘッドホン',
+				model: 'ATH-M50x',
+				route: 'ATH-M50x',
+				tag_ids: ['67a56d89a1c3cb6613d0ac95'],
+				image_url: 'https://dummyimage.com/500X500/13c0f0/fff',
+				label: {
+					text: '発売記念キャンペーン!!',
+					bg_color: 'cc9900',
+					font_color: 'FFFFFF',
+				},
+				spec_route: null,
+				introduce_route: null,
+				images: [
+					'https://dummyimage.com/500X500/13c0f0/fff',
+					'https://dummyimage.com/500X500/e83333/fff',
+					'https://dummyimage.com/500X500/33e645/fff',
+				],
+				parts: [
+					{
+						name: 'ポーチ BK',
+						price: '1,000',
+						route: null,
+						note: '色：黒',
+					},
+					{
+						name: '着脱カールコード（変換プラグアダプター付き） BK',
+						price: '2,200',
+						route: null,
+						note: '色：黒',
+					},
+				],
+				branch: [
+					{
+						color: ['13c0f0'],
+						image_url: 'https://dummyimage.com/500X500/13c0f0/fff',
+						model: 'ATH-M50x',
+						is_release: true,
+						release_at: null,
+						stock_quantity: 10,
+						price: '19,000',
+					},
+					{
+						color: ['f06813'],
+						image_url: 'https://dummyimage.com/500X500/f06813/fff',
+						model: 'ATH-M50x WH',
+						is_release: true,
+						release_at: '2021-08-03T16:20:17.717+08:00',
+						stock_quantity: 2,
+						price: '21,000',
+					},
+				],
+			},
+		]);
+	}
+}
+
+export { initTopic, initCategory, initProduct };
