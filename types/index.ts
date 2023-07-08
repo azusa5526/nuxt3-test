@@ -43,6 +43,8 @@ export interface IProduct {
 	name: string;
 	model: string;
 	route: string;
+	category_id: string;
+	sub_category_id: string;
 	tag_ids?: string[];
 	image_url: string;
 	spec_route?: string;

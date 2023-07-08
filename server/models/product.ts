@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { IProduct, IProductBranch, IProductPart } from '../../types';
 
 const embeddedProductBranch = new mongoose.Schema<IProductBranch>({
-	color: { type: [String], required: true },
+	color: { type: [String] },
 	image_url: { type: String, required: true },
 	model: { type: String, required: true },
 	is_release: { type: Boolean, required: true },
@@ -22,6 +22,8 @@ const productSchema = new mongoose.Schema<IProduct>({
 	name: { type: String, required: true },
 	model: { type: String, required: true },
 	route: { type: String, required: true },
+	category_id: { type: String, required: true },
+	sub_category_id: { type: String, required: true },
 	image_url: { type: String, required: true },
 	label: { type: Object },
 	spec_route: { type: String },

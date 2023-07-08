@@ -2,8 +2,22 @@ import { Product } from '../../models/product';
 import type { IProduct } from '../../../types';
 
 export default defineEventHandler(async (event) => {
-	const { image_url, model, name, route, branch, label, images, introduce_route, parts, spec_route, tag_ids } =
-		await readBody<IProduct>(event);
+	const {
+		image_url,
+		model,
+		name,
+		route,
+		branch,
+		label,
+		images,
+		introduce_route,
+		parts,
+		spec_route,
+		tag_ids,
+		category_id,
+		sub_category_id,
+	} = await readBody<IProduct>(event);
+
 	try {
 		const newProduct = await Product.create({
 			image_url,
@@ -17,6 +31,8 @@ export default defineEventHandler(async (event) => {
 			parts,
 			spec_route,
 			tag_ids,
+			category_id,
+			sub_category_id,
 		});
 
 		return newProduct;
