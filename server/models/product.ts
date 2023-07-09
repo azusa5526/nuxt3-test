@@ -9,6 +9,10 @@ const embeddedProductBranch = new mongoose.Schema<IProductBranch>({
 	release_at: { type: String },
 	stock_quantity: { type: Number },
 	price: { type: String, required: true },
+}).set('toJSON', {
+	transform: function (doc, ret) {
+		delete ret._id;
+	},
 });
 
 const embeddedProductPart = new mongoose.Schema<IProductPart>({
@@ -16,6 +20,10 @@ const embeddedProductPart = new mongoose.Schema<IProductPart>({
 	price: { type: String, required: true },
 	route: { type: String },
 	note: { type: String },
+}).set('toJSON', {
+	transform: function (doc, ret) {
+		delete ret._id;
+	},
 });
 
 const productSchema = new mongoose.Schema<IProduct>({
@@ -31,7 +39,13 @@ const productSchema = new mongoose.Schema<IProduct>({
 	images: { type: [String] },
 	tag_ids: { type: [String] },
 	parts: [embeddedProductPart],
-	branch: [embeddedProductBranch],
+	branches: [embeddedProductBranch],
+}).set('toJSON', {
+	versionKey: false,
+	virtuals: true,
+	transform: function (doc, ret) {
+		delete ret._id;
+	},
 });
 
 export const Product = mongoose.model<IProduct>('product', productSchema);

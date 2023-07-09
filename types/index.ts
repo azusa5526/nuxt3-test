@@ -49,7 +49,7 @@ export interface IProduct {
 	image_url: string;
 	spec_route?: string;
 	introduce_route?: string;
-	branch?: Types.DocumentArray<IProductBranch>;
+	branches: Types.DocumentArray<IProductBranch>;
 	label?: {
 		text: string;
 		bg_color: string;

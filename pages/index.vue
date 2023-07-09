@@ -2,6 +2,7 @@
 	<div>
 		<CarouselHome></CarouselHome>
 		<div class="pb-12 pt-9 text-center">
+			<button @click="test" class="bg-red-500">test</button>
 			<a href="#" class="text-lg">製品に関する大切なお知らせ</a>
 		</div>
 
@@ -85,6 +86,11 @@
 definePageMeta({
 	name: 'home',
 });
+
+async function test() {
+	const { data, pending, error, refresh } = await useFetch('/api/product');
+	console.log('products', data.value);
+}
 
 const productRecommand = [
 	{

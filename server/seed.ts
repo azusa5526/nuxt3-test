@@ -140,7 +140,7 @@ async function initProduct() {
 						note: '色：黒',
 					},
 				],
-				branch: [
+				branches: [
 					{
 						color: ['13c0f0'],
 						image_url: 'https://dummyimage.com/500X500/13c0f0/fff',
@@ -173,7 +173,7 @@ async function initProduct() {
 				introduce_route: null,
 				images: ['https://dummyimage.com/500X500/13c0f0/fff', 'https://dummyimage.com/500X500/e83333/fff'],
 				parts: null,
-				branch: [
+				branches: [
 					{
 						color: null,
 						image_url: 'https://dummyimage.com/500X500/f06813/fff',
@@ -197,7 +197,7 @@ async function initProduct() {
 				introduce_route: null,
 				images: ['https://dummyimage.com/500X500/13c0f0/fff', 'https://dummyimage.com/500X500/e83333/fff'],
 				parts: null,
-				branch: [
+				branches: [
 					{
 						color: ['f06813'],
 						image_url: 'https://dummyimage.com/500X500/f06813/fff',
