@@ -11,12 +11,21 @@ router.get(
 
 		if (query.scope && query.scope === 'less') {
 			try {
-				const products = await Product.find({}, 'name branches.model branches.price');
+				const products = await Product.find(
+					{},
+					'name model route image_url label branches.color branches.image_url branches.model branches.price'
+				);
 				const formattedProducts = products.map((doc: IProduct) => {
 					return {
 						name: doc.name,
+						model: doc.model,
+						route: doc.route,
+						image_url: doc.image_url,
+						label: doc.label,
 						branches: doc.branches.map((branch) => {
 							return {
+								color: branch.color,
+								image_url: branch.image_url,
 								model: branch.model,
 								price: branch.price,
 							};
