@@ -87,10 +87,13 @@ definePageMeta({
 	name: 'home',
 });
 
-async function test() {
-	const { data, pending, error, refresh } = await useFetch('/api/product');
-	console.log('products', data.value);
-}
+onMounted(async () => {
+	const products = await $fetch('/api/product');
+	console.log('onMounted $fetch products', products);
+});
+
+const { data: product } = useFetch('/api/product');
+console.log('useFetch product', product.value);
 
 const productRecommand = [
 	{
