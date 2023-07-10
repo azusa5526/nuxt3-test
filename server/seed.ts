@@ -1,6 +1,7 @@
 import { Topic } from './models/topic';
 import { Category } from './models/category';
 import { Product } from './models/product';
+import { Promote } from './models/promote';
 
 async function initTopic() {
 	const topicCount = await Topic.count();
@@ -23,6 +24,18 @@ async function initTopic() {
 				route: '/member',
 			},
 		]);
+	}
+}
+
+async function initPromote() {
+	const promote = await Promote.count();
+	if (!promote) {
+		console.log('Do initPromote');
+		Promote.create({
+			recommend: [],
+			online_limited: [],
+			new_item: [],
+		});
 	}
 }
 
@@ -213,4 +226,4 @@ async function initProduct() {
 	}
 }
 
-export { initTopic, initCategory, initProduct };
+export { initTopic, initCategory, initProduct, initPromote };

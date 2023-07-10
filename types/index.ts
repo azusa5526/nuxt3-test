@@ -58,3 +58,9 @@ export interface IProduct {
 	images?: string[];
 	parts?: IProductPart[];
 }
+
+export interface IPromote {
+	recommend: Types.DocumentArray<string>;
+	online_limited: Types.DocumentArray<string>;
+	new_item: Types.DocumentArray<string>;
+}
