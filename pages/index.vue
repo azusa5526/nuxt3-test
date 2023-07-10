@@ -2,13 +2,13 @@
 	<div>
 		<CarouselHome></CarouselHome>
 		<div class="pb-12 pt-9 text-center">
-			<button @click="test" class="bg-red-500">test</button>
+			<button class="bg-red-500">test</button>
 			<a href="#" class="text-lg">製品に関する大切なお知らせ</a>
 		</div>
 
 		<div class="pb-12">
 			<div class="my-10 text-center">おすすめアイテム</div>
-			<CarouselProduct :carousel-products="productRecommand" class="mx-auto max-w-[1300px]"></CarouselProduct>
+			<CarouselProduct :carousel-products="productRecommend" class="mx-auto max-w-[1300px]"></CarouselProduct>
 		</div>
 
 		<div class="pb-12">
@@ -90,12 +90,15 @@ definePageMeta({
 onMounted(async () => {
 	const products = await $fetch('/api/product');
 	console.log('onMounted $fetch products', products);
+
+	const recommendProducts = await $fetch('/api/promote', { params: { product_type: 'recommend' } });
+	console.log('recommend products', recommendProducts);
 });
 
 const { data: product } = useFetch('/api/product');
 console.log('useFetch product', product.value);
 
-const productRecommand = [
+const productRecommend = [
 	{
 		image_url: 'https://dummyimage.com/300X300/e52260/fff',
 		page: 'ATH-GDL3_NAR',
