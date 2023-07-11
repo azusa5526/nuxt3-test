@@ -10,6 +10,8 @@ const embeddedProductBranch = new mongoose.Schema<IProductBranch>({
 	stock_quantity: { type: Number },
 	price: { type: String, required: true },
 }).set('toJSON', {
+	versionKey: false,
+	virtuals: true,
 	transform: function (doc, ret) {
 		delete ret._id;
 	},
@@ -21,6 +23,8 @@ const embeddedProductPart = new mongoose.Schema<IProductPart>({
 	route: { type: String },
 	note: { type: String },
 }).set('toJSON', {
+	versionKey: false,
+	virtuals: true,
 	transform: function (doc, ret) {
 		delete ret._id;
 	},
