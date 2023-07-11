@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 import { IPromote } from '../../types/index';
 
 const schema = new mongoose.Schema<IPromote>({
-	recommend: { type: [String], required: true },
-	online_limited: { type: [String], required: true },
-	new_item: { type: [String], required: true },
+	recommend: { type: [Types.ObjectId], required: true },
+	online_limited: { type: [Types.ObjectId], required: true },
+	new_item: { type: [Types.ObjectId], required: true },
 }).set('toJSON', {
 	versionKey: false,
 	virtuals: true,

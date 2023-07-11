@@ -60,7 +60,7 @@ export interface IProduct {
 }
 
 export interface IPromote {
-	recommend: Types.DocumentArray<string>;
-	online_limited: Types.DocumentArray<string>;
-	new_item: Types.DocumentArray<string>;
+	recommend: Types.DocumentArray<Types.ObjectId>;
+	online_limited: Types.DocumentArray<Types.ObjectId>;
+	new_item: Types.DocumentArray<Types.ObjectId>;
 }
