@@ -1,6 +1,7 @@
 import { Product } from '../../models/product';
+import { Promote } from '../../models/promote';
 import mongoose from 'mongoose';
-import type { IProduct, IProductBranch } from '../../../types';
+import type { IProduct } from '../../../types';
 
 const router = createRouter();
 
@@ -10,32 +11,7 @@ router.get(
 		const query = getQuery(event);
 
 		if (query.scope && query.scope === 'less') {
-			try {
-				const products = await Product.find(
-					{},
-					'name model route image_url label branches.color branches.image_url branches.model branches.price'
-				);
-				const formattedProducts = products.map((doc: IProduct) => {
-					return {
-						name: doc.name,
-						model: doc.model,
-						route: doc.route,
-						image_url: doc.image_url,
-						label: doc.label,
-						branches: doc.branches.map((branch) => {
-							return {
-								color: branch.color,
-								image_url: branch.image_url,
-								model: branch.model,
-								price: branch.price,
-							};
-						}),
-					};
-				});
-				return formattedProducts;
-			} catch (error) {
-				console.error('Get products err', error);
-			}
+			return findLiteProducts({});
 		} else {
 			try {
 				const products = await Product.find();
@@ -69,5 +45,61 @@ router.get(
 		}
 	})
 );
+
+router.get(
+	'/promote',
+	defineEventHandler(async (event) => {
+		const query = getQuery(event);
+
+		let promote;
+		try {
+			promote = await Promote.findOne();
+		} catch (error) {
+			console.error('get promote err', error);
+		}
+
+		switch (query.type) {
+			case 'recommend':
+				return findLiteProducts({ targets: promote?.recommend });
+			case 'online_limited':
+				return findLiteProducts({ targets: promote?.recommend });
+			case 'new_item':
+				return findLiteProducts({ targets: promote?.recommend });
+			default:
+				return promote;
+		}
+	})
+);
+
+async function findLiteProducts({ targets = undefined }: Partial<{ targets?: string[] }>) {
+	try {
+		const filter = targets ? { _id: { $in: targets } } : {};
+
+		const products = await Product.find(
+			filter,
+			'name model route image_url label branches.color branches.image_url branches.model branches.price'
+		);
+		const formattedProducts = products.map((doc: IProduct) => {
+			return {
+				name: doc.name,
+				model: doc.model,
+				route: doc.route,
+				image_url: doc.image_url,
+				label: doc.label,
+				branches: doc.branches.map((branch) => {
+					return {
+						color: branch.color,
+						image_url: branch.image_url,
+						model: branch.model,
+						price: branch.price,
+					};
+				}),
+			};
+		});
+		return formattedProducts;
+	} catch (error) {
+		console.error('Get products err', error);
+	}
+}
 
 export default useBase('/api/product/', router.handler);
