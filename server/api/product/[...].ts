@@ -51,30 +51,63 @@ router.get(
 	defineEventHandler(async (event) => {
 		const query = getQuery(event);
 
-		let promote;
-		try {
-			promote = await Promote.findOne();
-		} catch (error) {
-			console.error('get promote err', error);
-		}
+		const promoteTypes = ['recommend', 'online_limited', 'new_item'] as const;
 
-		switch (query.type) {
-			case 'recommend':
-				return findLiteProducts({ targets: promote?.recommend });
-			case 'online_limited':
-				return findLiteProducts({ targets: promote?.online_limited });
-			case 'new_item':
-				return findLiteProducts({ targets: promote?.new_item });
-			default:
+		const type = promoteTypes.find((item) => item === query.type);
+		console.log('type', type);
+
+		if (type) {
+			try {
+				const promote = await Promote.findOne({}, type)
+					.populate({
+						path: type,
+						select:
+							'name model route image_url label branches.color branches.image_url branches.model branches.price branches._id',
+					})
+					.exec();
+				return promote?.[type as (typeof promoteTypes)[number]];
+			} catch (error) {
+				console.error('get populate promote err', error);
+			}
+		} else {
+			try {
+				const promote = await Promote.findOne({});
 				return promote;
+			} catch (error) {
+				console.error('get promote err', error);
+			}
 		}
 	})
 );
 
+// router.get(
+// 	'/promote',
+// 	defineEventHandler(async (event) => {
+// 		const query = getQuery(event);
+
+// 		let promote;
+// 		try {
+// 			promote = await Promote.findOne();
+// 		} catch (error) {
+// 			console.error('get promote err', error);
+// 		}
+
+// 		switch (query.type) {
+// 			case 'recommend':
+// 				return findLiteProducts({ targets: promote?.recommend });
+// 			case 'online_limited':
+// 				return findLiteProducts({ targets: promote?.online_limited });
+// 			case 'new_item':
+// 				return findLiteProducts({ targets: promote?.new_item });
+// 			default:
+// 				return promote;
+// 		}
+// 	})
+// );
+
 async function findLiteProducts({ targets = undefined }: Partial<{ targets?: Array<Types.ObjectId> }>) {
 	try {
 		const filter = targets ? { _id: { $in: targets } } : {};
-
 		const products = await Product.find(
 			filter,
 			'name model route image_url label branches.color branches.image_url branches.model branches.price branches._id'
