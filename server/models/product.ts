@@ -40,8 +40,8 @@ const productSchema = new mongoose.Schema<IProduct>({
 	label: { type: Object },
 	spec_route: { type: String },
 	introduce_route: { type: String },
-	images: { type: [String] },
-	tag_ids: { type: [mongoose.Schema.Types.ObjectId] },
+	images: [{ type: String }],
+	tag_ids: [{ type: mongoose.Schema.Types.ObjectId }],
 	parts: [embeddedProductPart],
 	branches: [embeddedProductBranch],
 }).set('toJSON', {
