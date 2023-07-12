@@ -43,9 +43,9 @@ export interface IProduct {
 	name: string;
 	model: string;
 	route: string;
-	category_id: string;
-	sub_category_id: string;
-	tag_ids?: string[];
+	category_id: Types.ObjectId;
+	sub_category_id: Types.ObjectId;
+	tag_ids?: Types.DocumentArray<Types.ObjectId>;
 	image_url: string;
 	spec_route?: string;
 	introduce_route?: string;
