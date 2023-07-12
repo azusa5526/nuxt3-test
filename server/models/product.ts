@@ -41,7 +41,7 @@ const productSchema = new mongoose.Schema<IProduct>({
 	spec_route: { type: String },
 	introduce_route: { type: String },
 	images: { type: [String] },
-	tag_ids: { type: [String] },
+	tag_ids: { type: [mongoose.Schema.Types.ObjectId] },
 	parts: [embeddedProductPart],
 	branches: [embeddedProductBranch],
 }).set('toJSON', {
