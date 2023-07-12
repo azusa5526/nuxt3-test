@@ -62,9 +62,9 @@ router.get(
 			case 'recommend':
 				return findLiteProducts({ targets: promote?.recommend });
 			case 'online_limited':
-				return findLiteProducts({ targets: promote?.recommend });
+				return findLiteProducts({ targets: promote?.online_limited });
 			case 'new_item':
-				return findLiteProducts({ targets: promote?.recommend });
+				return findLiteProducts({ targets: promote?.new_item });
 			default:
 				return promote;
 		}
