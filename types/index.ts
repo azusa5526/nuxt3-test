@@ -62,8 +62,11 @@ export interface IProduct {
 	parts?: IProductPart[];
 }
 
-export type SimplifiedBranch = Pick<IProductBranch, 'color' | 'image_url' | 'model' | 'price' | 'id'>;
-export type SimplifiedProduct = Pick<IProduct, 'name' | 'model' | 'route' | 'image_url' | 'label' | 'id'> & {
+export type SimplifiedBranch = Pick<IProductBranch, 'color' | 'image_url' | 'model' | 'price' | 'id' | 'release_at'>;
+export type SimplifiedProduct = Pick<
+	IProduct,
+	'name' | 'model' | 'route' | 'image_url' | 'label' | 'id' | 'description'
+> & {
 	branches: SimplifiedBranch[];
 };
 

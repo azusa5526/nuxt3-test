@@ -62,7 +62,7 @@ router.get(
 					.populate({
 						path: type,
 						select:
-							'name model route image_url label branches.color branches.image_url branches.model branches.price branches._id',
+							'name model route description image_url label branches.color branches.image_url branches.model branches.price branches._id branches.release_at',
 					})
 					.exec();
 				return promote?.[type as (typeof promoteTypes)[number]];
