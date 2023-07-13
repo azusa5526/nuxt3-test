@@ -8,12 +8,12 @@
 
 		<div class="pb-12">
 			<div class="my-10 text-center">おすすめアイテム</div>
-			<CarouselProduct :carousel-products="productRecommend" class="mx-auto max-w-[1300px]"></CarouselProduct>
+			<CarouselProduct :products="recommendProductFetch.data" class="mx-auto max-w-[1300px]"></CarouselProduct>
 		</div>
 
 		<div class="pb-12">
 			<div class="my-10 text-center">オンラインストア限定</div>
-			<CarouselProduct :carousel-products="productOnlineStoreOnly" class="mx-auto max-w-[1300px]"></CarouselProduct>
+			<CarouselProduct :products="recommendProductFetch.data" class="mx-auto max-w-[1300px]"></CarouselProduct>
 		</div>
 
 		<div class="mx-auto max-w-[1400px] px-5 py-24">
@@ -83,20 +83,22 @@
 </template>
 
 <script lang="ts" setup>
+import type { SimplifiedProduct } from '~/types';
+
 definePageMeta({
 	name: 'home',
 });
 
-onMounted(async () => {
-	const products = await $fetch('/api/product');
-	console.log('onMounted $fetch products', products);
+const recommendProductFetch = reactive(
+	await useFetch<SimplifiedProduct[]>('/api/product/promote', {
+		params: { type: 'recommend' },
+	})
+);
 
-	const recommendProducts = await $fetch('/api/promote', { params: { product_type: 'recommend' } });
-	console.log('recommend products', recommendProducts);
-});
-
-const { data: product } = useFetch('/api/product');
-console.log('useFetch product', product.value);
+// onMounted(async () => {
+// 	const products = await $fetch('/api/product', {});
+// 	console.log('onMounted $fetch products', products);
+// });
 
 const productRecommend = [
 	{
