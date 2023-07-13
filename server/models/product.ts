@@ -34,6 +34,7 @@ const productSchema = new mongoose.Schema<IProduct>({
 	name: { type: String, required: true },
 	model: { type: String, required: true },
 	route: { type: String, required: true },
+	description: { type: String },
 	category_id: { type: mongoose.Schema.Types.ObjectId, required: true },
 	sub_category_id: { type: mongoose.Schema.Types.ObjectId, required: true },
 	image_url: { type: String, required: true },

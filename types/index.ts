@@ -45,6 +45,7 @@ export interface IProduct {
 	name: string;
 	model: string;
 	route: string;
+	description?: string;
 	category_id: Types.ObjectId;
 	sub_category_id: Types.ObjectId;
 	tag_ids?: Types.DocumentArray<Types.ObjectId>;
