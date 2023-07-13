@@ -23,6 +23,7 @@ export interface ISubCategories {
 }
 
 export interface IProductBranch {
+	id: string;
 	color: Types.Array<string>;
 	image_url: string;
 	model: string;
@@ -40,6 +41,7 @@ export interface IProductPart {
 }
 
 export interface IProduct {
+	id: string;
 	name: string;
 	model: string;
 	route: string;
@@ -58,6 +60,11 @@ export interface IProduct {
 	images?: string[];
 	parts?: IProductPart[];
 }
+
+export type SimplifiedBranch = Pick<IProductBranch, 'color' | 'image_url' | 'model' | 'price' | 'id'>;
+export type SimplifiedProduct = Pick<IProduct, 'name' | 'model' | 'route' | 'image_url' | 'label' | 'id'> & {
+	branches: SimplifiedBranch[];
+};
 
 export interface IPromote {
 	recommend: Types.DocumentArray<Types.ObjectId>;
