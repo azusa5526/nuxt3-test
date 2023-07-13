@@ -52,7 +52,7 @@
 
 		<div class="bg-gray-200 py-24">
 			<div class="my-10 text-center">新製品</div>
-			<CarouselProductNew :carousel-products="productNew" class="mx-auto max-w-[1300px]"></CarouselProductNew>
+			<CarouselProductNew :products="newItemProductFetch.data" class="mx-auto max-w-[1300px]"></CarouselProductNew>
 		</div>
 
 		<div class="mx-auto max-w-[1260px] py-24">
@@ -100,6 +100,13 @@ const onlineLimitedProductFetch = reactive(
 		params: { type: 'online_limited' },
 	})
 );
+
+const newItemProductFetch = reactive(
+	await useFetch<SimplifiedProduct[]>('/api/product/promote', {
+		params: { type: 'new_item' },
+	})
+);
+
 // onMounted(async () => {
 // 	const products = await $fetch('/api/product', {});
 // 	console.log('onMounted $fetch products', products);
