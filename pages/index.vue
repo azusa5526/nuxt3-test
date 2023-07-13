@@ -13,7 +13,7 @@
 
 		<div class="pb-12">
 			<div class="my-10 text-center">オンラインストア限定</div>
-			<CarouselProduct :products="recommendProductFetch.data" class="mx-auto max-w-[1300px]"></CarouselProduct>
+			<CarouselProduct :products="onlineLimitedProductFetch.data" class="mx-auto max-w-[1300px]"></CarouselProduct>
 		</div>
 
 		<div class="mx-auto max-w-[1400px] px-5 py-24">
@@ -95,6 +95,11 @@ const recommendProductFetch = reactive(
 	})
 );
 
+const onlineLimitedProductFetch = reactive(
+	await useFetch<SimplifiedProduct[]>('/api/product/promote', {
+		params: { type: 'online_limited' },
+	})
+);
 // onMounted(async () => {
 // 	const products = await $fetch('/api/product', {});
 // 	console.log('onMounted $fetch products', products);
