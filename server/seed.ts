@@ -2,6 +2,7 @@ import { Topic } from './models/topic';
 import { Category } from './models/category';
 import { Product } from './models/product';
 import { Promote } from './models/promote';
+import mongoose from 'mongoose';
 
 async function initTopic() {
 	const topicCount = await Topic.count();
@@ -120,6 +121,7 @@ async function initProduct() {
 		console.log('Do initProduct');
 		Product.create([
 			{
+				_id: new mongoose.Types.ObjectId('64affe9d70f6308bc6bf1399'),
 				name: 'プロフェッショナルモニターヘッドホン',
 				model: 'ATH-M50x',
 				route: 'ATH-M50x',
@@ -156,8 +158,8 @@ async function initProduct() {
 				],
 				branches: [
 					{
-						color: ['13c0f0'],
-						image_url: 'https://dummyimage.com/500X500/13c0f0/fff',
+						color: ['000000'],
+						image_url: '/upload/contents/product/ATH-M50x/branch_2805_image_0.jpg',
 						model: 'ATH-M50x',
 						is_release: true,
 						release_at: null,
@@ -165,8 +167,8 @@ async function initProduct() {
 						price: '19,000',
 					},
 					{
-						color: ['f06813'],
-						image_url: 'https://dummyimage.com/500X500/f06813/fff',
+						color: ['ffffff'],
+						image_url: '/upload/contents/product/ATH-M50x/branch_2806_image_6.jpg',
 						model: 'ATH-M50x WH',
 						is_release: true,
 						release_at: '2021-08-03T16:20:17.717+08:00',
@@ -176,6 +178,7 @@ async function initProduct() {
 				],
 			},
 			{
+				_id: new mongoose.Types.ObjectId('64affe9d70f6308bc6bf139e'),
 				name: 'ワイヤレスヘッドホン',
 				model: 'ATH-TWX9',
 				route: 'ATH-TWX9',
@@ -201,6 +204,7 @@ async function initProduct() {
 				],
 			},
 			{
+				_id: new mongoose.Types.ObjectId('64affe9d70f6308bc6bf13a0'),
 				name: 'ワイヤレスヘッドホン',
 				model: 'ATH-M50xBT2',
 				route: 'ATH-M50xBT2',
