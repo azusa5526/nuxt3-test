@@ -90,3 +90,11 @@ export interface INaviContent {
 	title_eng: string;
 	content: string;
 }
+
+export interface ITopic {
+	route: string;
+	image_url: string;
+	category: string;
+	title: string;
+	content: string;
+}

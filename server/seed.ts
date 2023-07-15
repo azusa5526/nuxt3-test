@@ -1,34 +1,10 @@
-import { Topic } from './models/topic';
 import { Category } from './models/category';
 import { Product } from './models/product';
 import { Promote } from './models/promote';
 import { TopSlide } from './models/top-slides';
 import { NaviContent } from './models/navi-contents';
-import mongoose from 'mongoose';
-
-async function initTopic() {
-	const topicCount = await Topic.count();
-	if (!topicCount) {
-		console.log('Do initTopic');
-		Topic.create([
-			{
-				image_url: 'https://dummyimage.com/720X540/34eb83/fff',
-				category: 'CAMPAIGN',
-				title: 'オリジナルフォンタブ：プレゼント',
-				contents:
-					'オンラインストア限定販売 ATH-SQ1TW STB の発売を記念して、Audio-Technicaオリジナルの『フォンタブ』ご用意しました。公式オンラインストアにて、ATH-SQ1TW STB(EGR／SBK／SWH)お買い上げのお客様にもれなくプレゼント。(数量限定)',
-				route: '/novelty_phonetab',
-			},
-			{
-				image_url: 'https://dummyimage.com/720X540/34eb83/fff',
-				category: 'CAMPAIGN',
-				title: '会員登録キャンペーン',
-				contents: '事前会員登録でクーポンコードプレゼント!! 会員登録期間: 6月26日〜7月14日',
-				route: '/member',
-			},
-		]);
-	}
-}
+import { Topic } from './models/topic';
+import { Types } from 'mongoose';
 
 async function initPromote() {
 	const promote = await Promote.count();
@@ -123,7 +99,7 @@ async function initProduct() {
 		console.log('Do initProduct');
 		Product.create([
 			{
-				_id: new mongoose.Types.ObjectId('64affe9d70f6308bc6bf1399'),
+				_id: new Types.ObjectId('64affe9d70f6308bc6bf1399'),
 				name: 'プロフェッショナルモニターヘッドホン',
 				model: 'ATH-M50x',
 				route: 'ATH-M50x',
@@ -180,7 +156,7 @@ async function initProduct() {
 				],
 			},
 			{
-				_id: new mongoose.Types.ObjectId('64affe9d70f6308bc6bf139e'),
+				_id: new Types.ObjectId('64affe9d70f6308bc6bf139e'),
 				name: 'ワイヤレスヘッドホン',
 				model: 'ATH-TWX9',
 				route: 'ATH-TWX9',
@@ -206,7 +182,7 @@ async function initProduct() {
 				],
 			},
 			{
-				_id: new mongoose.Types.ObjectId('64affe9d70f6308bc6bf13a0'),
+				_id: new Types.ObjectId('64affe9d70f6308bc6bf13a0'),
 				name: 'ワイヤレスヘッドホン',
 				model: 'ATH-M50xBT2',
 				route: 'ATH-M50xBT2',
@@ -299,4 +275,63 @@ async function initNaviContents() {
 	}
 }
 
-export { initTopic, initCategory, initProduct, initPromote, initSlides, initNaviContents };
+async function initTopic() {
+	const topicCount = await Topic.count();
+	if (!topicCount) {
+		console.log('Do initTopic');
+		Topic.create([
+			{
+				image_url: '/upload/contents/topic/topic_1.jpg',
+				category: 'CAMPAIGN',
+				title: '【オリジナルフォンタブ：プレゼント】',
+				content:
+					'オンラインストア限定販売 ATH-SQ1TW STB の発売を記念して、Audio-Technicaオリジナルの『フォンタブ』ご用意しました。公式オンラインストアにて、ATH-SQ1TW STB(EGR／SBK／SWH)お買い上げのお客様にもれなくプレゼント。(数量限定)',
+				route: '/novelty_phonetab',
+			},
+			{
+				image_url: '/upload/contents/topic/topic_2.jpg',
+				category: 'PRODUCTS',
+				title: '【ATH-SQ1TW STB】',
+				content: 'イヤホンと充電ケースに再生プラスチックを配合した素材を使用した完全ワイヤレス',
+				route: '/product/ATH-SQ1TW_STB',
+			},
+			{
+				image_url: '/upload/contents/topic/topic_3.jpg',
+				category: 'PRODUCTS',
+				title: '【ワイヤレスヘッドホン ATH-M20xBT】',
+				content: '購入後のアンケートよりいただいたお客様の声ご感想をご紹介',
+				route: '/ATH-M20xBT/#uv',
+			},
+			{
+				image_url: '/upload/contents/topic/topic_4.jpg',
+				category: 'PRODUCTS',
+				title: '【ATH-M50xSTS-USB】',
+				content: 'ストリーマーやコンテンツクリエイターのために設計されたヘッドセット',
+				route: '/product/ATH-M50xSTS-USB',
+			},
+			{
+				image_url: '/upload/contents/topic/topic_5.jpg',
+				category: 'PRODUCTS',
+				title: '【AT-SB727 WH】',
+				content: '久しぶりにレコードを聴きたくなった人には少しなつかしい、これからレコードを始める人にはとても新鮮。',
+				route: '/product/AT-SB727_WH',
+			},
+			{
+				image_url: '/upload/contents/topic/topic_6.jpg',
+				category: 'INFOMARTION',
+				title: '【会員登録】',
+				content: 'オーディオテクニカからのメールを受信していただくとお誕生日クーポンなどのお得な情報をお送りします。',
+				route: '/member/',
+			},
+			{
+				image_url: '/upload/contents/topic/topic_7.jpg',
+				category: 'SHORT SHORT STORY',
+				title: 'アニメーション：',
+				content: 'vol.139『次元』公開。 ＜音＞にまつわる、ちょっと不思議な世界をお楽しみください！',
+				route: '/shortshortstory/',
+			},
+		]);
+	}
+}
+
+export { initCategory, initProduct, initPromote, initSlides, initNaviContents, initTopic };
