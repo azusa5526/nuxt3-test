@@ -25,29 +25,32 @@
 			<Topics></Topics>
 		</div>
 
-		<a href="#" draggable="false">
-			<div class="relative bg-[url('https://dummyimage.com/1920X494/26e3fc/fff')] bg-cover bg-center py-16">
-				<div class="ml-[13%] text-white">
-					<div class="mb-6 text-2xl">
-						良い音で、
-						<br class="block lg:hidden" />
-						大人はもっと楽しくなる。
-					</div>
-					<div class="mb-6">
-						WIRED EARPHONES/ HEADPHONES
-						<br class="block lg:hidden" />
-						PREMIUM LINEUP
-					</div>
-					<div class="mb-10">
-						自分の価値観や美意識にこだわりをもって暮らす方々の
-						<br />
-						良い音の楽しみ方を公開中！
-					</div>
+		<div class="pt-24">
+			<div class="my-24 text-center">プレミアムラインナップ</div>
+			<a href="#" draggable="false">
+				<div class="relative bg-[url('/img/top_bnr_premium02.jpg')] bg-cover bg-center py-16">
+					<div class="ml-[13%] text-white">
+						<div class="mb-6 text-2xl">
+							良い音で、
+							<br class="block lg:hidden" />
+							大人はもっと楽しくなる。
+						</div>
+						<div class="mb-6">
+							WIRED EARPHONES/ HEADPHONES
+							<br class="block lg:hidden" />
+							PREMIUM LINEUP
+						</div>
+						<div class="mb-10">
+							自分の価値観や美意識にこだわりをもって暮らす方々の
+							<br />
+							良い音の楽しみ方を公開中！
+						</div>
 
-					<div class="text-sm">MORE</div>
+						<div class="text-sm">MORE</div>
+					</div>
 				</div>
-			</div>
-		</a>
+			</a>
+		</div>
 
 		<div class="bg-gray-200 py-24">
 			<div class="my-10 text-center">新製品</div>
