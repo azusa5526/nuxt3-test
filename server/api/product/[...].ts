@@ -1,24 +1,34 @@
 import { Product } from '../../models/product';
 import { Promote } from '../../models/promote';
-import mongoose, { Types } from 'mongoose';
-import type { IProduct } from '../../../types';
+import { Types } from 'mongoose';
 
 const router = createRouter();
+
+interface ProductQueryParams {
+	category_id?: string;
+	sub_category_id?: string;
+	full_spec?: string;
+}
 
 router.get(
 	'/',
 	defineEventHandler(async (event) => {
-		const query = getQuery(event);
+		const query: ProductQueryParams = getQuery(event);
+		const filters: Omit<ProductQueryParams, 'full_spec'> = {};
+		const { category_id, sub_category_id } = query;
+		const full_spec = query.full_spec === 'true';
 
-		if (query.scope && query.scope === 'less') {
-			return findLiteProducts({});
-		} else {
-			try {
-				const products = await Product.find();
-				return products;
-			} catch (error) {
-				console.error('Get products err', error);
-			}
+		if (category_id && Types.ObjectId.isValid(category_id)) filters.category_id = category_id;
+		if (sub_category_id && Types.ObjectId.isValid(sub_category_id)) filters.sub_category_id = sub_category_id;
+		try {
+			const products = await Product.find(filters).select(
+				full_spec
+					? {}
+					: 'name model route image_url label branches.color branches.image_url branches.model branches.price branches._id'
+			);
+			return products;
+		} catch (error) {
+			console.error('Get products err', error);
 		}
 	})
 );
@@ -27,7 +37,7 @@ router.get(
 	'/:id',
 	defineEventHandler(async (event) => {
 		const productId = event.context.params?.id;
-		if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
+		if (!productId || !Types.ObjectId.isValid(productId)) {
 			throw createError({
 				statusCode: 400,
 				statusMessage: 'id is not valid value',
@@ -50,11 +60,8 @@ router.get(
 	'/promote',
 	defineEventHandler(async (event) => {
 		const query = getQuery(event);
-
 		const promoteTypes = ['recommend', 'online_limited', 'new_item'] as const;
-
 		const type = promoteTypes.find((item) => item === query.type);
-		console.log('type', type);
 
 		if (type) {
 			try {
@@ -67,7 +74,7 @@ router.get(
 					.exec();
 				return promote?.[type as (typeof promoteTypes)[number]];
 			} catch (error) {
-				console.error('get populate promote err', error);
+				console.error('get promote products err', error);
 			}
 		} else {
 			try {
@@ -79,43 +86,5 @@ router.get(
 		}
 	})
 );
-
-// router.get(
-// 	'/promote',
-// 	defineEventHandler(async (event) => {
-// 		const query = getQuery(event);
-
-// 		let promote;
-// 		try {
-// 			promote = await Promote.findOne();
-// 		} catch (error) {
-// 			console.error('get promote err', error);
-// 		}
-
-// 		switch (query.type) {
-// 			case 'recommend':
-// 				return findLiteProducts({ targets: promote?.recommend });
-// 			case 'online_limited':
-// 				return findLiteProducts({ targets: promote?.online_limited });
-// 			case 'new_item':
-// 				return findLiteProducts({ targets: promote?.new_item });
-// 			default:
-// 				return promote;
-// 		}
-// 	})
-// );
-
-async function findLiteProducts({ targets = undefined }: Partial<{ targets?: Array<Types.ObjectId> }>) {
-	try {
-		const filter = targets ? { _id: { $in: targets } } : {};
-		const products = await Product.find(
-			filter,
-			'name model route image_url label branches.color branches.image_url branches.model branches.price branches._id'
-		);
-		return products;
-	} catch (error) {
-		console.error('Get products err', error);
-	}
-}
 
 export default useBase('/api/product/', router.handler);
