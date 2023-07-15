@@ -82,3 +82,11 @@ export interface ITopSlide {
 	title?: string;
 	description?: string;
 }
+
+export interface INaviContent {
+	route: string;
+	image_url: string;
+	title_jp: string;
+	title_eng: string;
+	content: string;
+}

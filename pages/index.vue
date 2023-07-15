@@ -17,7 +17,7 @@
 
 		<div class="mx-auto max-w-[1400px] px-5 py-24">
 			<div class="my-10 text-center">ナビコンテンツ</div>
-			<NavContents></NavContents>
+			<NavIContents></NavIContents>
 		</div>
 
 		<div class="mx-auto max-w-[80vw] py-24">
