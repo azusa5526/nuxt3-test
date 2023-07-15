@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<CarouselHome></CarouselHome>
+		<CarouselTopSlides></CarouselTopSlides>
 		<div class="pb-12 pt-9 text-center">
 			<a href="#" class="text-lg">製品に関する大切なお知らせ</a>
 		</div>

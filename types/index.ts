@@ -75,3 +75,10 @@ export interface IPromote {
 	online_limited: Types.DocumentArray<Types.ObjectId>;
 	new_item: Types.DocumentArray<Types.ObjectId>;
 }
+
+export interface ITopSlide {
+	route: string;
+	image_url: string;
+	title?: string;
+	description?: string;
+}

@@ -2,6 +2,7 @@ import { Topic } from './models/topic';
 import { Category } from './models/category';
 import { Product } from './models/product';
 import { Promote } from './models/promote';
+import { TopSlide } from './models/top-slides';
 import mongoose from 'mongoose';
 
 async function initTopic() {
@@ -233,4 +234,36 @@ async function initProduct() {
 	}
 }
 
-export { initTopic, initCategory, initProduct, initPromote };
+async function initSlides() {
+	const slideCount = await TopSlide.count();
+	if (!slideCount) {
+		TopSlide.create([
+			{
+				image_url: '/upload/contents/top/top-imgSQ1TWSTB.jpg',
+				route: 'https://www.audio-technica.co.jp/product/ATH-SQ1TW_STB',
+				title: 'ATH-SQ1TW STB',
+				description: '<p>地球とつながる、フルワイヤレス。<br>発売記念『フォンタブ』プレゼント!!</p>',
+			},
+			{
+				image_url: '/upload/contents/top/top-imgAT-SB727.jpg',
+				route: 'https://www.audio-technica.co.jp/category/analog-product/',
+				title: 'AT-SB727',
+				description: '<p>アナログに恋をする。<br>レコードを挟んでどこでも楽しめるサウンドバーガー</p>',
+			},
+			{
+				image_url: '/upload/contents/top/top-imgAT2020USB-XP.jpg',
+				route: 'https://www.audio-technica.co.jp/product/AT2020USB-XP',
+				title: 'AT2020USB-XP',
+				description: '<p>周囲環境や収音用途に応じて音質を最適化できる<br>プロ仕様のコンデンサーUSBマイクロホン</p>',
+			},
+			{
+				image_url: '/upload/contents/top/top-GL3ZIN.jpg',
+				route: 'https://www.audio-technica.co.jp/category/headphone/wired/',
+				title: 'MONSTER HUNTER',
+				description: '<p>モンスターハンターをモチーフとした<br>限定生産ゲーミングヘッドセット</p>',
+			},
+		]);
+	}
+}
+
+export { initTopic, initCategory, initProduct, initPromote, initSlides };
