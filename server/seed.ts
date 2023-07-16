@@ -4,6 +4,7 @@ import { Promote } from './models/promote';
 import { TopSlide } from './models/top-slides';
 import { NaviContent } from './models/navi-contents';
 import { Topic } from './models/topic';
+import { News } from './models/news';
 import { Types } from 'mongoose';
 
 async function initPromote() {
@@ -172,7 +173,7 @@ async function initProduct() {
 				branches: [
 					{
 						color: null,
-						image_url: 'https://dummyimage.com/500X500/377ded/fff',
+						image_url: '/upload/contents/product/ATH-TWX9/product_image_1660107841.jpg',
 						model: 'ATH-TWX9',
 						is_release: true,
 						release_at: '2021-08-03T16:20:17.717+08:00',
@@ -197,8 +198,8 @@ async function initProduct() {
 				parts: null,
 				branches: [
 					{
-						color: ['f06813'],
-						image_url: 'https://dummyimage.com/500X500/f06813/fff',
+						color: null,
+						image_url: '/upload/contents/product/ATH-M50xBT2/branch_3141_image_0.jpg',
 						model: 'ATH-M50xBT2',
 						is_release: true,
 						release_at: '2021-08-03T16:20:17.717+08:00',
@@ -341,4 +342,42 @@ async function initTopic() {
 	}
 }
 
-export { initCategory, initProduct, initPromote, initSlides, initNaviContents, initTopic };
+async function initNews() {
+	const newsCount = await News.count();
+	if (!newsCount) {
+		console.log('Do initNews');
+		News.create([
+			{
+				image_url: '/upload/contents/news/news_1.jpg',
+				news_route: '/',
+				category_id: new Types.ObjectId('64b3f6f6c0cdc6c0776b7f1e'),
+				_id: new Types.ObjectId('64b3f6e0133eab9359c8c780'),
+				content:
+					' 体温でカタチが変わる、イヤピースとして世界初*の素材を採用！ 完全ワイヤレスイヤホン用イヤピースを7月21日発売 ',
+				route: '/',
+				create_time: new Date('2023-07-06 08:00:00'),
+			},
+			{
+				image_url: '/upload/contents/news/news_2.jpg',
+				news_route: '/',
+				category_id: new Types.ObjectId('64b3f6f6c0cdc6c0776b7f1e'),
+				_id: new Types.ObjectId('64b3f75673f0722aae0d2904'),
+				content:
+					'サスティナブル素材をまとい、地球に優しくリニューアル！ 完全ワイヤレスイヤホン『ATH-SQ1TW STB』が公式オンラインストアなどで本日発売',
+				route: '/',
+				create_time: new Date('2023-06-16 08:00:00'),
+			},
+			{
+				image_url: '/upload/contents/news/news_3.jpg',
+				news_route: '/',
+				category_id: new Types.ObjectId('64b3f824f83261fcbb095086'),
+				_id: new Types.ObjectId('64b3f828681c6f24d7b94a22'),
+				content: '子どもも大人も。音でもっとおもしろく。『Let’s! PLAY! SOUND with Audio-Technica』スタート',
+				route: '/',
+				create_time: new Date('2023-07-04 08:00:00'),
+			},
+		]);
+	}
+}
+
+export { initCategory, initProduct, initPromote, initSlides, initNaviContents, initTopic, initNews };

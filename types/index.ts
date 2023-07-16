@@ -101,3 +101,14 @@ export interface ITopic {
 }
 
 export type Topic = Omit<ITopic, 'create_time'> & { create_time: string };
+
+export interface INews {
+	route: string;
+	image_url: string;
+	news_route: string;
+	category_id: Types.ObjectId;
+	content: string;
+	create_time: Date;
+}
+
+export type News = Omit<INews, 'create_time'> & { create_time: string; id: string };

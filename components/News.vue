@@ -1,15 +1,15 @@
 <template>
 	<div>
 		<div class="mb-48 grid grid-cols-2 place-content-stretch gap-[90px]">
-			<div v-for="(news, index) in newsItems" :key="index" class="flex">
-				<a href="#" class="mr-5 shrink-0 hover:opacity-70" draggable="false">
-					<img class="mb-2 block h-auto w-[220px] select-none object-contain" draggable="false" :src="news.image_url" />
+			<div v-for="news in newsFetch.data" :key="news.id" class="flex">
+				<a href="#" class="mr-5 h-[145px] w-[217px] shrink-0 border border-gray-300 hover:opacity-70" draggable="false">
+					<img class="block h-full w-full select-none object-cover" draggable="false" :src="news.image_url" />
 				</a>
 
 				<div class="flex flex-col">
-					<div class="text-underline relative mb-2 w-fit">{{ news.category }}</div>
-					<div class="mb-6 text-sm">{{ news.release_date }}</div>
-					<a href="#" class="text-sm hover:opacity-70" draggable="false">{{ news.contents }}</a>
+					<div class="text-underline relative mb-2 w-fit">{{ news.category_id }}</div>
+					<div class="mb-6 text-sm">{{ getFormattedData(news.create_time) }}</div>
+					<a href="#" class="text-sm hover:opacity-70" draggable="false">{{ news.content }}</a>
 				</div>
 			</div>
 		</div>
@@ -20,50 +20,15 @@
 </template>
 
 <script lang="ts" setup>
-const newsItems = [
-	{
-		image_url: 'https://dummyimage.com/750X475/26e3fc/fff',
-		category: '一般製品',
-		release_date: '2023.06.16',
-		contents:
-			'サスティナブル素材をまとい、地球に優しくリニューアル！ 完全ワイヤレスイヤホン『ATH-SQ1TW STB』が公式オンラインストアなどで本日発売',
-	},
-	{
-		image_url: 'https://dummyimage.com/750X475/26e3fc/fff',
-		category: '一般製品',
-		release_date: '2023.06.16',
-		contents:
-			'サスティナブル素材をまとい、地球に優しくリニューアル！ 完全ワイヤレスイヤホン『ATH-SQ1TW STB』が公式オンラインストアなどで本日発売',
-	},
-	{
-		image_url: 'https://dummyimage.com/750X475/26e3fc/fff',
-		category: '一般製品',
-		release_date: '2023.06.16',
-		contents:
-			'サスティナブル素材をまとい、地球に優しくリニューアル！ 完全ワイヤレスイヤホン『ATH-SQ1TW STB』が公式オンラインストアなどで本日発売',
-	},
-	{
-		image_url: 'https://dummyimage.com/750X475/26e3fc/fff',
-		category: '一般製品',
-		release_date: '2023.06.16',
-		contents:
-			'サスティナブル素材をまとい、地球に優しくリニューアル！ 完全ワイヤレスイヤホン『ATH-SQ1TW STB』が公式オンラインストアなどで本日発売',
-	},
-	{
-		image_url: 'https://dummyimage.com/750X475/26e3fc/fff',
-		category: '一般製品',
-		release_date: '2023.06.16',
-		contents:
-			'サスティナブル素材をまとい、地球に優しくリニューアル！ 完全ワイヤレスイヤホン『ATH-SQ1TW STB』が公式オンラインストアなどで本日発売',
-	},
-	{
-		image_url: 'https://dummyimage.com/750X475/26e3fc/fff',
-		category: '一般製品',
-		release_date: '2023.06.16',
-		contents:
-			'サスティナブル素材をまとい、地球に優しくリニューアル！ 完全ワイヤレスイヤホン『ATH-SQ1TW STB』が公式オンラインストアなどで本日発売',
-	},
-];
+import type { News } from '~/types';
+import { formatDateTime } from '@/utils/datetime';
+
+const newsFetch = reactive(await useFetch<News[]>('/api/news'));
+
+function getFormattedData(datestring: string) {
+	const date = formatDateTime(new Date(datestring));
+	return `${date.YY}.${date.MM}.${date.DD}`;
+}
 </script>
 
 <style scoped>

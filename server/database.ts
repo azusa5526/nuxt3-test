@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { initTopic, initCategory, initProduct, initPromote, initSlides, initNaviContents } from './seed';
+import { initTopic, initCategory, initProduct, initPromote, initSlides, initNaviContents, initNews } from './seed';
 
 export default async () => {
 	try {
@@ -13,6 +13,7 @@ export default async () => {
 		initPromote();
 		initSlides();
 		initNaviContents();
+		initNews();
 	} catch (error) {
 		console.error('mongoose err', error);
 		return createError({ statusCode: 500, statusMessage: 'Something went wrong.' });
