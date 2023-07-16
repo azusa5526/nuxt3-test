@@ -97,4 +97,7 @@ export interface ITopic {
 	category: string;
 	title: string;
 	content: string;
+	create_time: Date;
 }
+
+export type Topic = Omit<ITopic, 'create_time'> & { create_time: string };

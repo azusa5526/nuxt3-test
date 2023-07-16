@@ -35,9 +35,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ITopic } from '~/types';
+import { Topic } from '~/types';
 
-const topicsFetch = reactive(await useFetch<ITopic[]>('/api/topics'));
+const topicsFetch = reactive(await useFetch<Topic[]>('/api/topics'));
 
 const topics = [
 	{

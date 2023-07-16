@@ -287,6 +287,7 @@ async function initTopic() {
 				content:
 					'オンラインストア限定販売 ATH-SQ1TW STB の発売を記念して、Audio-Technicaオリジナルの『フォンタブ』ご用意しました。公式オンラインストアにて、ATH-SQ1TW STB(EGR／SBK／SWH)お買い上げのお客様にもれなくプレゼント。(数量限定)',
 				route: '/novelty_phonetab',
+				create_time: new Date('2023-07-15 08:00:00'),
 			},
 			{
 				image_url: '/upload/contents/topic/topic_2.jpg',
@@ -294,6 +295,7 @@ async function initTopic() {
 				title: '【ATH-SQ1TW STB】',
 				content: 'イヤホンと充電ケースに再生プラスチックを配合した素材を使用した完全ワイヤレス',
 				route: '/product/ATH-SQ1TW_STB',
+				create_time: new Date('2023-07-15 09:00:00'),
 			},
 			{
 				image_url: '/upload/contents/topic/topic_3.jpg',
@@ -301,6 +303,7 @@ async function initTopic() {
 				title: '【ワイヤレスヘッドホン ATH-M20xBT】',
 				content: '購入後のアンケートよりいただいたお客様の声ご感想をご紹介',
 				route: '/ATH-M20xBT/#uv',
+				create_time: new Date('2023-07-15 10:00:00'),
 			},
 			{
 				image_url: '/upload/contents/topic/topic_4.jpg',
@@ -308,6 +311,7 @@ async function initTopic() {
 				title: '【ATH-M50xSTS-USB】',
 				content: 'ストリーマーやコンテンツクリエイターのために設計されたヘッドセット',
 				route: '/product/ATH-M50xSTS-USB',
+				create_time: new Date('2023-07-15 11:00:00'),
 			},
 			{
 				image_url: '/upload/contents/topic/topic_5.jpg',
@@ -315,6 +319,7 @@ async function initTopic() {
 				title: '【AT-SB727 WH】',
 				content: '久しぶりにレコードを聴きたくなった人には少しなつかしい、これからレコードを始める人にはとても新鮮。',
 				route: '/product/AT-SB727_WH',
+				create_time: new Date('2023-07-15 12:00:00'),
 			},
 			{
 				image_url: '/upload/contents/topic/topic_6.jpg',
@@ -322,6 +327,7 @@ async function initTopic() {
 				title: '【会員登録】',
 				content: 'オーディオテクニカからのメールを受信していただくとお誕生日クーポンなどのお得な情報をお送りします。',
 				route: '/member/',
+				create_time: new Date('2023-07-15 13:00:00'),
 			},
 			{
 				image_url: '/upload/contents/topic/topic_7.jpg',
@@ -329,6 +335,7 @@ async function initTopic() {
 				title: 'アニメーション：',
 				content: 'vol.139『次元』公開。 ＜音＞にまつわる、ちょっと不思議な世界をお楽しみください！',
 				route: '/shortshortstory/',
+				create_time: new Date('2023-07-15 14:00:00'),
 			},
 		]);
 	}
