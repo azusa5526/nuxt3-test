@@ -28,7 +28,7 @@
 		<div class="pt-24">
 			<div class="my-24 text-center">プレミアムラインナップ</div>
 			<a href="#" draggable="false">
-				<div class="relative bg-[url('/img/top_bnr_premium02.jpg')] bg-cover bg-center py-16">
+				<div class="relative bg-[url('/images/pc/top_bnr_premium02.jpg')] bg-cover bg-center py-16">
 					<div class="ml-[13%] text-white">
 						<div class="mb-6 text-2xl">
 							良い音で、
