@@ -5,7 +5,9 @@
 		class="flex h-full w-[calc(100%/7)] max-w-[240px] flex-col items-center border-black text-black first:border-l first:border-r"
 	>
 		<p class="mb-2 font-bold">{{ category.name.toUpperCase() }}</p>
-		<img class="w-[100px]" :src="category.image_url" alt="" />
+		<a :href="category.route">
+			<img class="w-[100px]" :src="category.image_url" alt="" />
+		</a>
 
 		<ul>
 			<li
