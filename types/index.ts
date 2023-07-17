@@ -13,13 +13,21 @@ export interface ICategory {
 	name: string;
 	route: string;
 	order: number;
-	sub_categories: Types.DocumentArray<ISubCategories>;
+	sub_categories: Types.DocumentArray<ISubCategory>;
 }
 
-export interface ISubCategories {
+export interface Category extends ICategory {
+	id: string;
+}
+
+export interface ISubCategory {
 	name: string;
 	route: string;
 	order: number;
+}
+
+export interface SubCategory extends ISubCategory {
+	id: string;
 }
 
 export interface IProductBranch {

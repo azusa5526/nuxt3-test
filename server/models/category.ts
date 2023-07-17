@@ -1,11 +1,17 @@
 import mongoose from 'mongoose';
 import { ICategory } from '../../types';
-import { ISubCategories } from '../../types';
+import { ISubCategory } from '../../types';
 
-const embeddedSubCategory = new mongoose.Schema<ISubCategories>({
+const embeddedSubCategory = new mongoose.Schema<ISubCategory>({
 	name: { type: String, required: true },
 	route: { type: String, required: true },
 	order: { type: Number, required: true },
+}).set('toJSON', {
+	versionKey: false,
+	virtuals: true,
+	transform: function (doc, ret) {
+		delete ret._id;
+	},
 });
 
 const schema = new mongoose.Schema<ICategory>({
@@ -14,6 +20,12 @@ const schema = new mongoose.Schema<ICategory>({
 	route: { type: String, required: true },
 	order: { type: Number, required: true },
 	sub_categories: [embeddedSubCategory],
+}).set('toJSON', {
+	versionKey: false,
+	virtuals: true,
+	transform: function (doc, ret) {
+		delete ret._id;
+	},
 });
 
 export const Category = mongoose.model<ICategory>('category', schema);
