@@ -133,7 +133,7 @@ async function initCategory() {
 				_id: new Types.ObjectId('64b484a602fff88bdd95fcf5'),
 				image_url: '/images/pc/microphone-mini.png',
 				name: 'microphones',
-				route: '/category/earphone/',
+				route: '/category/microphones/',
 				order: 4,
 				sub_categories: [
 					{
