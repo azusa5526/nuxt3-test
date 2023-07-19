@@ -65,7 +65,7 @@ async function initCategory() {
 						order: 1,
 					},
 					{
-						_id: new Types.ObjectId('64a4b9b3ace1c8690163d985'),
+						_id: new Types.ObjectId('64a4b9b3ace1c8690163d986'),
 						name: 'ワイヤレス',
 						route: '/category/headphone/wireless/',
 						order: 2,
