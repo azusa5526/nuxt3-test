@@ -1,8 +1,8 @@
 <template>
 	<div class="grid grid-cols-3 place-content-stretch gap-10">
 		<div v-for="(navContent, index) in naviContents.data" :key="index">
-			<a :href="navContent.route" class="hover:opacity-80" draggable="false">
-				<div class="relative">
+			<NuxtLink :to="navContent.route" class="hover:opacity-80" draggable="false">
+				<span class="relative">
 					<img
 						class="mb-2 block h-auto w-full select-none object-contain"
 						draggable="false"
@@ -13,13 +13,13 @@
 					>
 						{{ navContent.title_eng }}
 					</span>
-				</div>
+				</span>
 
-				<div>
-					<div class="py-5 text-center font-bold">{{ navContent.title_jp }}</div>
-					<div class="break-all text-sm" v-html="navContent.content"></div>
-				</div>
-			</a>
+				<span>
+					<span class="block py-5 text-center font-bold">{{ navContent.title_jp }}</span>
+					<span class="break-all text-sm" v-html="navContent.content"></span>
+				</span>
+			</NuxtLink>
 		</div>
 	</div>
 </template>

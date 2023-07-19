@@ -28,27 +28,27 @@
 		<div class="pt-24">
 			<div class="my-24 text-center">プレミアムラインナップ</div>
 			<a href="#" draggable="false">
-				<div class="relative bg-[url('/images/pc/top_bnr_premium02.jpg')] bg-cover bg-center py-16">
-					<div class="ml-[13%] text-white">
-						<div class="mb-6 text-2xl">
+				<span class="relative block bg-[url('/images/pc/top_bnr_premium02.jpg')] bg-cover bg-center py-16">
+					<span class="ml-[13%] block text-white">
+						<span class="mb-6 block text-2xl">
 							良い音で、
 							<br class="block lg:hidden" />
 							大人はもっと楽しくなる。
-						</div>
-						<div class="mb-6">
+						</span>
+						<span class="mb-6 block">
 							WIRED EARPHONES/ HEADPHONES
 							<br class="block lg:hidden" />
 							PREMIUM LINEUP
-						</div>
-						<div class="mb-10">
+						</span>
+						<span class="mb-10 block">
 							自分の価値観や美意識にこだわりをもって暮らす方々の
 							<br />
 							良い音の楽しみ方を公開中！
-						</div>
+						</span>
 
-						<div class="text-sm">MORE</div>
-					</div>
-				</div>
+						<span class="text-sm">MORE</span>
+					</span>
+				</span>
 			</a>
 		</div>
 
