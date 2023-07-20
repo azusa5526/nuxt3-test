@@ -11,6 +11,13 @@ export const useAppStore = defineStore('app', {
 		personalCategories: [],
 	}),
 
+	actions: {
+		getCategoryIdObject(route: string) {
+			if (!this.routeToIdMap) return {};
+			return this.routeToIdMap.get(route);
+		},
+	},
+
 	getters: {
 		routeToIdMap(state): Map<string, { category_id: string; sub_category_id?: string }> {
 			const tempMap = new Map();

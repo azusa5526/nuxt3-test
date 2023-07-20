@@ -23,9 +23,6 @@
 
 <script lang="ts" setup>
 import { useAppStore } from '~/store/app';
-import type { Category } from '~/types';
 
 const appStore = useAppStore();
-const categoriesFetch = reactive(await useFetch<Category[]>('/api/category'));
-if (categoriesFetch.data) appStore.personalCategories = categoriesFetch.data;
 </script>
