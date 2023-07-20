@@ -1,4 +1,4 @@
-import { Category } from '~/types';
+import { Category, SubCategory } from '~/types';
 
 interface State {
 	isDrawerShow: boolean;
@@ -16,6 +16,11 @@ export const useAppStore = defineStore('app', {
 			if (!this.routeToIdMap) return {};
 			return this.routeToIdMap.get(route);
 		},
+
+		getCategoryInfo(route: string) {
+			if (!this.routeToCategoryMap) return null;
+			return this.routeToCategoryMap.get(route);
+		},
 	},
 
 	getters: {
@@ -26,6 +31,19 @@ export const useAppStore = defineStore('app', {
 
 				category.sub_categories.forEach((subCategory) => {
 					tempMap.set(subCategory.route, { category_id: category.id, sub_category_id: subCategory.id });
+				});
+			});
+
+			return tempMap;
+		},
+
+		routeToCategoryMap(state): Map<string, { category: Category; subCategory?: SubCategory }> {
+			const tempMap = new Map();
+			state.personalCategories.forEach((category) => {
+				tempMap.set(category.route, { category: category });
+
+				category.sub_categories.forEach((subCategory) => {
+					tempMap.set(subCategory.route, { category: category, subCategory: subCategory });
 				});
 			});
 
