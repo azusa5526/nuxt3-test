@@ -15,3 +15,19 @@
 		--app-header-height: 88px;
 	}
 }
+
+@font-face {
+	font-family: 'Univers Next Pro Condensed';
+	src: url('/fonts/Univers Next Pro Condensed.ttf') format('truetype');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ヒラギノ角ゴ ProN W3';
+	src: url('/fonts/ヒラギノ角ゴ ProN W3.otf') format('opentype');
+	font-display: swap;
+}
+
+html {
+	font-family: 'Univers Next Pro Condensed', 'ヒラギノ角ゴ ProN W3', sans-serif;
+}
