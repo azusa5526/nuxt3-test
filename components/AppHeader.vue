@@ -1,11 +1,10 @@
 <template>
 	<div
 		class="flex h-[var(--app-header-height)] w-screen justify-between text-white duration-300 hover:bg-white hover:text-black hover:shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]"
-		:class="
-			isHome && isScrollPositionTop
-				? 'bg-transparent text-white'
-				: 'bg-white !text-black shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]'
-		"
+		:class="[
+			isHome && isScrollPositionTop ? 'bg-transparent text-white' : 'bg-white !text-black',
+			isScrollPositionTop ? '' : 'shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]',
+		]"
 	>
 		<div class="flex items-center">
 			<button
