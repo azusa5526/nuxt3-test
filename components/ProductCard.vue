@@ -2,13 +2,13 @@
 	<div>
 		<a href="#">
 			<img
-				class="block h-auto w-full select-none object-contain hover:opacity-70"
+				class="block h-auto w-full select-none object-contain duration-150 hover:opacity-70"
 				:src="selectedProductBranch.image_url"
 			/>
 		</a>
-		<div class="mt-5 flex min-h-[200px] flex-col items-center">
-			<p class="mb-4 text-sm">{{ product.name }}</p>
-			<p class="mb-3 text-lg">{{ product.model }}</p>
+		<div class="mt-4 flex min-h-[200px] flex-col items-center">
+			<p class="product-card-name mb-4 text-sm">{{ product.name }}</p>
+			<p class="mb-2">{{ product.model }}</p>
 
 			<ul class="mb-2 flex" v-if="product.branches.length > 1">
 				<li
@@ -28,7 +28,7 @@
 				</li>
 			</ul>
 
-			<p class="my-2">￥{{ selectedProductBranch.price }} (税込)</p>
+			<p class="mb-2">￥{{ selectedProductBranch.price }} (税込)</p>
 		</div>
 	</div>
 </template>
