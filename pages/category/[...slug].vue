@@ -25,25 +25,47 @@
 		</div>
 
 		<div class="mx-auto flex max-w-[1600px] pt-12">
-			<div class="hidden w-[25vw] min-w-[210px] max-w-[320px] px-2 md:block">
-				<span class="text-sm">{{ categoryInfo?.category.name.toUpperCase() }}</span>
-				<ul>
-					<li
-						v-for="subCategory in subCategoriesInfo"
-						:key="subCategory.id"
-						class="my-2.5 border border-gray-300 text-center text-sm"
-						:class="{ 'bg-[#BFBFBF] text-white': route.path === subCategory.route }"
-					>
-						<NuxtLink :to="subCategory.route" class="block p-2">{{ subCategory.name }}</NuxtLink>
-					</li>
-				</ul>
-			</div>
+			<ul class="hidden w-[25vw] min-w-[210px] max-w-[320px] px-2 md:block">
+				<li class="mb-12">
+					<span class="text-sm">{{ categoryInfo?.category.name.toUpperCase() }}</span>
+					<ul>
+						<li
+							v-for="subCategory in subCategoriesInfo"
+							:key="subCategory.id"
+							class="my-2.5 border border-gray-300 text-center text-sm"
+							:class="{ 'bg-[#BFBFBF] text-white': route.path === subCategory.route }"
+						>
+							<NuxtLink :to="subCategory.route" class="block p-2">{{ subCategory.name }}</NuxtLink>
+						</li>
+					</ul>
+				</li>
+
+				<li v-if="productRes?.types?.length">
+					<span class="text-sm">タイプで絞り込む</span>
+					<ul>
+						<li
+							v-for="productType in productRes?.types"
+							:key="productType.id"
+							class="my-2.5 border border-gray-300 text-center text-sm"
+							:class="{ 'bg-[#BFBFBF] text-white': selectedProductTypeSet.has(productType.id) }"
+						>
+							<span role="button" @click="toggleSetItem(selectedProductTypeSet, productType.id)" class="block p-2">
+								{{ productType.name }}
+							</span>
+						</li>
+
+						<button @click="testBool = !testBool">test toggle {{ testBool }}</button>
+					</ul>
+				</li>
+			</ul>
 
 			<div class="flex w-full px-4 md:w-[75vw] md:px-8 lg:max-w-[1032px]">
 				<div class="grid grid-cols-2 place-content-start gap-0 md:grid-cols-3">
-					<ProductCard :product="product" v-for="product in products" :key="`${product.id}_1`"></ProductCard>
-					<ProductCard :product="product" v-for="product in products" :key="`${product.id}_2`"></ProductCard>
-					<ProductCard :product="product" v-for="product in products" :key="`${product.id}_3`"></ProductCard>
+					<ProductCard
+						:product="product"
+						v-for="product in productRes?.products"
+						:key="`${product.id}_1`"
+					></ProductCard>
 				</div>
 			</div>
 		</div>
@@ -52,7 +74,7 @@
 
 <script lang="ts" setup>
 import { useAppStore } from '~/store/app';
-import { SimplifiedProduct } from '~/types';
+import { ProductType, SimplifiedProduct } from '~/types';
 
 definePageMeta({
 	middleware: defineNuxtRouteMiddleware((to, from) => {
@@ -65,10 +87,26 @@ definePageMeta({
 const appStore = useAppStore();
 const route = useRoute();
 
-const { data: products } = await useFetch<SimplifiedProduct[]>('/api/product', {
-	params: appStore.getCategoryIdObject(route.path),
-	watch: [toRef(route.path)],
+interface ProductRes {
+	products: SimplifiedProduct[];
+	types: ProductType[];
+}
+
+const selectedProductTypeSet = reactive<Set<string>>(new Set());
+const selectedProductTypeArray = computed(() => Array.from(selectedProductTypeSet));
+
+const testBool = ref(false);
+
+const { data: productRes } = await useFetch<ProductRes>('/api/product', {
+	params: { ...appStore.getCategoryIdObject(route.path) },
+	watch: [() => route.path, selectedProductTypeSet],
 });
+
+function toggleSetItem(set: Set<string>, id: string) {
+	set.has(id) ? set.delete(id) : set.add(id);
+}
+
+console.log('productRes', productRes);
 
 const categoryInfo = computed(() => {
 	return appStore.getCategoryInfo(route.path);

@@ -6,6 +6,7 @@ import { NaviContent } from './models/navi-contents';
 import { Topic } from './models/topic';
 import { News } from './models/news';
 import { Types } from 'mongoose';
+import { ProductType } from './models/product-type';
 
 async function initPromote() {
 	const promote = await Promote.count();
@@ -302,7 +303,6 @@ async function initProduct() {
 				description: '世界が認めた“M50”の次世代モデル。現場のニーズに応える高解像度モニターヘッドホン。',
 				category_id: '64a4b9b3ace1c8690163d984',
 				sub_category_id: '64a4b9b3ace1c8690163d985',
-				tag_ids: ['67a56d89a1c3cb6613d0ac95'],
 				image_url: 'https://dummyimage.com/500X500/13c0f0/fff',
 				label: {
 					text: '発売記念キャンペーン!!',
@@ -359,7 +359,6 @@ async function initProduct() {
 				description: '人と心をつなぐ、革新のサウンド。特別な静寂を仕立てるノイズキャンセリング。',
 				category_id: '64a4b9b3ace1c8690163d98a',
 				sub_category_id: '64a4b9b3ace1c8690163d98d',
-				tag_ids: null,
 				image_url: 'https://dummyimage.com/500X500/377ded/fff',
 				spec_route: null,
 				introduce_route: null,
@@ -385,7 +384,6 @@ async function initProduct() {
 				description: '世界が認める音響パフォーマンスをワイヤレスで。アップグレードモデル“Version2”登場。',
 				category_id: '64a4b9b3ace1c8690163d984',
 				sub_category_id: '64a4b9b3ace1c8690163d986',
-				tag_ids: null,
 				image_url: 'https://dummyimage.com/500X500/13c0f0/fff',
 				spec_route: null,
 				introduce_route: null,
@@ -400,6 +398,32 @@ async function initProduct() {
 						release_at: '2021-08-03T16:20:17.717+08:00',
 						stock_quantity: 7,
 						price: '23,200',
+					},
+				],
+			},
+			{
+				_id: new Types.ObjectId('64bf7e32960b4aa2bb176cc0'),
+				name: 'エアーダイナミックヘッドホン',
+				model: 'ATH-AD2000X',
+				route: 'ATH-AD2000X',
+				description: '今ふたたび、オープンエアーの頂(ピーク)をきわめる。広大な音場を実体感できる至高のサウンド。',
+				category_id: '64a4b9b3ace1c8690163d984',
+				sub_category_id: '64a4b9b3ace1c8690163d985',
+				type_ids: ['64bf5ebf83a912318b77529b'],
+				image_url: 'https://dummyimage.com/500X500/13c0f0/fff',
+				spec_route: null,
+				introduce_route: null,
+				images: ['https://dummyimage.com/500X500/13c0f0/fff', 'https://dummyimage.com/500X500/e83333/fff'],
+				parts: null,
+				branches: [
+					{
+						color: null,
+						image_url: '/upload/contents/product/ATH-AD2000X/product_image_0.jpg',
+						model: 'ATH-AD2000X',
+						is_release: true,
+						release_at: '2019-02-03T16:20:17.717+08:00',
+						stock_quantity: 2,
+						price: '71,368',
 					},
 				],
 			},
@@ -575,4 +599,33 @@ async function initNews() {
 	}
 }
 
-export { initCategory, initProduct, initPromote, initSlides, initNaviContents, initTopic, initNews };
+async function initProductType() {
+	const productTypeCount = await ProductType.count();
+	if (!productTypeCount) {
+		console.log('Do initProductType');
+		ProductType.create([
+			{
+				name: 'ポータブル',
+				_id: new Types.ObjectId('64bf5ebf83a912318b77529b'),
+				sub_category_ids: new Types.ObjectId('64a4b9b3ace1c8690163d985'),
+			},
+			{
+				name: 'オープン型',
+				_id: new Types.ObjectId('64bf5f4d246f6a4bad35c84e'),
+				sub_category_ids: new Types.ObjectId('64a4b9b3ace1c8690163d985'),
+			},
+			{
+				name: 'ポータブル',
+				_id: new Types.ObjectId('64bf5fbedc96a6c8953ced74'),
+				sub_category_ids: new Types.ObjectId('64a4b9b3ace1c8690163d986'),
+			},
+			{
+				name: 'デジタルワイヤレス',
+				_id: new Types.ObjectId('64bf5fc2a78754b2d0de6cfd'),
+				sub_category_ids: new Types.ObjectId('64a4b9b3ace1c8690163d986'),
+			},
+		]);
+	}
+}
+
+export { initCategory, initProduct, initPromote, initSlides, initNaviContents, initTopic, initNews, initProductType };

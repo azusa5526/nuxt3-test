@@ -56,7 +56,9 @@ export interface IProduct {
 	description?: string;
 	category_id: Types.ObjectId;
 	sub_category_id: Types.ObjectId;
-	tag_ids?: Types.DocumentArray<Types.ObjectId>;
+	function_ids?: Types.DocumentArray<Types.ObjectId>;
+	type_ids?: Types.DocumentArray<Types.ObjectId>;
+	series_ids?: Types.DocumentArray<Types.ObjectId>;
 	image_url: string;
 	spec_route?: string;
 	introduce_route?: string;
@@ -120,3 +122,10 @@ export interface INews {
 }
 
 export type News = Omit<INews, 'create_time'> & { create_time: string; id: string };
+
+export interface IProductType {
+	name: string;
+	sub_category_ids: Types.DocumentArray<Types.ObjectId>;
+}
+
+export type ProductType = IProductType & { id: string };
