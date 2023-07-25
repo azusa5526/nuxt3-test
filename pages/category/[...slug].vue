@@ -75,6 +75,7 @@
 <script lang="ts" setup>
 import { useAppStore } from '~/store/app';
 import { ProductType, SimplifiedProduct } from '~/types';
+import qs from 'qs';
 
 definePageMeta({
 	middleware: defineNuxtRouteMiddleware((to, from) => {
@@ -92,15 +93,24 @@ interface ProductRes {
 	types: ProductType[];
 }
 
-const selectedProductTypeSet = reactive<Set<string>>(new Set());
-const selectedProductTypeArray = computed(() => Array.from(selectedProductTypeSet));
-
+const selectedProductTypeSet = ref<Set<string>>(new Set());
 const testBool = ref(false);
 
-const { data: productRes } = await useFetch<ProductRes>('/api/product', {
-	params: { ...appStore.getCategoryIdObject(route.path) },
-	watch: [() => route.path, selectedProductTypeSet],
-});
+// const { data: productRes } = await useFetch<ProductRes>('/api/product', {
+// 	params: { ...appStore.getCategoryIdObject(route.path) },
+// 	watch: [() => route.path, selectedProductTypeSet.value],
+// });
+
+const { data: productRes } = await useAsyncData(
+	'productRes',
+	() =>
+		$fetch('/api/product', {
+			params: { product_types: Array.from(selectedProductTypeSet.value), ...appStore.getCategoryIdObject(route.path) },
+		}),
+	{
+		watch: [() => route.path, selectedProductTypeSet.value],
+	}
+);
 
 function toggleSetItem(set: Set<string>, id: string) {
 	set.has(id) ? set.delete(id) : set.add(id);
