@@ -24,8 +24,8 @@
 			</div>
 		</div>
 
-		<div class="mx-auto flex max-w-[1600px] pt-12">
-			<ul class="hidden w-[25vw] min-w-[210px] max-w-[320px] px-2 md:block">
+		<div class="mx-auto flex max-w-[1600px] pb-24 pt-12">
+			<ul class="hidden w-[25vw] min-w-[210px] max-w-[320px] px-2 ct_md:block">
 				<li class="mb-12">
 					<span class="text-sm">{{ categoryInfo?.category.name.toUpperCase() }}</span>
 					<ul>
@@ -59,8 +59,8 @@
 				</li>
 			</ul>
 
-			<div class="flex w-full px-4 md:w-[75vw] md:px-8 lg:max-w-[1032px]">
-				<div class="grid grid-cols-2 place-content-start gap-x-4 gap-y-12 lg:grid-cols-3">
+			<div class="flex w-full px-4 ct_md:w-[75vw] ct_md:px-8 ct_lg:max-w-[1032px]">
+				<div class="grid grid-cols-2 place-content-start gap-x-4 gap-y-12 ct_lg:grid-cols-3">
 					<ProductCard
 						:product="product"
 						v-for="product in productRes?.products"
@@ -68,6 +68,10 @@
 					></ProductCard>
 				</div>
 			</div>
+		</div>
+
+		<div class="flex justify-center bg-red-200">
+			<ProductNavi :name="$route.params.slug[0]"></ProductNavi>
 		</div>
 	</div>
 </template>
@@ -86,6 +90,8 @@ definePageMeta({
 
 const appStore = useAppStore();
 const route = useRoute();
+
+console.log('route', route);
 
 interface ProductRes {
 	products: SimplifiedProduct[];
@@ -122,9 +128,15 @@ const subCategoriesInfo = computed(() => {
 </script>
 
 <style scoped lang="scss">
-:deep(a > img) {
-	@media screen and (min-width: 1205px) {
-		padding: 0 2rem;
+:deep(.product-img-container) {
+	@media screen and (min-width: 320px) {
+		margin: 0 12px;
+	}
+	@media screen and (min-width: 757px) {
+		margin: 0 32px;
+	}
+	@media screen and (min-width: 1240px) {
+		margin: 0 32px;
 	}
 }
 
