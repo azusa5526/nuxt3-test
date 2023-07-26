@@ -1,6 +1,6 @@
 import { Product } from '../../models/product';
 import { Promote } from '../../models/promote';
-import { Types } from 'mongoose';
+import { Types, FilterQuery } from 'mongoose';
 import { ProductType } from '../../models/product-type';
 
 const router = createRouter();
@@ -8,7 +8,7 @@ const router = createRouter();
 interface ProductQueryParams {
 	category_id?: string;
 	sub_category_id?: string;
-	product_types?: string[];
+	type_ids?: string[];
 	full_spec?: string;
 }
 
@@ -16,25 +16,25 @@ router.get(
 	'/',
 	defineEventHandler(async (event) => {
 		const query: ProductQueryParams = getQuery(event);
-		const filters: Omit<ProductQueryParams, 'full_spec'> = {};
-		const { category_id, sub_category_id, product_types } = query;
+		const filters: FilterQuery<Omit<ProductQueryParams, 'full_spec'>> = {};
+		const { category_id, sub_category_id } = query;
+		const type_ids = typeof query.type_ids === 'string' ? [query.type_ids] : query.type_ids;
 		const full_spec = query.full_spec === 'true';
-
-		console.log('query product_types', product_types);
 
 		if (category_id && Types.ObjectId.isValid(category_id)) filters.category_id = category_id;
 		if (sub_category_id && Types.ObjectId.isValid(sub_category_id)) filters.sub_category_id = sub_category_id;
+		if (type_ids && type_ids.length > 0)
+			filters.type_ids = { $in: type_ids?.map((type_id) => new Types.ObjectId(type_id)) };
 
 		let products;
 		let types;
 
-		if (sub_category_id) {
-			types = await findProductTypesBySubCategoryId(sub_category_id);
-			console.log('find types', types);
-		}
+		if (sub_category_id) types = await findProductTypesBySubCategoryId(sub_category_id);
 
 		try {
-			products = await Product.find(filters).select(
+			products = await Product.find({
+				...filters,
+			}).select(
 				full_spec
 					? {}
 					: 'name model route image_url label branches.color branches.image_url branches.model branches.price branches._id'

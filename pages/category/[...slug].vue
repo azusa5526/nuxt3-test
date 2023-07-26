@@ -75,7 +75,6 @@
 <script lang="ts" setup>
 import { useAppStore } from '~/store/app';
 import { ProductType, SimplifiedProduct } from '~/types';
-import qs from 'qs';
 
 definePageMeta({
 	middleware: defineNuxtRouteMiddleware((to, from) => {
@@ -96,16 +95,11 @@ interface ProductRes {
 const selectedProductTypeSet = ref<Set<string>>(new Set());
 const testBool = ref(false);
 
-// const { data: productRes } = await useFetch<ProductRes>('/api/product', {
-// 	params: { ...appStore.getCategoryIdObject(route.path) },
-// 	watch: [() => route.path, selectedProductTypeSet.value],
-// });
-
-const { data: productRes } = await useAsyncData(
+const { data: productRes } = await useAsyncData<ProductRes>(
 	'productRes',
 	() =>
 		$fetch('/api/product', {
-			params: { product_types: Array.from(selectedProductTypeSet.value), ...appStore.getCategoryIdObject(route.path) },
+			params: { type_ids: Array.from(selectedProductTypeSet.value), ...appStore.getCategoryIdObject(route.path) },
 		}),
 	{
 		watch: [() => route.path, selectedProductTypeSet.value],
@@ -115,8 +109,6 @@ const { data: productRes } = await useAsyncData(
 function toggleSetItem(set: Set<string>, id: string) {
 	set.has(id) ? set.delete(id) : set.add(id);
 }
-
-console.log('productRes', productRes);
 
 const categoryInfo = computed(() => {
 	return appStore.getCategoryInfo(route.path);
