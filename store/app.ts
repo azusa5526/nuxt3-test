@@ -1,14 +1,16 @@
-import { Category, SubCategory } from '~/types';
+import { Category, SubCategory, INaviContent } from '~/types';
 
 interface State {
 	isDrawerShow: boolean;
 	personalCategories: Category[];
+	naviContents: INaviContent[];
 }
 
 export const useAppStore = defineStore('app', {
 	state: (): State => ({
 		isDrawerShow: false,
 		personalCategories: [],
+		naviContents: [],
 	}),
 
 	actions: {

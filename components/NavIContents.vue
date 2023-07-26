@@ -1,6 +1,6 @@
 <template>
 	<div class="grid grid-cols-3 place-content-stretch gap-10">
-		<div v-for="(navContent, index) in naviContents.data" :key="index">
+		<div v-for="(navContent, index) in appStore.naviContents" :key="index">
 			<a :herf="navContent.route" class="hover:opacity-80" draggable="false">
 				<span class="relative">
 					<img
@@ -25,7 +25,6 @@
 </template>
 
 <script lang="ts" setup>
-import { INaviContent } from '~/types';
-
-const naviContents = reactive(await useFetch<INaviContent[]>('/api/navi-contents'));
+import { useAppStore } from '~/store/app';
+const appStore = useAppStore();
 </script>
