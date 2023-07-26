@@ -1,12 +1,12 @@
 <template>
 	<div>
-		<a href="#">
+		<a href="#" class="product-img-container block aspect-square">
 			<img
 				class="block h-auto w-full select-none object-contain duration-150 hover:opacity-70"
 				:src="selectedProductBranch.image_url"
 			/>
 		</a>
-		<div class="mt-4 flex min-h-[200px] flex-col items-center">
+		<div class="mt-4 flex flex-col items-center">
 			<p class="product-card-name mb-4 text-sm">{{ product.name }}</p>
 			<p class="mb-2">{{ product.model }}</p>
 

@@ -60,7 +60,7 @@
 			</ul>
 
 			<div class="flex w-full px-4 md:w-[75vw] md:px-8 lg:max-w-[1032px]">
-				<div class="grid grid-cols-2 place-content-start gap-0 md:grid-cols-3">
+				<div class="grid grid-cols-2 place-content-start gap-x-4 gap-y-12 lg:grid-cols-3">
 					<ProductCard
 						:product="product"
 						v-for="product in productRes?.products"
