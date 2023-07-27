@@ -32,7 +32,7 @@ const embeddedProductPart = new mongoose.Schema<IProductPart>({
 
 const productSchema = new mongoose.Schema<IProduct>({
 	name: { type: String, required: true },
-	model: { type: String, required: true },
+	model: { type: String, required: true, unique: true },
 	route: { type: String, required: true },
 	description: { type: String },
 	category_id: { type: mongoose.Schema.Types.ObjectId, required: true },

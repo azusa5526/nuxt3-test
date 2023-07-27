@@ -16,6 +16,8 @@ export default async () => {
 		console.log('url', useRuntimeConfig().apiSecret.MONGO_URL);
 		await mongoose.connect(useRuntimeConfig().apiSecret.MONGO_URL);
 		console.log('Successfully connected to DB.');
+		// await mongoose.syncIndexes();
+
 		initTopic();
 		initCategory();
 		initProduct();
