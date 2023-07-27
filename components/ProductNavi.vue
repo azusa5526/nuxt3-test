@@ -1,8 +1,10 @@
 <template>
 	<div v-if="naviContent" class="min-h-[480px] w-3/4 md:w-1/2 lg:w-[1030px]">
-		<div class="mb-8 text-6xl font-bold">{{ naviContent.title_eng }}</div>
+		<div class="mb-6 mt-32 text-6xl font-bold">{{ naviContent.title_eng }}</div>
 		<div class="flex flex-col lg:flex-row lg:gap-x-8">
-			<div class="mb-4 w-full shrink-0 lg:mb-0 lg:w-2/5 lg:max-w-[385px]">{{ naviContent.content }}</div>
+			<div class="mb-4 w-full shrink-0 leading-7 md:pt-1 lg:mb-0 lg:w-2/5 lg:max-w-[385px]">
+				{{ naviContent.content }}
+			</div>
 			<div class="relative lg:w-3/5 lg:pr-10">
 				<img
 					:src="naviContent.image_url"
@@ -12,7 +14,7 @@
 				<a
 					href="#"
 					role="button"
-					class="absolute -bottom-5 -right-4 border border-black bg-black px-10 py-3 text-xl text-[#a58c55] duration-300 hover:bg-white lg:right-6 lg:px-16 lg:py-6 lg:text-2xl"
+					class="absolute -bottom-5 -right-4 border border-black bg-black px-10 py-3 text-xl text-[#a58c55] duration-300 hover:bg-white lg:right-6 lg:px-16 lg:py-5 lg:text-2xl"
 				>
 					MORE ->>
 				</a>

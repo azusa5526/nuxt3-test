@@ -24,7 +24,7 @@
 			</div>
 		</div>
 
-		<div class="mx-auto flex max-w-[1600px] pb-24 pt-12">
+		<div class="mx-auto flex max-w-[1600px] pb-48 pt-12">
 			<ul class="hidden w-[25vw] min-w-[210px] max-w-[320px] px-2 ct_md:block">
 				<li class="mb-12">
 					<span class="text-sm">{{ categoryInfo?.category.name.toUpperCase() }}</span>
