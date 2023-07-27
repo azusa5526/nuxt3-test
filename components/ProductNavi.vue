@@ -1,12 +1,12 @@
 <template>
-	<div v-if="naviContent" class="min-h-[480px] w-[1030px]">
+	<div v-if="naviContent" class="min-h-[480px] w-3/4 md:w-1/2 lg:w-[1030px]">
 		<div class="mb-8 text-6xl font-bold">{{ naviContent.title_eng }}</div>
-		<div class="flex">
-			<div class="w-2/5 max-w-[385px] shrink-0">{{ naviContent.content }}</div>
-			<div class="relative w-3/5">
+		<div class="flex flex-col lg:flex-row lg:gap-x-6">
+			<div class="mb-4 w-full shrink-0 lg:mb-0 lg:w-2/5 lg:max-w-[385px]">{{ naviContent.content }}</div>
+			<div class="relative lg:w-3/5">
 				<img
 					:src="naviContent.image_url"
-					class="absolute left-[50px] block h-auto w-3/4 object-contain"
+					class="block h-auto w-full object-contain lg:w-3/4"
 					style="object-position: center center"
 				/>
 			</div>
