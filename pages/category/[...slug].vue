@@ -83,8 +83,15 @@
 			</div>
 		</div>
 
-		<div class="flex justify-center pb-24">
+		<div class="flex justify-center pb-48">
 			<ProductNavi :name="$route.params.slug[0]"></ProductNavi>
+		</div>
+
+		<div class="flex flex-col items-center pb-32">
+			<div class="pb-14 text-xl font-bold">SERIES LINE UP</div>
+			<div class="mx-4 grid max-w-[1280px] grid-cols-1 gap-x-4 sm:mx-8 md:grid-cols-2 lg:grid-cols-3">
+				<SeriesLineUpCard class="mb-7 max-w-[412px]" v-for="n in 6"></SeriesLineUpCard>
+			</div>
 		</div>
 	</div>
 </template>
