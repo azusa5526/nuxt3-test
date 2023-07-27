@@ -71,7 +71,7 @@
 					</div>
 				</div>
 
-				<div class="flex">
+				<div v-if="productRes?.products.length" class="flex">
 					<button
 						class="relative flex w-60 items-center justify-center rounded-full bg-black px-4 py-2.5 hover:opacity-70"
 					>
