@@ -70,7 +70,7 @@
 			</div>
 		</div>
 
-		<div class="flex justify-center bg-red-200">
+		<div class="flex justify-center pb-24">
 			<ProductNavi :name="$route.params.slug[0]"></ProductNavi>
 		</div>
 	</div>
