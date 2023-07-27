@@ -28,10 +28,10 @@
 					v-for="headerItem in headerItems"
 					:key="headerItem.displayName"
 				>
-					<NuxtLink v-if="headerItem.routeName" :to="{ name: headerItem.routeName }">
+					<NuxtLink v-if="headerItem.routeName" :to="{ name: headerItem.routeName }" class="text-sm font-bold">
 						{{ headerItem.displayName }}
 					</NuxtLink>
-					<span v-else>{{ headerItem.displayName }}</span>
+					<span v-else class="text-sm font-bold">{{ headerItem.displayName }}</span>
 
 					<template v-if="headerItem.menuComponent">
 						<Transition name="slide-fade" mode="out-in">
