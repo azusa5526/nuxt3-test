@@ -59,13 +59,26 @@
 				</li>
 			</ul>
 
-			<div class="flex w-full px-4 ct_md:w-[75vw] ct_md:px-8 ct_lg:max-w-[1032px]">
-				<div class="grid grid-cols-2 place-content-start gap-x-4 gap-y-12 ct_lg:grid-cols-3">
-					<ProductCard
-						:product="product"
-						v-for="product in productRes?.products"
-						:key="`${product.id}_1`"
-					></ProductCard>
+			<div class="flex flex-col items-center">
+				<div class="flex w-full px-4 ct_md:w-[75vw] ct_md:px-8 ct_lg:max-w-[1032px]">
+					<div class="grid grid-cols-2 place-content-start gap-x-4 ct_lg:grid-cols-3">
+						<ProductCard
+							:product="product"
+							v-for="product in productRes?.products"
+							:key="`${product.id}_1`"
+							class="mb-12"
+						></ProductCard>
+					</div>
+				</div>
+
+				<div class="flex">
+					<button
+						class="relative flex w-60 items-center justify-center rounded-full bg-black px-4 py-2.5 hover:opacity-70"
+					>
+						<span class="absolute left-2.5 h-7 w-7 rounded-full bg-white"></span>
+						<span class="triangle-icon"></span>
+						<span class="font-bold text-white">もっと見る</span>
+					</button>
 				</div>
 			</div>
 		</div>
@@ -142,5 +155,17 @@ const subCategoriesInfo = computed(() => {
 
 :deep(.product-card-name) {
 	margin-bottom: 2rem;
+}
+
+.triangle-icon {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 18px;
+	transform: translateY(-50%);
+	border-right: 6px solid transparent;
+	border-top: 10px solid #000;
+	border-left: 5px solid transparent;
 }
 </style>
