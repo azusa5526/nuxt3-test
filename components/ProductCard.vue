@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<a href="#" class="product-img-container block aspect-square">
+		<NuxtLink :to="`/product/${product.model}`" class="product-img-container block aspect-square">
 			<img
 				class="block h-auto w-full select-none object-contain duration-150 hover:opacity-70"
 				:src="selectedProductBranch.image_url"
 			/>
-		</a>
+		</NuxtLink>
 		<div class="mt-4 flex flex-col items-center">
 			<p class="product-card-name mb-4 text-sm">{{ product.name }}</p>
 			<p class="mb-2">{{ product.model }}</p>
