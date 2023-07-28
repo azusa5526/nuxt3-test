@@ -39,6 +39,15 @@ export const useAppStore = defineStore('app', {
 			return tempMap;
 		},
 
+		categoryIdToRouteMap(state): Map<string, string> {
+			const tempMap = new Map();
+			state.personalCategories.forEach((category) => {
+				tempMap.set(category.id, category.route);
+			});
+
+			return tempMap;
+		},
+
 		routeToCategoryMap(state): Map<string, { category: Category; subCategory?: SubCategory }> {
 			const tempMap = new Map();
 			state.personalCategories.forEach((category) => {

@@ -35,6 +35,7 @@
 
 <script lang="ts" setup>
 import { SimplifiedProduct, SimplifiedBranch } from '~/types';
+import { getContrastYIQ } from '@/utils/index';
 
 const props = defineProps<{ product: SimplifiedProduct }>();
 const product = computed(() => props.product);
@@ -44,14 +45,6 @@ const hasBeenSelected = ref(false);
 const selectedIconColor = computed(() => {
 	return getContrastYIQ(`#${selectedProductBranch.value.color}`);
 });
-
-function getContrastYIQ(hexcolor: string) {
-	var r = parseInt(hexcolor.substring(1, 3), 16);
-	var g = parseInt(hexcolor.substring(3, 5), 16);
-	var b = parseInt(hexcolor.substring(5, 7), 16);
-	var yiq = (r * 299 + g * 587 + b * 114) / 1000;
-	return yiq >= 128 ? 'black' : 'white';
-}
 </script>
 
 <style lang="scss" scoped>

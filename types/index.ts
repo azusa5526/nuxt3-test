@@ -72,6 +72,11 @@ export interface IProduct {
 	parts?: IProductPart[];
 }
 
+export type Product = Omit<IProduct, 'category_id' | 'sub_category_id'> & {
+	category_id: string;
+	sub_category_id: string;
+};
+
 export type SimplifiedBranch = Pick<IProductBranch, 'color' | 'image_url' | 'model' | 'price' | 'id' | 'release_at'>;
 export type SimplifiedProduct = Pick<
 	IProduct,

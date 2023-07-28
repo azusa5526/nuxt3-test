@@ -61,15 +61,36 @@ router.get(
 			});
 		}
 
+		let product;
 		try {
-			const product = await Product.find({ _id: productId });
-			return product ? product : [];
+			product = await Product.findOne({ _id: productId });
 		} catch (error) {
 			throw createError({
 				statusCode: 500,
 				statusMessage: `Get product err, ${error}`,
 			});
 		}
+
+		return product;
+	})
+);
+
+router.get(
+	'/model/:modelName',
+	defineEventHandler(async (event) => {
+		const modelName = event.context.params?.modelName;
+
+		let product;
+		try {
+			product = await Product.findOne({ model: modelName });
+		} catch (error) {
+			throw createError({
+				statusCode: 500,
+				statusMessage: `Get product err, ${error}`,
+			});
+		}
+
+		return product;
 	})
 );
 
