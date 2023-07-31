@@ -40,4 +40,15 @@ export default defineNuxtConfig({
 			}),
 		],
 	},
+
+	content: {
+		sources: {
+			product: {
+				driver: 'fs',
+				prefix: '/prod',
+				base: path.resolve(__dirname, 'public/upload/contents/product'),
+			},
+		},
+		respectPathCase: true,
+	},
 });

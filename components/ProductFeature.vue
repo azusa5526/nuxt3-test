@@ -1,12 +1,11 @@
 <template>
 	<div>
 		<span>ProductFeature.vue</span>
-		<ContentRenderer :value="testMarkdown">
-			<h1>{{ testMarkdown.value }}</h1>
-		</ContentRenderer>
+		<ContentDoc path="/prod/ATH-M50x/feature" />
 	</div>
 </template>
 
 <script lang="ts" setup>
-const testMarkdown = { value: '# Azure 代理程式集區' };
+const contentQuery = await queryContent().find();
+console.log(contentQuery);
 </script>

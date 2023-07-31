@@ -310,7 +310,7 @@ async function initProduct() {
 					font_color: 'FFFFFF',
 				},
 				spec_route: null,
-				introduce_route: null,
+				introduce_route: '/upload/contents/product/ATH-M50x/feature',
 				images: [
 					'/upload/contents/product/ATH-M50x/branch_2805_image_0.jpg',
 					'/upload/contents/product/ATH-M50x/branch_2805_image_1.jpg',
