@@ -8,13 +8,50 @@
 
 		<div v-if="product && selectedBranch" class="mx-auto mb-14 flex w-full max-w-[1328px] justify-between">
 			<div class="w-1/2">
-				<img :src="selectedBranch.image_url" class="block h-auto w-full" />
+				<div class="relative mb-10">
+					<div class="overflow-x-hidden" ref="emblaNode">
+						<div class="flex w-full will-change-transform">
+							<div v-for="(imageUrl, index) in product.images" :key="index" class="flex w-full shrink-0 flex-col">
+								<img :src="imageUrl" class="block h-auto w-full" draggable="false" />
+							</div>
+						</div>
+					</div>
+					<button
+						@click="emblaApi?.scrollPrev"
+						class="absolute left-0 top-1/2 -translate-y-1/2"
+						:class="{ 'pointer-events-none opacity-30': !canScrollPrev }"
+					>
+						<SvgIcon class="h-14 w-14 py-2 pr-2 text-[#505659]" use="chevron_left"></SvgIcon>
+					</button>
+					<button
+						@click="emblaApi?.scrollNext"
+						class="absolute right-0 top-1/2 -translate-y-1/2"
+						:class="{ 'pointer-events-none opacity-30': !canScrollNext }"
+					>
+						<SvgIcon class="h-14 w-14 rotate-180 py-2 pr-2 text-[#505659]" use="chevron_left"></SvgIcon>
+					</button>
+				</div>
+
+				<div class="flex flex-wrap gap-2">
+					<div
+						@click="
+							emblaApi?.scrollTo(index);
+							selectedImageIndex = index;
+						"
+						v-for="(imageUrl, index) in product.images"
+						:key="index"
+						class="aspect-square w-[76px]"
+						:class="{ 'border border-gray-300': selectedImageIndex === index }"
+					>
+						<img :src="imageUrl" class="block h-auto w-full" draggable="false" />
+					</div>
+				</div>
 			</div>
 			<div class="w-[45%]">
 				<div class="mb-12">
-					<p class="mb-6 text-sm">{{ product?.name }}</p>
+					<p class="mb-6 text-sm">{{ product.name }}</p>
 					<h2 class="mb-6 text-3xl">
-						{{ selectedBranch?.model }}
+						{{ selectedBranch.model }}
 						<span class="ml-1 text-sm">オープン価格</span>
 					</h2>
 					<p class="mb-10 text-sm">{{ product.description }}</p>
@@ -23,7 +60,7 @@
 						<li
 							v-for="branch in product.branches"
 							:key="branch.id"
-							@click="selectedBranch = branch"
+							@click="onColorBranchClick(branch)"
 							class="mr-2 grid h-[22px] w-[22px] rotate-[-60deg] overflow-hidden rounded-full border border-black/25 hover:opacity-70"
 						>
 							<div
@@ -105,6 +142,7 @@
 import { useAppStore } from '~/store/app';
 import { Product, IProductBranch } from '~/types';
 import { getContrastYIQ } from '@/utils/index';
+import emblaCarouselVue from 'embla-carousel-vue';
 
 definePageMeta({
 	name: 'product',
@@ -145,6 +183,42 @@ const categoryRoute = computed(() => {
 });
 
 const activateTab = ref<'feature' | 'spec' | 'support'>('feature');
+
+const [emblaNode, emblaApi] = emblaCarouselVue({ loop: false, containScroll: 'trimSnaps', align: 'start' });
+const selectedImageIndex = ref(0);
+
+const canScrollNext = ref();
+const canScrollPrev = ref();
+const onScrollHandler = () => {
+	canScrollNext.value = emblaApi.value?.canScrollNext();
+	canScrollPrev.value = emblaApi.value?.canScrollPrev();
+};
+
+onMounted(() => {
+	if (emblaApi) onScrollHandler();
+});
+
+watchEffect(() => {
+	if (emblaApi.value) emblaApi.value.on('scroll', onScrollHandler);
+});
+
+const removeonScrollListener = () => {
+	if (emblaApi.value) emblaApi.value.off('scroll', onScrollHandler);
+};
+
+onUnmounted(() => {
+	removeonScrollListener();
+});
+
+function onColorBranchClick(branch: IProductBranch) {
+	selectedBranch.value = branch;
+
+	const targetImageIndex = product.value?.images?.findIndex((imageUrl) => imageUrl === branch.image_url) ?? -1;
+	if (targetImageIndex !== -1) {
+		emblaApi.value?.scrollTo(targetImageIndex);
+		selectedImageIndex.value = targetImageIndex;
+	}
+}
 </script>
 
 <style lang="scss" scoped>

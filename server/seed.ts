@@ -312,9 +312,12 @@ async function initProduct() {
 				spec_route: null,
 				introduce_route: null,
 				images: [
-					'https://dummyimage.com/500X500/13c0f0/fff',
-					'https://dummyimage.com/500X500/e83333/fff',
-					'https://dummyimage.com/500X500/33e645/fff',
+					'/upload/contents/product/ATH-M50x/branch_2805_image_0.jpg',
+					'/upload/contents/product/ATH-M50x/branch_2805_image_1.jpg',
+					'/upload/contents/product/ATH-M50x/branch_2805_image_2.jpg',
+					'/upload/contents/product/ATH-M50x/branch_2806_image_6.jpg',
+					'/upload/contents/product/ATH-M50x/branch_2806_image_7.jpg',
+					'/upload/contents/product/ATH-M50x/branch_2806_image_8.jpg',
 				],
 				parts: [
 					{
