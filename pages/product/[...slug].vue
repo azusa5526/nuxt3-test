@@ -114,26 +114,28 @@
 					class="mx-auto grid max-w-[1092px] grid-cols-3 [&_button]:h-12 [&_button]:border-l [&_button]:border-t [&_button]:border-gray-300 [&_button]:text-sm"
 				>
 					<button
-						@click="activateTab = 'feature'"
-						:class="{ 'bg-[#585858] font-bold text-white': activateTab === 'feature' }"
+						@click="activateTab = ProductFeature"
+						:class="{ 'bg-[#585858] font-bold text-white': activateTab === ProductFeature }"
 					>
 						製品特長
 					</button>
 					<button
-						@click="activateTab = 'spec'"
-						:class="{ 'bg-[#585858] font-bold text-white': activateTab === 'spec' }"
+						@click="activateTab = ProductSpec"
+						:class="{ 'bg-[#585858] font-bold text-white': activateTab === ProductSpec }"
 					>
 						テクニカルデータ
 					</button>
 					<button
-						@click="activateTab = 'support'"
+						@click="activateTab = ProductSupport"
 						class="border-r"
-						:class="{ 'bg-[#585858] font-bold text-white': activateTab === 'support' }"
+						:class="{ 'bg-[#585858] font-bold text-white': activateTab === ProductSupport }"
 					>
 						サポート
 					</button>
 				</div>
 			</div>
+
+			<component :is="activateTab"></component>
 		</div>
 	</div>
 </template>
@@ -143,6 +145,9 @@ import { useAppStore } from '~/store/app';
 import { Product, IProductBranch } from '~/types';
 import { getContrastYIQ } from '@/utils/index';
 import emblaCarouselVue from 'embla-carousel-vue';
+import ProductFeature from '@/components/ProductFeature.vue';
+import ProductSpec from '~/components/ProductSpec.vue';
+import ProductSupport from '~/components/ProductSupport.vue';
 
 definePageMeta({
 	name: 'product',
@@ -182,7 +187,7 @@ const categoryRoute = computed(() => {
 	return product.value ? appStore.categoryIdToRouteMap.get(product.value?.category_id) : undefined;
 });
 
-const activateTab = ref<'feature' | 'spec' | 'support'>('feature');
+const activateTab = shallowRef<typeof ProductFeature>(ProductFeature);
 
 const [emblaNode, emblaApi] = emblaCarouselVue({ loop: false, containScroll: 'trimSnaps', align: 'start' });
 const selectedImageIndex = ref(0);
