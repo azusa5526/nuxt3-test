@@ -50,5 +50,6 @@ export default defineNuxtConfig({
 			},
 		},
 		respectPathCase: true,
+		ignores: ['\\.jpg', '\\.png'],
 	},
 });
