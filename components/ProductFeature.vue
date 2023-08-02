@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<ContentDoc class="feature-content" path="/prod/ATH-M50x/feature" />
-	</div>
+	<ContentDoc class="feature-content" path="/prod/ATH-M50x/feature" />
 </template>
 
 <script lang="ts" setup>
@@ -14,17 +12,19 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	h1 {
-		font-size: 36px;
-		font-weight: bold;
-	}
 
-	h4 {
-		font-weight: bold;
+	img {
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+		margin: 0 auto;
+		max-width: 760px;
 	}
 
 	p {
 		max-width: 812px;
+		text-align: start;
+		margin: 0 auto;
+
 	}
 }
 </style>

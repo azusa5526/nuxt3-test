@@ -1,40 +1,34 @@
 <template>
-  <div>
-    <div>
-      <div @click="toggle" class="text-center select-none cursor-pointer w-[1000px] mx-auto">
-        <div class="text-3xl">{{ $attrs.title }}</div>
-        <div class="font-bold">{{ $attrs['sub-title'] }}</div>
+  <div class="w-full">
+    <div @click="toggle" class="text-center select-none cursor-pointer max-w-[1090px] mx-auto font-bold pt-10">
+      <div class="mb-7 relative">
+        <div class="text-4xl grow">{{ $attrs.title }}</div>
+        <SvgIcon class="absolute -top-1 right-6 h-12 w-12 justify-self-end transition-all duration-300"
+          :class="{ '-rotate-180': isExpend }" use="expand_more"></SvgIcon>
       </div>
+      <div>{{ $attrs['sub-title'] }}</div>
     </div>
-
-
-    <div ref="contentRef" class="overflow-hidden transition-[max-height] duration-300"
-      :class="isExpend ? `max-h-[${contentHeight}]` : 'max-h-[0px]'">
-      <ContentSlot :use="$slots.default" unwrap="p" />
+    <div ref="contentRef" class="overflow-hidden transition-[max-height] duration-300 pb-7"
+      :style="{ maxHeight: `${maxHeight}` }">
+      <ContentSlot :use="$slots.default" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import type { ComponentPublicInstance } from 'vue'
-
-// const contentRef: Ref<ComponentPublicInstance | null> = ref(null);
-
 const contentRef = ref<HTMLElement | null>(null);
-const contentHeight = computed(() => {
-  return contentRef.value?.clientHeight ?? '0px'
-})
+const maxHeight = ref('100%')
 
-onMounted(async () => {
-  await nextTick(() => {
-    console.log('contentRef:', contentRef.value?.clientHeight);
-  })
+onMounted(() => {
+  if (contentRef.value) {
+    maxHeight.value = contentRef.value.scrollHeight + 'px';
+  }
 });
 
 const isExpend = ref(true)
-function toggle() {
+async function toggle() {
   isExpend.value = !isExpend.value;
-  console.log('isExpend', isExpend.value)
+  maxHeight.value = maxHeight.value === '0px' ? contentRef.value?.scrollHeight + 'px' : '0px';
 }
 </script>
