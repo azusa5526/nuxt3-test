@@ -1,5 +1,9 @@
 <template>
-	<ContentDoc class="feature-content" path="/prod/ATH-M50x/feature" />
+	<ContentDoc class="feature-content" :path="`/prod/${$attrs.productModel}/feature`">
+		<template #not-found>
+			<div class="w-full p-8 text-center text-lg">-- Feature not found --</div>
+		</template>
+	</ContentDoc>
 </template>
 
 <script lang="ts" setup></script>
