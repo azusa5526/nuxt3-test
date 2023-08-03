@@ -135,7 +135,9 @@
 				</div>
 			</div>
 
-			<component :is="activateTab"></component>
+			<keep-alive>
+				<component :is="activateTab" :productModel="product?.model"></component>
+			</keep-alive>
 		</div>
 	</div>
 </template>
