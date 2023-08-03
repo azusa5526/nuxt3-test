@@ -115,19 +115,21 @@
 				>
 					<button
 						@click="activateTab = ProductFeature"
+						class="transition-all duration-300"
 						:class="{ 'bg-[#585858] font-bold text-white': activateTab === ProductFeature }"
 					>
 						製品特長
 					</button>
 					<button
 						@click="activateTab = ProductSpec"
+						class="transition-all duration-300"
 						:class="{ 'bg-[#585858] font-bold text-white': activateTab === ProductSpec }"
 					>
 						テクニカルデータ
 					</button>
 					<button
 						@click="activateTab = ProductSupport"
-						class="border-r"
+						class="border-r transition-all duration-300"
 						:class="{ 'bg-[#585858] font-bold text-white': activateTab === ProductSupport }"
 					>
 						サポート
