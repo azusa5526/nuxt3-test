@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { IProduct, IProductBranch, IProductPart } from '../../types';
+import type { IProduct, IProductBranch, IProductPart, TechnicalData } from '../../types';
 
 const embeddedProductBranch = new mongoose.Schema<IProductBranch>({
 	color: { type: [String] },
@@ -42,7 +42,7 @@ const productSchema = new mongoose.Schema<IProduct>({
 	series_ids: [{ type: mongoose.Schema.Types.ObjectId }],
 	image_url: { type: String, required: true },
 	label: { type: Object },
-	spec_route: { type: String },
+	technical_data: { type: Object },
 	introduce_route: { type: String },
 	images: [{ type: String }],
 	parts: [embeddedProductPart],

@@ -60,7 +60,7 @@ export interface IProduct {
 	type_ids?: Types.DocumentArray<Types.ObjectId>;
 	series_ids?: Types.DocumentArray<Types.ObjectId>;
 	image_url: string;
-	spec_route?: string;
+	technical_data?: TechnicalData;
 	introduce_route?: string;
 	branches: Types.DocumentArray<IProductBranch>;
 	label?: {
@@ -70,6 +70,26 @@ export interface IProduct {
 	};
 	images?: string[];
 	parts?: IProductPart[];
+}
+
+export interface TechnicalData {
+	spec: {
+		title?: string;
+		items: {
+			name: string;
+			value: string | string[];
+		}[];
+	}[];
+	info?: {
+		accessories?: string;
+		sold_separately?: string;
+	};
+	notice?: string;
+	models: {
+		name: string;
+		jan_code: string;
+		release_at: string;
+	}[];
 }
 
 export type Product = Omit<IProduct, 'category_id' | 'sub_category_id'> & {

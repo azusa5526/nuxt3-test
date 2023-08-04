@@ -309,7 +309,41 @@ async function initProduct() {
 					bg_color: 'cc9900',
 					font_color: 'FFFFFF',
 				},
-				spec_route: null,
+				technical_data: {
+					spec: [
+						{
+							title: null,
+							items: [
+								{ name: '型式', value: '密閉ダイナミック型' },
+								{ name: 'ドライバー', value: '密閉ダイナミック型' },
+								{ name: '出力音圧レベル', value: '99dB/mW' },
+								{ name: '再生周波数帯域', value: '15～28,000Hz' },
+								{ name: '最大入力', value: '1,600mW' },
+								{ name: 'インピーダンス', value: '38Ω' },
+								{ name: '質量(コード除く)', value: '285g' },
+								{ name: 'プラグ', value: 'φ6.3mm標準/φ3.5mmミニ 金メッキステレオ2ウェイ' },
+								{
+									name: 'コード',
+									value: [
+										'OFCリッツ線1.2mカールコード(伸長時約3m)',
+										'OFCリッツ線3.0mストレートコード',
+										'OFCリッツ線1.2mストレートコード',
+									],
+								},
+							],
+						},
+					],
+					info: {
+						accessories: 'ポーチ、カールコード(着脱式)：片出し1.2m、ストレートコード(着脱式)：片出し3.0m、片出し1.2m',
+						sold_separately:
+							'交換イヤパッド HP-M50x(BK/WH)、カールコード(着脱式)：片出し1.2m(BK/WH)、ストレートコード(着脱式)：片出し3.0m(BK/WH)、片出し1.2m(BK/WH)',
+					},
+					notice: null,
+					models: [
+						{ name: 'ATH-M50x', jan_code: '4961310125431', release_at: '2022-09-01T20:20:17.717+08:00' },
+						{ name: 'ATH-M50x WH', jan_code: '4961310125455', release_at: '2021-08-03T16:20:17.717+08:00' },
+					],
+				},
 				introduce_route: '/upload/contents/product/ATH-M50x/feature',
 				images: [
 					'/upload/contents/product/ATH-M50x/branch_2805_image_0.jpg',
@@ -363,7 +397,6 @@ async function initProduct() {
 				category_id: '64a4b9b3ace1c8690163d98a',
 				sub_category_id: '64a4b9b3ace1c8690163d98d',
 				image_url: 'https://dummyimage.com/500X500/377ded/fff',
-				spec_route: null,
 				introduce_route: null,
 				images: ['https://dummyimage.com/500X500/377ded/fff', 'https://dummyimage.com/500X500/e83333/fff'],
 				parts: null,
@@ -388,7 +421,6 @@ async function initProduct() {
 				category_id: '64a4b9b3ace1c8690163d984',
 				sub_category_id: '64a4b9b3ace1c8690163d986',
 				image_url: 'https://dummyimage.com/500X500/13c0f0/fff',
-				spec_route: null,
 				introduce_route: null,
 				images: ['https://dummyimage.com/500X500/13c0f0/fff', 'https://dummyimage.com/500X500/e83333/fff'],
 				parts: null,
@@ -414,7 +446,6 @@ async function initProduct() {
 				sub_category_id: '64a4b9b3ace1c8690163d985',
 				type_ids: ['64bf5f4d246f6a4bad35c84e'],
 				image_url: 'https://dummyimage.com/500X500/13c0f0/fff',
-				spec_route: null,
 				introduce_route: null,
 				images: ['https://dummyimage.com/500X500/13c0f0/fff', 'https://dummyimage.com/500X500/e83333/fff'],
 				parts: null,
@@ -441,7 +472,6 @@ async function initProduct() {
 				sub_category_id: '64a4b9b3ace1c8690163d985',
 				type_ids: ['64bf5ebf83a912318b77529b'],
 				image_url: 'https://dummyimage.com/500X500/13c0f0/fff',
-				spec_route: null,
 				introduce_route: null,
 				images: ['https://dummyimage.com/500X500/13c0f0/fff', 'https://dummyimage.com/500X500/e83333/fff'],
 				parts: null,
