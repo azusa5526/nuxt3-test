@@ -1,12 +1,15 @@
 <template>
-	<ContentDoc class="feature-content" :path="`/prod/${$attrs.productModel}/feature`">
+	<ContentDoc class="feature-content" :path="`/prod/${product.model}/feature`">
 		<template #not-found>
 			<div class="w-full p-8 text-center text-lg">-- Feature not found --</div>
 		</template>
 	</ContentDoc>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import type { Product } from '~/types';
+defineProps<{ product: Product }>()
+</script>
 
 <style lang="scss">
 .feature-content {
@@ -21,7 +24,7 @@
 		max-width: 760px;
 	}
 
-	img + img {
+	img+img {
 		margin-top: -1.75rem;
 	}
 

@@ -137,8 +137,8 @@
 				</div>
 			</div>
 
-			<keep-alive>
-				<component :is="activateTab" :productModel="product?.model"></component>
+			<keep-alive v-if="product">
+				<component :is="activateTab" :product="product"></component>
 			</keep-alive>
 		</div>
 	</div>

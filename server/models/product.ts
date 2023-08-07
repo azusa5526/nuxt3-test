@@ -9,6 +9,7 @@ const embeddedProductBranch = new mongoose.Schema<IProductBranch>({
 	release_at: { type: String },
 	stock_quantity: { type: Number },
 	price: { type: String, required: true },
+	jan_code: { type: String },
 }).set('toJSON', {
 	versionKey: false,
 	virtuals: true,

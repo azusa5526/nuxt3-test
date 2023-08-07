@@ -39,6 +39,7 @@ export interface IProductBranch {
 	release_at?: string;
 	stock_quantity?: number;
 	price: string;
+	jan_code: string;
 }
 
 export interface IProductPart {
@@ -85,11 +86,6 @@ export interface TechnicalData {
 		sold_separately?: string;
 	};
 	notice?: string;
-	models: {
-		name: string;
-		jan_code: string;
-		release_at: string;
-	}[];
 }
 
 export type Product = Omit<IProduct, 'category_id' | 'sub_category_id'> & {
@@ -97,7 +93,10 @@ export type Product = Omit<IProduct, 'category_id' | 'sub_category_id'> & {
 	sub_category_id: string;
 };
 
-export type SimplifiedBranch = Pick<IProductBranch, 'color' | 'image_url' | 'model' | 'price' | 'id' | 'release_at'>;
+export type SimplifiedBranch = Pick<
+	IProductBranch,
+	'color' | 'image_url' | 'model' | 'price' | 'id' | 'release_at' | 'jan_code'
+>;
 export type SimplifiedProduct = Pick<
 	IProduct,
 	'name' | 'model' | 'route' | 'image_url' | 'label' | 'id' | 'description'

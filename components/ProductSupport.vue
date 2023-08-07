@@ -1,10 +1,10 @@
 <template>
 	<div>
-		<span>ProductSupport.vue</span>
-		<!-- <div v-html="$mdRenderer.render(testMarkdown)"></div> -->
+		ProductSupport.vue
 	</div>
 </template>
 
 <script lang="ts" setup>
-const testMarkdown = '# Azure 代理程式集區';
+import type { Product } from '~/types';
+defineProps<{ product: Product }>()
 </script>

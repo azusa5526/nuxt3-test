@@ -315,7 +315,7 @@ async function initProduct() {
 							title: null,
 							items: [
 								{ name: '型式', value: '密閉ダイナミック型' },
-								{ name: 'ドライバー', value: '密閉ダイナミック型' },
+								{ name: 'ドライバー', value: 'φ45mm、CCAWボイスコイル' },
 								{ name: '出力音圧レベル', value: '99dB/mW' },
 								{ name: '再生周波数帯域', value: '15～28,000Hz' },
 								{ name: '最大入力', value: '1,600mW' },
@@ -339,10 +339,6 @@ async function initProduct() {
 							'交換イヤパッド HP-M50x(BK/WH)、カールコード(着脱式)：片出し1.2m(BK/WH)、ストレートコード(着脱式)：片出し3.0m(BK/WH)、片出し1.2m(BK/WH)',
 					},
 					notice: null,
-					models: [
-						{ name: 'ATH-M50x', jan_code: '4961310125431', release_at: '2022-09-01T20:20:17.717+08:00' },
-						{ name: 'ATH-M50x WH', jan_code: '4961310125455', release_at: '2021-08-03T16:20:17.717+08:00' },
-					],
 				},
 				introduce_route: '/upload/contents/product/ATH-M50x/feature',
 				images: [
@@ -376,6 +372,7 @@ async function initProduct() {
 						release_at: null,
 						stock_quantity: 10,
 						price: '19,000',
+						jan_code: '4961310125431',
 					},
 					{
 						color: ['ffffff'],
@@ -385,6 +382,7 @@ async function initProduct() {
 						release_at: '2021-08-03T16:20:17.717+08:00',
 						stock_quantity: 2,
 						price: '21,000',
+						jan_code: '4961310125455',
 					},
 				],
 			},
