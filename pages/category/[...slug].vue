@@ -83,8 +83,8 @@
 			</div>
 		</div>
 
-		<div class="flex justify-center pb-48">
-			<ProductNavi :name="$route.params.slug[0]"></ProductNavi>
+		<div v-if="categoryInfo?.category.name" class="flex justify-center pb-48">
+			<ProductNavi :name="categoryInfo.category.name"></ProductNavi>
 		</div>
 
 		<div class="flex flex-col items-center pb-32">

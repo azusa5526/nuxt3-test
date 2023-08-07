@@ -39,9 +39,9 @@ const appStore = useAppStore();
 const props = defineProps<{ name: string }>();
 
 const nameRouteMap = new Map([
-	['headphone', '/headphone/navi/'],
-	['earphone', '/headphone/navi/'],
-	['microphone', '/microphone/navi/'],
+	['headphones', '/headphone/navi/'],
+	['earphones', '/headphone/navi/'],
+	['microphones', '/microphone/navi/'],
 	['cartridge', '/cartridge/navi/'],
 ]);
 
