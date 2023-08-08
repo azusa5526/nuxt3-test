@@ -7,6 +7,7 @@ import { Topic } from './models/topic';
 import { News } from './models/news';
 import { Types } from 'mongoose';
 import { ProductType } from './models/product-type';
+import { ProductSeries } from './models/product-series';
 
 async function initPromote() {
 	const promote = await Promote.count();
@@ -485,6 +486,32 @@ async function initProduct() {
 					},
 				],
 			},
+			{
+				_id: new Types.ObjectId('64d1f0955772ab05eaff7cf6'),
+				name: 'アートモニターヘッドホン',
+				model: 'ATH-A1000Z',
+				route: 'ATH-A1000Z',
+				description:
+					'～すべては正確な音再現のために～  真紅のアルミニウム筐体とマグネシウム製バッフルで極まる深化のサウンド。',
+				category_id: '64a4b9b3ace1c8690163d984',
+				sub_category_id: '64a4b9b3ace1c8690163d985',
+				type_ids: null,
+				image_url: 'https://dummyimage.com/500X500/13c0f0/fff',
+				introduce_route: null,
+				images: ['https://dummyimage.com/500X500/13c0f0/fff', 'https://dummyimage.com/500X500/e83333/fff'],
+				parts: null,
+				branches: [
+					{
+						color: null,
+						image_url: '/upload/contents/product/ATH-A1000Z/product_image_0.jpg',
+						model: 'ATH-A1000Z',
+						is_release: true,
+						release_at: '2021-07-05T16:20:17.717+08:00',
+						stock_quantity: 2,
+						price: '54,868',
+					},
+				],
+			},
 		]);
 	}
 }
@@ -665,22 +692,43 @@ async function initProductType() {
 			{
 				name: 'ポータブル',
 				_id: new Types.ObjectId('64bf5ebf83a912318b77529b'),
-				sub_category_ids: new Types.ObjectId('64a4b9b3ace1c8690163d985'),
+				sub_category_ids: [new Types.ObjectId('64a4b9b3ace1c8690163d985')],
 			},
 			{
 				name: 'オープン型',
 				_id: new Types.ObjectId('64bf5f4d246f6a4bad35c84e'),
-				sub_category_ids: new Types.ObjectId('64a4b9b3ace1c8690163d985'),
+				sub_category_ids: [new Types.ObjectId('64a4b9b3ace1c8690163d985')],
 			},
 			{
 				name: 'ポータブル',
 				_id: new Types.ObjectId('64bf5fbedc96a6c8953ced74'),
-				sub_category_ids: new Types.ObjectId('64a4b9b3ace1c8690163d986'),
+				sub_category_ids: [new Types.ObjectId('64a4b9b3ace1c8690163d986')],
 			},
 			{
 				name: 'デジタルワイヤレス',
 				_id: new Types.ObjectId('64bf5fc2a78754b2d0de6cfd'),
-				sub_category_ids: new Types.ObjectId('64a4b9b3ace1c8690163d986'),
+				sub_category_ids: [new Types.ObjectId('64a4b9b3ace1c8690163d986')],
+			},
+		]);
+	}
+}
+
+async function initProductSeries() {
+	const productSeriesCount = await ProductSeries.count();
+	if (!productSeriesCount) {
+		console.log('Do initProductSeries');
+		ProductSeries.create([
+			{
+				name: 'Professional monitor headphones',
+				_id: new Types.ObjectId('64d1ee252c52c445fef64bb7'),
+				category_ids: [],
+				sub_category_ids: [new Types.ObjectId('')],
+			},
+			{
+				name: 'アートモニター',
+				_id: new Types.ObjectId('64d1ee3db37185b0cc61a894'),
+				category_ids: [],
+				sub_category_ids: [new Types.ObjectId('')],
 			},
 		]);
 	}

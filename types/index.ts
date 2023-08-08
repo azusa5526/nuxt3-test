@@ -59,7 +59,7 @@ export interface IProduct {
 	sub_category_id: Types.ObjectId;
 	function_ids?: Types.DocumentArray<Types.ObjectId>;
 	type_ids?: Types.DocumentArray<Types.ObjectId>;
-	series_ids?: Types.DocumentArray<Types.ObjectId>;
+	series_id?: Types.ObjectId;
 	image_url: string;
 	technical_data?: TechnicalData;
 	introduce_route?: string;
@@ -153,3 +153,11 @@ export interface IProductType {
 }
 
 export type ProductType = IProductType & { id: string };
+
+export interface IProductSeries {
+	name: string;
+	category_ids: Types.DocumentArray<Types.ObjectId>;
+	sub_category_ids: Types.DocumentArray<Types.ObjectId>;
+}
+
+export type ProductSeires = IProductSeries & { id: string };
