@@ -22,8 +22,12 @@ const props = withDefaults(defineProps<{ modelValue?: boolean }>(), {
 	modelValue: undefined,
 });
 const maxHeight = ref(props.modelValue ? '100%' : '0px');
-const emits = defineEmits<{ (e: 'update:modelValue', val: boolean): void }>();
+const emits = defineEmits<{
+	(e: 'update:modelValue', val: boolean): void;
+	(e: 'update:maxHeight', newValue: number, oldValue: number): void;
+}>();
 const isExpend = ref(props.modelValue);
+const offsetHeight = ref(0);
 
 onMounted(() => {
 	if (contentRef.value && props.modelValue) {
@@ -51,13 +55,21 @@ function onActivatorClick() {
 }
 
 function setMaxHeight() {
-	maxHeight.value = maxHeight.value === '0px' ? contentRef.value?.scrollHeight + 'px' : '0px';
+	const oldMaxHeight = window.parseInt(maxHeight.value);
+	const newMaxHeight = maxHeight.value === '0px' ? (contentRef.value?.scrollHeight || 0) + offsetHeight.value : 0;
+	maxHeight.value = `${newMaxHeight}px`;
+	emits('update:maxHeight', newMaxHeight, oldMaxHeight);
 }
 
-// useResizeObserver(contentRef, (entries) => {
-// 	const entry = entries[0];
-// 	const { width, height } = entry.contentRect;
+function refreshMaxHeight() {
+	const newMaxHeight = (contentRef.value?.scrollHeight || 0) + offsetHeight.value;
+	maxHeight.value = `${newMaxHeight}px`;
+}
 
-// 	console.log('w, h', width, height);
-// });
+function addOffsetHeight(val: number) {
+	offsetHeight.value += val;
+	refreshMaxHeight();
+}
+
+defineExpose({ addOffsetHeight });
 </script>
