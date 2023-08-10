@@ -4,7 +4,11 @@
 		class="fixed inset-0 z-30 flex h-screen flex-col overflow-y-scroll duration-200"
 		:class="isDrawerShow ? 'translate-x-0' : '!translate-x-[calc(var(--app-sidebar-width)*-1)]'"
 	>
-		<h2>Title</h2>
+		<h1 class="flex h-[76px] shrink-0 items-center border-b border-[#BFBFBF] px-6 text-xl font-bold">
+			<PiniaIcon class="!m-0 !mb-2 h-12 w-12"></PiniaIcon>
+			audio-Technica
+		</h1>
+
 		<AppSidebarList></AppSidebarList>
 
 		<Teleport to="body">

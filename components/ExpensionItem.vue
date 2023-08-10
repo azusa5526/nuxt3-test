@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div @click="onActivatorClick" class="cursor-pointer select-none text-center">
-			<slot name="activator"></slot>
+			<slot name="activator" v-bind="{ isExpend }"></slot>
 		</div>
 		<div
 			ref="contentRef"
@@ -15,6 +15,8 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+// import { useResizeObserver } from '@vueuse/core';
+
 const contentRef = ref<HTMLElement | null>(null);
 const props = withDefaults(defineProps<{ modelValue?: boolean }>(), {
 	modelValue: undefined,
@@ -51,4 +53,11 @@ function onActivatorClick() {
 function setMaxHeight() {
 	maxHeight.value = maxHeight.value === '0px' ? contentRef.value?.scrollHeight + 'px' : '0px';
 }
+
+// useResizeObserver(contentRef, (entries) => {
+// 	const entry = entries[0];
+// 	const { width, height } = entry.contentRect;
+
+// 	console.log('w, h', width, height);
+// });
 </script>
