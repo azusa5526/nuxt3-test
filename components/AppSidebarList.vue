@@ -5,7 +5,7 @@
 			:key="index"
 			class="flex min-h-[76px] items-center overflow-y-auto border-b border-[#BFBFBF] text-sm"
 		>
-			<ExpensionItem v-if="menu.data" class="grow" ref="parentExpandItemRefs">
+			<ExpensionItem v-if="menu.data" class="grow" ref="parentExpandItemRefs" :parent="`category_${menu.id}`">
 				<template #activator="{ isExpend }">
 					<div class="flex h-[76px] w-full items-center justify-between bg-blue-100 px-2">
 						<div>{{ menu.displayName }}</div>
@@ -13,21 +13,22 @@
 					</div>
 				</template>
 				<template #content>
-					<ul ref="testRef" class="w-full bg-red-200">
-						<li v-for="category in menu.data" :key="category.id" class="px-2">
+					<ul ref="testRef" class="w-full border-t border-[#BFBFBF] bg-red-200 py-5">
+						<li v-for="category in menu.data" :key="category.id">
 							<ExpensionItem
-								@update:max-height="(newValue, oldValue) => updateParentMaxHeight(0, newValue, oldValue)"
+								@update:max-height="
+									(newValue, oldValue) => updateParentMaxHeight(`category_${menu.id}`, newValue, oldValue)
+								"
 								v-if="category.sub_categories"
 								class="grow"
 							>
 								<template #activator="{ isExpend }">
-									<div class="flex min-h-[68px] items-center justify-between">
+									<div class="flex min-h-[68px] items-center justify-between px-2">
 										<div class="flex items-center">
 											<img
 												v-if="category.image_url"
 												:src="category.image_url"
 												class="mr-2 h-auto w-16 object-contain"
-												alt=""
 											/>
 											<div class="text-base">{{ category.name }}</div>
 										</div>
@@ -37,11 +38,11 @@
 
 								<template #content>
 									<ul class="w-full bg-yellow-200">
-										<li v-for="sub in category.sub_categories" :key="sub.id" class="ml-[70px] h-9">
+										<li v-for="sub in category.sub_categories" :key="sub.id" class="h-9">
 											<NuxtLink
 												@click="appStore.isDrawerShow = false"
 												:to="sub.route"
-												class="flex h-full w-full items-center"
+												class="ml-[70px] flex h-full w-full items-center pl-2"
 											>
 												{{ sub.name }}
 											</NuxtLink>
@@ -53,7 +54,10 @@
 					</ul>
 				</template>
 			</ExpensionItem>
-			<div v-else>{{ menu.displayName }}</div>
+
+			<NuxtLink v-else @click="appStore.isDrawerShow = false" :to="{ name: menu.routeName }">
+				{{ menu.displayName }}
+			</NuxtLink>
 		</li>
 	</ul>
 </template>
@@ -67,19 +71,20 @@ const parentExpandItemRefs = ref<InstanceType<typeof ExpensionItem>[] | null>(nu
 
 const appStore = useAppStore();
 const menuItems = [
-	{ displayName: 'ログイン', routeName: '' },
-	{ displayName: '個人向け製品', data: appStore.personalCategories },
-	{ displayName: 'サポート', routeName: 'support' },
-	{ displayName: '法人向け製品' },
-	{ displayName: 'ニュース', routeName: 'news' },
-	{ displayName: '企業情報', routeName: 'corp' },
-	{ displayName: 'Always Listening' },
+	{ displayName: 'ログイン', routeName: '', id: 0 },
+	{ displayName: '個人向け製品', data: appStore.personalCategories, id: 1 },
+	{ displayName: 'サポート', routeName: 'support', id: 2 },
+	{ displayName: '法人向け製品', data: appStore.personalCategories, id: 3 },
+	{ displayName: 'ニュース', routeName: 'news', id: 4 },
+	{ displayName: '企業情報', routeName: 'corp', id: 5 },
+	{ displayName: 'Always Listening', id: 6 },
 ];
 
-function updateParentMaxHeight(parentIndex: number, newValue: number, oldValue: number) {
-	if (!parentExpandItemRefs.value) {
-		return;
-	}
-	parentExpandItemRefs.value[parentIndex].addOffsetHeight(newValue - oldValue);
+function updateParentMaxHeight(parentKey: string, newValue: number, oldValue: number) {
+	if (!parentExpandItemRefs.value) return;
+	const parentRef = parentExpandItemRefs.value.find((item) => item.parent === parentKey);
+	if (!parentRef) return;
+
+	parentRef.addOffsetHeight(newValue - oldValue);
 }
 </script>

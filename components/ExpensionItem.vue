@@ -18,8 +18,9 @@ import { ref } from 'vue';
 // import { useResizeObserver } from '@vueuse/core';
 
 const contentRef = ref<HTMLElement | null>(null);
-const props = withDefaults(defineProps<{ modelValue?: boolean }>(), {
+const props = withDefaults(defineProps<{ modelValue?: boolean; parent?: string }>(), {
 	modelValue: undefined,
+	parent: undefined,
 });
 const maxHeight = ref(props.modelValue ? '100%' : '0px');
 const emits = defineEmits<{
@@ -71,5 +72,5 @@ function addOffsetHeight(val: number) {
 	refreshMaxHeight();
 }
 
-defineExpose({ addOffsetHeight });
+defineExpose({ addOffsetHeight, parent: props.parent });
 </script>
