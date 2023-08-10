@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="flex h-[var(--app-header-height)] w-screen justify-between text-white duration-300 hover:bg-white hover:text-black hover:shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]"
+		class="flex h-[var(--app-header-height)] w-full justify-between text-white duration-300 hover:bg-white hover:text-black hover:shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]"
 		:class="[
 			isHome && isScrollPositionTop ? 'bg-transparent text-white' : 'bg-white !text-black',
 			isScrollPositionTop ? '' : 'shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]',
@@ -20,7 +20,7 @@
 				</h1>
 			</NuxtLink>
 
-			<ul class="flex h-full items-center">
+			<ul class="hidden h-full items-center lg:flex">
 				<li
 					@mouseover="hoveredHeaderItem = headerItem"
 					@mouseleave="hoveredHeaderItem = undefined"
@@ -47,8 +47,8 @@
 			</ul>
 		</div>
 
-		<div class="mr-7 flex items-center [&>button:hover]:opacity-40 [&>button]:p-2.5">
-			<button><SvgIcon use="account_circle" class="h-6 w-6"></SvgIcon></button>
+		<div class="mr-3 flex items-center lg:mr-7 [&>button:hover]:opacity-40 [&>button]:p-2.5">
+			<button class="hidden lg:block"><SvgIcon use="account_circle" class="h-6 w-6"></SvgIcon></button>
 			<button><SvgIcon use="search" class="h-6 w-6"></SvgIcon></button>
 			<button><SvgIcon use="shopping_cart" class="h-6 w-6"></SvgIcon></button>
 		</div>
