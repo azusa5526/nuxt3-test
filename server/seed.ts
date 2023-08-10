@@ -721,17 +721,39 @@ async function initProductSeries() {
 			{
 				name: 'Professional monitor headphones',
 				_id: new Types.ObjectId('64d1ee252c52c445fef64bb7'),
-				category_ids: [],
-				sub_category_ids: [new Types.ObjectId('')],
+				category_ids: [new Types.ObjectId('64a4b9b3ace1c8690163d984')],
+				sub_category_ids: [
+					new Types.ObjectId('64a4b9b3ace1c8690163d985'),
+					new Types.ObjectId('64b4893a9a81ff1e7e103d0d'),
+				],
 			},
 			{
 				name: 'アートモニター',
 				_id: new Types.ObjectId('64d1ee3db37185b0cc61a894'),
-				category_ids: [],
-				sub_category_ids: [new Types.ObjectId('')],
+				category_ids: [new Types.ObjectId('64a4b9b3ace1c8690163d984')],
+				sub_category_ids: [
+					new Types.ObjectId('64a4b9b3ace1c8690163d985'),
+					new Types.ObjectId('64b4893e0ada7f3433c8ecad'),
+				],
+			},
+			{
+				name: 'SoundReality',
+				_id: new Types.ObjectId('64d235b77dc1af34705b1de8'),
+				category_ids: [new Types.ObjectId('64a4b9b3ace1c8690163d98a')],
+				sub_category_ids: [new Types.ObjectId('64a4b9b3ace1c8690163d98d')],
 			},
 		]);
 	}
 }
 
-export { initCategory, initProduct, initPromote, initSlides, initNaviContents, initTopic, initNews, initProductType };
+export {
+	initCategory,
+	initProduct,
+	initPromote,
+	initSlides,
+	initNaviContents,
+	initTopic,
+	initNews,
+	initProductType,
+	initProductSeries,
+};

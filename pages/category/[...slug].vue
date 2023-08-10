@@ -25,8 +25,8 @@
 		</div>
 
 		<div class="mx-auto flex max-w-[1600px] pb-48 pt-12">
-			<ul class="hidden w-[25vw] min-w-[210px] max-w-[320px] px-2 ct_md:block">
-				<li class="mb-12">
+			<ul class="hidden w-[25vw] min-w-[210px] max-w-[320px] px-2 ct_md:block [&>li]:mb-12">
+				<li>
 					<span class="text-sm">{{ categoryInfo?.category.name.toUpperCase() }}</span>
 					<ul>
 						<li
@@ -44,17 +44,31 @@
 					<span class="text-sm">タイプで絞り込む</span>
 					<ul>
 						<li
-							v-for="productType in productRes?.types"
+							v-for="productType in productRes.types"
 							:key="productType.id"
 							class="my-2.5 border border-gray-300 text-center text-sm"
-							:class="{ 'bg-[#BFBFBF] text-white': selectedProductTypeSet.has(productType.id) }"
+							:class="{ 'bg-[#BFBFBF] text-white': selectedProductTypes.has(productType.id) }"
 						>
-							<span role="button" @click="toggleSetItem(selectedProductTypeSet, productType.id)" class="block p-2">
+							<span role="button" @click="toggleSetItem(selectedProductTypes, productType.id)" class="block p-2">
 								{{ productType.name }}
 							</span>
 						</li>
+					</ul>
+				</li>
 
-						<button @click="testBool = !testBool">test toggle {{ testBool }}</button>
+				<li v-if="productRes?.series?.length">
+					<span class="text-sm">シリーズで絞り込む</span>
+					<ul>
+						<li
+							v-for="productSeries in productRes.series"
+							:key="productSeries.id"
+							class="my-2.5 border border-gray-300 text-center text-sm"
+							:class="{ 'bg-[#BFBFBF] text-white': selectedProductSeries.has(productSeries.id) }"
+						>
+							<span role="button" @click="toggleSetItem(selectedProductSeries, productSeries.id)" class="block p-2">
+								{{ productSeries.name }}
+							</span>
+						</li>
 					</ul>
 				</li>
 			</ul>
@@ -98,7 +112,7 @@
 
 <script lang="ts" setup>
 import { useAppStore } from '~/store/app';
-import { ProductType, SimplifiedProduct } from '~/types';
+import { ProductSeires, ProductType, SimplifiedProduct } from '~/types';
 
 definePageMeta({
 	middleware: defineNuxtRouteMiddleware((to, from) => {
@@ -116,19 +130,20 @@ console.log('route', route);
 interface ProductRes {
 	products: SimplifiedProduct[];
 	types: ProductType[];
+	series: ProductSeires[];
 }
 
-const selectedProductTypeSet = ref<Set<string>>(new Set());
-const testBool = ref(false);
+const selectedProductTypes = ref<Set<string>>(new Set());
+const selectedProductSeries = ref<Set<string>>(new Set());
 
 const { data: productRes } = await useAsyncData<ProductRes>(
 	'productRes',
 	() =>
 		$fetch('/api/product', {
-			params: { type_ids: Array.from(selectedProductTypeSet.value), ...appStore.getCategoryIdObject(route.path) },
+			params: { type_ids: Array.from(selectedProductTypes.value), ...appStore.getCategoryIdObject(route.path) },
 		}),
 	{
-		watch: [() => route.path, selectedProductTypeSet.value],
+		watch: [() => route.path, selectedProductTypes.value],
 	}
 );
 

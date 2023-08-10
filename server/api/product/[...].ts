@@ -1,7 +1,8 @@
 import { Product } from '../../models/product';
 import { Promote } from '../../models/promote';
-import { Types, FilterQuery } from 'mongoose';
+import mongoose, { Types, FilterQuery } from 'mongoose';
 import { ProductType } from '../../models/product-type';
+import { ProductSeries } from '../../models/product-series';
 
 const router = createRouter();
 
@@ -9,6 +10,7 @@ interface ProductQueryParams {
 	category_id?: string;
 	sub_category_id?: string;
 	type_ids?: string[];
+	series_id?: string;
 	full_spec?: string;
 }
 
@@ -19,17 +21,21 @@ router.get(
 		const filters: FilterQuery<Omit<ProductQueryParams, 'full_spec'>> = {};
 		const { category_id, sub_category_id } = query;
 		const type_ids = typeof query.type_ids === 'string' ? [query.type_ids] : query.type_ids;
+		const series_id = query.series_id;
 		const full_spec = query.full_spec === 'true';
 
 		if (category_id && Types.ObjectId.isValid(category_id)) filters.category_id = category_id;
 		if (sub_category_id && Types.ObjectId.isValid(sub_category_id)) filters.sub_category_id = sub_category_id;
 		if (type_ids && type_ids.length > 0)
 			filters.type_ids = { $in: type_ids?.map((type_id) => new Types.ObjectId(type_id)) };
+		if (series_id) filters.series_id = new Types.ObjectId(series_id);
 
 		let products;
 		let types;
+		let series;
 
 		if (sub_category_id) types = await findProductTypesBySubCategoryId(sub_category_id);
+		series = await findProductSeries(category_id, sub_category_id);
 
 		try {
 			products = await Product.find({
@@ -46,6 +52,7 @@ router.get(
 		return {
 			products: products,
 			types: types,
+			series: series,
 		};
 	})
 );
@@ -131,7 +138,31 @@ async function findProductTypesBySubCategoryId(subCategoryId: string) {
 			sub_category_ids: { $in: subCategoryId },
 		}).exec();
 
+		console.log('productTypes', productTypes);
+
 		return productTypes;
+	} catch (error) {
+		console.error(error);
+		throw error;
+	}
+}
+
+async function findProductSeries(categoryId?: string, subCategoryId?: string) {
+	const matchCriteria: Record<string, any> = {};
+
+	if (categoryId && Types.ObjectId.isValid(categoryId)) matchCriteria.category_ids = new Types.ObjectId(categoryId);
+	if (subCategoryId && Types.ObjectId.isValid(subCategoryId))
+		matchCriteria.sub_category_ids = new Types.ObjectId(subCategoryId);
+
+	try {
+		const productSeries = await ProductSeries.aggregate([
+			{
+				$match: matchCriteria,
+			},
+		]).exec();
+
+		console.log('productSeries', productSeries);
+		return productSeries;
 	} catch (error) {
 		console.error(error);
 		throw error;

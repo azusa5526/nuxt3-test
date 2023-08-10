@@ -8,6 +8,7 @@ import {
 	initNaviContents,
 	initNews,
 	initProductType,
+	initProductSeries,
 } from './seed';
 
 export default async () => {
@@ -26,6 +27,7 @@ export default async () => {
 		initNaviContents();
 		initNews();
 		initProductType();
+		initProductSeries();
 	} catch (error) {
 		console.error('mongoose err', error);
 		return createError({ statusCode: 500, statusMessage: 'Something went wrong.' });
