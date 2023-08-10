@@ -5,7 +5,7 @@
 			:key="index"
 			class="flex min-h-[76px] items-center overflow-y-auto border-b border-[#BFBFBF] text-sm"
 		>
-			<ExpensionItem v-if="menu.data" class="grow">
+			<ExpensionItem v-if="menu.data" class="grow" ref="parentExpandItemRefs">
 				<template #activator="{ isExpend }">
 					<div class="flex h-[76px] w-full items-center justify-between bg-blue-100 px-2">
 						<div>{{ menu.displayName }}</div>
@@ -15,7 +15,11 @@
 				<template #content>
 					<ul ref="testRef" class="w-full bg-red-200">
 						<li v-for="category in menu.data" :key="category.id" class="px-2">
-							<ExpensionItem v-if="category.sub_categories" class="grow">
+							<ExpensionItem
+								@update:max-height="(newValue, oldValue) => updateParentMaxHeight(0, newValue, oldValue)"
+								v-if="category.sub_categories"
+								class="grow"
+							>
 								<template #activator="{ isExpend }">
 									<div class="flex min-h-[68px] items-center justify-between">
 										<div class="flex items-center">
@@ -55,9 +59,11 @@
 </template>
 
 <script lang="ts" setup>
+import type { ExpensionItem } from '~/.nuxt/components';
 import { useAppStore } from '~/store/app';
 
 const testRef = ref<HTMLElement | null>(null);
+const parentExpandItemRefs = ref<InstanceType<typeof ExpensionItem>[] | null>(null);
 
 const appStore = useAppStore();
 const menuItems = [
@@ -69,4 +75,11 @@ const menuItems = [
 	{ displayName: '企業情報', routeName: 'corp' },
 	{ displayName: 'Always Listening' },
 ];
+
+function updateParentMaxHeight(parentIndex: number, newValue: number, oldValue: number) {
+	if (!parentExpandItemRefs.value) {
+		return;
+	}
+	parentExpandItemRefs.value[parentIndex].addOffsetHeight(newValue - oldValue);
+}
 </script>
