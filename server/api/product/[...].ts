@@ -159,6 +159,15 @@ async function findProductSeries(categoryId?: string, subCategoryId?: string) {
 			{
 				$match: matchCriteria,
 			},
+			{
+				$project: {
+					name: 1,
+					category_ids: 1,
+					sub_category_ids: 1,
+					id: '$_id',
+					_id: 0,
+				},
+			},
 		]).exec();
 
 		console.log('productSeries', productSeries);
