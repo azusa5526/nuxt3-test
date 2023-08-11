@@ -1,6 +1,6 @@
 import { Product } from '../../models/product';
 import { Promote } from '../../models/promote';
-import mongoose, { Types, FilterQuery } from 'mongoose';
+import { Types, FilterQuery } from 'mongoose';
 import { ProductType } from '../../models/product-type';
 import { ProductSeries } from '../../models/product-series';
 
@@ -10,7 +10,7 @@ interface ProductQueryParams {
 	category_id?: string;
 	sub_category_id?: string;
 	type_ids?: string[];
-	series_id?: string;
+	series_ids?: string[];
 	full_spec?: string;
 }
 
@@ -21,20 +21,21 @@ router.get(
 		const filters: FilterQuery<Omit<ProductQueryParams, 'full_spec'>> = {};
 		const { category_id, sub_category_id } = query;
 		const type_ids = typeof query.type_ids === 'string' ? [query.type_ids] : query.type_ids;
-		const series_id = query.series_id;
+		const series_ids = typeof query.series_ids === 'string' ? [query.series_ids] : query.series_ids;
 		const full_spec = query.full_spec === 'true';
 
 		if (category_id && Types.ObjectId.isValid(category_id)) filters.category_id = category_id;
 		if (sub_category_id && Types.ObjectId.isValid(sub_category_id)) filters.sub_category_id = sub_category_id;
 		if (type_ids && type_ids.length > 0)
 			filters.type_ids = { $in: type_ids?.map((type_id) => new Types.ObjectId(type_id)) };
-		if (series_id) filters.series_id = new Types.ObjectId(series_id);
+		if (series_ids && series_ids.length > 0)
+			filters.series_ids = { $in: series_ids?.map((series_id) => new Types.ObjectId(series_id)) };
 
 		let products;
 		let types;
 		let series;
 
-		if (sub_category_id) types = await findProductTypesBySubCategoryId(sub_category_id);
+		if (sub_category_id) types = await findProductTypes(sub_category_id);
 		series = await findProductSeries(category_id, sub_category_id);
 
 		try {
@@ -132,7 +133,7 @@ router.get(
 	})
 );
 
-async function findProductTypesBySubCategoryId(subCategoryId: string) {
+async function findProductTypes(subCategoryId: string) {
 	try {
 		const productTypes = await ProductType.find({
 			sub_category_ids: { $in: subCategoryId },
@@ -170,7 +171,6 @@ async function findProductSeries(categoryId?: string, subCategoryId?: string) {
 			},
 		]).exec();
 
-		console.log('productSeries', productSeries);
 		return productSeries;
 	} catch (error) {
 		console.error(error);

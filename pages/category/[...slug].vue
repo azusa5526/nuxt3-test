@@ -140,10 +140,14 @@ const { data: productRes } = await useAsyncData<ProductRes>(
 	'productRes',
 	() =>
 		$fetch('/api/product', {
-			params: { type_ids: Array.from(selectedProductTypes.value), ...appStore.getCategoryIdObject(route.path) },
+			params: {
+				type_ids: Array.from(selectedProductTypes.value),
+				series_ids: Array.from(selectedProductSeries.value),
+				...appStore.getCategoryIdObject(route.path),
+			},
 		}),
 	{
-		watch: [() => route.path, selectedProductTypes.value],
+		watch: [() => route.path, selectedProductTypes.value, selectedProductSeries.value],
 	}
 );
 

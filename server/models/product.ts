@@ -40,7 +40,7 @@ const productSchema = new mongoose.Schema<IProduct>({
 	sub_category_id: { type: mongoose.Schema.Types.ObjectId, required: true },
 	function_ids: [{ type: mongoose.Schema.Types.ObjectId }],
 	type_ids: [{ type: mongoose.Schema.Types.ObjectId }],
-	series_id: { type: mongoose.Schema.Types.ObjectId },
+	series_ids: [{ type: mongoose.Schema.Types.ObjectId }],
 	image_url: { type: String, required: true },
 	label: { type: Object },
 	technical_data: { type: Object },
