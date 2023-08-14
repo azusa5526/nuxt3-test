@@ -1,13 +1,17 @@
 <template>
 	<div>
-		<div class="mb-48 grid grid-cols-2 place-content-stretch gap-[90px]">
+		<div class="mb-48 grid grid-cols-1 place-content-stretch gap-14 md:grid-cols-2 md:gap-[90px]">
 			<div v-for="news in newsFetch.data" :key="news.id" class="flex">
-				<a href="#" class="mr-5 h-[145px] w-[217px] shrink-0 border border-gray-300 hover:opacity-70" draggable="false">
+				<a
+					href="#"
+					class="mr-2 h-[106px] w-[160px] shrink-0 border border-gray-300 hover:opacity-70 md:mr-5 md:h-[145px] md:w-[217px]"
+					draggable="false"
+				>
 					<img class="block h-full w-full select-none object-cover" draggable="false" :src="news.image_url" />
 				</a>
 
-				<div class="flex flex-col">
-					<div class="text-underline relative mb-2 w-fit">{{ news.category_id }}</div>
+				<div class="flex shrink flex-col">
+					<div class="text-underline relative mb-2 w-fit break-all">{{ news.category_id }}</div>
 					<div class="mb-6 text-sm">{{ getFormattedData(news.create_time) }}</div>
 					<a href="#" class="text-sm hover:opacity-70" draggable="false">{{ news.content }}</a>
 				</div>
