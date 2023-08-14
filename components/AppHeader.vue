@@ -1,19 +1,20 @@
 <template>
 	<div
-		class="flex h-[var(--app-header-height)] w-full justify-between text-white duration-300 hover:bg-white hover:text-black hover:shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]"
+		class="group flex h-[var(--app-header-height)] w-full justify-between text-white duration-300 hover:bg-white hover:text-black hover:shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]"
 		:class="[
 			isHome && isScrollPositionTop ? 'bg-transparent text-white' : 'bg-white !text-black',
 			isScrollPositionTop ? '' : 'shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]',
 		]"
 	>
 		<div class="flex items-center">
-			<button
-				@click.stop="isDrawerShow = !isDrawerShow"
-				class="block h-full bg-black/20 px-4 py-2 text-white lg:hidden"
-			>
-				Toggle
+			<button @click.stop="isDrawerShow = !isDrawerShow" class="block h-full px-4 py-2 lg:hidden">
+				<SvgIcon
+					use="menu"
+					class="h-6 w-6 text-white transition-all group-hover:text-black"
+					:class="isHome && isScrollPositionTop ? 'text-white' : '!text-black'"
+				></SvgIcon>
 			</button>
-			<NuxtLink class="ml-5 mr-20 hover:opacity-70" :to="{ name: 'home' }">
+			<NuxtLink class="ml-5 hover:opacity-70 md:mr-20" :to="{ name: 'home' }">
 				<h1 class="flex items-center text-xl font-bold">
 					<PiniaIcon class="!m-0 !mb-2 h-12 w-12"></PiniaIcon>
 					audio-Technica
