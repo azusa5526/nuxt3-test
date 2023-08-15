@@ -5,7 +5,7 @@
 				:href="slide.route"
 				v-for="(slide, index) in topSlidesFetch.data"
 				:key="index"
-				class="relative flex h-[80vh] max-h-[800] min-h-[600px] w-full shrink-0 grow-0 hover:opacity-[85%]"
+				class="relative flex h-[50vh] max-h-[800px] w-full shrink-0 grow-0 hover:opacity-[85%] sm:h-auto md:h-[80vh] md:min-h-[600px]"
 			>
 				<img class="test block h-auto w-full select-none object-cover object-[0_32.3%]" :src="slide.image_url" />
 				<span class="absolute bottom-1/4 left-1/2 w-[70%] -translate-x-1/2 text-white">
