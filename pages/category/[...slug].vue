@@ -1,12 +1,12 @@
 <template>
 	<div>
 		<div class="flex flex-col items-center">
-			<div class="text-md mb-1 mt-3">PRODUCTS</div>
-			<div class="mb-7 text-[3.5rem]">{{ categoryInfo?.category.name.toUpperCase() }}</div>
+			<div class="mb-5 mt-8 text-[10px] ct_md:mb-8 ct_md:text-sm">PRODUCTS</div>
+			<div class="text-3xl ct_md:mb-14 ct_md:text-[3.5rem]">{{ categoryInfo?.category.name.toUpperCase() }}</div>
 		</div>
 
 		<div class="flex flex-col border-b border-gray-400">
-			<span class="text-center">{{ categoryInfo?.category.name.toUpperCase() }}</span>
+			<span class="mb-7 text-center ct_md:mb-0">{{ categoryInfo?.category.name.toUpperCase() }}</span>
 
 			<div class="mx-auto flex w-full max-w-[1600px] justify-between px-2">
 				<div class="flex">
@@ -60,8 +60,8 @@
 			</ul>
 
 			<div class="flex flex-col items-center">
-				<div class="flex w-full px-4 ct_md:w-[75vw] ct_md:px-8 ct_lg:max-w-[1032px]">
-					<div class="grid grid-cols-2 place-content-start gap-x-4 ct_lg:grid-cols-3">
+				<div class="flex w-full px-2 ct_md:w-[75vw] ct_md:px-8 ct_lg:max-w-[1032px]">
+					<div class="grid grid-cols-2 place-content-start gap-x-3 ct_lg:grid-cols-3">
 						<ProductCard
 							:product="product"
 							v-for="product in productRes?.products"
