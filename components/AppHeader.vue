@@ -6,6 +6,16 @@
 			isScrollPositionTop ? '' : 'shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]',
 		]"
 	>
+		<NuxtLink
+			class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hover:opacity-70 lg:hidden"
+			:to="{ name: 'home' }"
+		>
+			<h1 class="flex items-center text-xl font-bold">
+				<PiniaIcon class="!m-0 !mb-2 h-12 w-12"></PiniaIcon>
+				audio-Technica
+			</h1>
+		</NuxtLink>
+
 		<div class="flex items-center">
 			<button @click.stop="isDrawerShow = !isDrawerShow" class="block h-full px-4 py-2 lg:hidden">
 				<SvgIcon
@@ -14,7 +24,7 @@
 					:class="isHome && isScrollPositionTop ? 'text-white' : '!text-black'"
 				></SvgIcon>
 			</button>
-			<NuxtLink class="ml-5 hover:opacity-70 md:mr-20" :to="{ name: 'home' }">
+			<NuxtLink class="ml-5 hidden hover:opacity-70 md:mr-20 lg:block" :to="{ name: 'home' }">
 				<h1 class="flex items-center text-xl font-bold">
 					<PiniaIcon class="!m-0 !mb-2 h-12 w-12"></PiniaIcon>
 					audio-Technica
