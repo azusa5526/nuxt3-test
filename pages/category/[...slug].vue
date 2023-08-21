@@ -6,9 +6,47 @@
 		</div>
 
 		<div class="flex flex-col border-b border-gray-400">
-			<span class="mb-7 text-center ct_md:mb-0">{{ categoryInfo?.category.name.toUpperCase() }}</span>
+			<span class="mb-8 text-center ct_md:mb-0">{{ categoryInfo?.category.name.toUpperCase() }}</span>
 
-			<div class="mx-auto flex w-full max-w-[1600px] justify-between px-2">
+			<div class="mb-10 px-8 ct_md:hidden">
+				<ExpensionItem class="grow">
+					<template #activator="{ isExpend }">
+						<div class="relative border-b border-[#BFBFBF] p-2 text-[12px]">
+							<span>{{ selectedSubCategoryName }}</span>
+							<SvgIcon
+								use="expand_more"
+								class="absolute right-0 top-1/2 h-5 w-5 -translate-y-1/2 transition"
+								:class="{ '-rotate-180': isExpend }"
+							></SvgIcon>
+						</div>
+					</template>
+					<template #content>
+						<ul>
+							<li v-for="subCategory in subCategoriesInfo" :key="subCategory.id">
+								<NuxtLink :to="subCategory.route" class="block border-b border-[#BFBFBF] p-2 text-center text-[12px]">
+									{{ subCategory.name }}
+								</NuxtLink>
+							</li>
+						</ul>
+					</template>
+				</ExpensionItem>
+			</div>
+
+			<div class="flex border-t border-[#BFBFBF] ct_md:hidden">
+				<div class="w-[65%] grow border-r border-[#BFBFBF] pl-3 text-sm">
+					<select v-model="selectedFilter" name="pets" class="h-full w-full py-4 pl-10 pr-3 text-center">
+						<option v-for="(filter, index) in filterOptions" :key="filter.id" :value="filter">{{ filter.name }}</option>
+					</select>
+				</div>
+
+				<div class="w-[35%] grow pr-3 text-sm">
+					<select name="pets" class="h-full w-full py-4 text-center">
+						<option v-for="(option, index) in orderOptions" :key="index">{{ option }}</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="mx-auto hidden w-full max-w-[1600px] justify-between px-2 ct_md:flex">
 				<div class="flex">
 					<div class="mr-28">
 						<span class="mr-8">FILTERS</span>
@@ -113,6 +151,7 @@
 <script lang="ts" setup>
 import { useAppStore } from '~/store/app';
 import { ProductSeires, ProductType, SimplifiedProduct } from '~/types';
+import ExpensionItem from '~/components/ExpensionItem.vue';
 
 definePageMeta({
 	middleware: defineNuxtRouteMiddleware((to, from) => {
@@ -124,8 +163,6 @@ definePageMeta({
 
 const appStore = useAppStore();
 const route = useRoute();
-
-console.log('route', route);
 
 interface ProductRes {
 	products: SimplifiedProduct[];
@@ -164,6 +201,18 @@ const subCategoriesInfo = computed(() => {
 		(personalCategory) => personalCategory.id === appStore.getCategoryInfo(route.path)?.category.id
 	)?.sub_categories;
 });
+
+const selectedSubCategoryName = computed(() => {
+	return appStore.routeToCategoryMap.get(route.path)?.subCategory?.name || '全て';
+});
+
+const orderOptions = ['おすすめ順', '発売日の新しい順', '価格の安い順', '価格の高い順'];
+
+const filterOptions = computed(() => {
+	return productRes.value?.types;
+});
+
+const selectedFilter = ref();
 </script>
 
 <style scoped lang="scss">
@@ -193,5 +242,9 @@ const subCategoriesInfo = computed(() => {
 	border-right: 6px solid transparent;
 	border-top: 10px solid #000;
 	border-left: 5px solid transparent;
+}
+
+select:focus {
+	outline: none;
 }
 </style>
