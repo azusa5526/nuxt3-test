@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<div class="grid grid-cols-2">
-			<div class="border-r border-black pr-20">
+		<div class="md:grid md:grid-cols-2">
+			<div class="md:border-r md:border-black md:pr-[8%]">
 				<div v-if="topicsFetch.data?.length">
 					<a href="#" class="hover:opacity-80" draggable="false">
 						<span class="relative">
@@ -20,7 +20,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="grid grid-cols-3 gap-8 pl-20">
+			<div class="grid grid-cols-2 gap-5 md:grid-cols-3 md:gap-6 md:pl-[8%]">
 				<div v-for="(topic, index) in topicsFetch.data?.slice(1)" :key="index">
 					<a href="#" class="hover:opacity-70" draggable="false">
 						<span class="relative">

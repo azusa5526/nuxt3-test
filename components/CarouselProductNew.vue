@@ -1,11 +1,13 @@
 <template>
-	<div class="relative px-16">
+	<div class="relative px-16 md:px-[76px]">
 		<div class="overflow-x-hidden" ref="emblaNode">
 			<div class="flex w-full will-change-transform">
-				<div v-for="product in products" :key="product.id" class="flex w-1/4 shrink-0 grow-0 flex-col px-2.5">
+				<div v-for="product in products" :key="product.id" class="flex w-full shrink-0 grow-0 flex-col px-2.5 md:w-1/4">
 					<a href="#">
-						<img class="block h-auto w-full select-none object-contain hover:opacity-70"
-							:src="product.branches[0].image_url" />
+						<img
+							class="block h-auto w-full select-none object-contain hover:opacity-70"
+							:src="product.branches[0].image_url"
+						/>
 					</a>
 					<div class="mt-7 min-h-[200px] shadow-[0px_-1px_0px_rgba(0,0,0,1)]">
 						<p class="my-2 text-sm">
@@ -18,13 +20,25 @@
 				</div>
 			</div>
 		</div>
-		<button v-if="canScrollPrev" @click="emblaApi?.scrollPrev"
-			class="absolute left-0 top-1/2 -translate-y-1/2 bg-slate-600">
+		<!-- <button
+			v-if="canScrollPrev"
+			@click="emblaApi?.scrollPrev"
+			class="absolute left-0 top-1/2 -translate-y-1/2 bg-slate-600"
+		>
 			<SvgIcon class="h-12 w-12 text-white" use="chevron_left"></SvgIcon>
 		</button>
-		<button v-if="canScrollNext" @click="emblaApi?.scrollNext"
-			class="absolute right-0 top-1/2 -translate-y-1/2 bg-slate-600">
+		<button
+			v-if="canScrollNext"
+			@click="emblaApi?.scrollNext"
+			class="absolute right-0 top-1/2 -translate-y-1/2 bg-slate-600"
+		>
 			<SvgIcon class="h-12 w-12 rotate-180 text-white" use="chevron_left"></SvgIcon>
+		</button> -->
+		<button @click="emblaApi?.scrollPrev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-1">
+			<SvgIcon class="h-10 w-10 text-slate-600 md:h-12 md:w-12" use="chevron_left"></SvgIcon>
+		</button>
+		<button @click="emblaApi?.scrollNext" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-1">
+			<SvgIcon class="h-10 w-10 rotate-180 text-slate-600 md:h-12 md:w-12" use="chevron_left"></SvgIcon>
 		</button>
 	</div>
 </template>

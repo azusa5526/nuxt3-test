@@ -5,7 +5,7 @@
 			target="_blank"
 			v-for="(iconItem, index) in iconItems"
 			:key="index"
-			class="mx-5 flex items-center"
+			class="mx-3 flex items-center md:mx-5"
 		>
 			<SvgIcon :use="iconItem.icon" class="h-10 w-10 items-center hover:opacity-70" :class="iconItem.class" />
 		</a>

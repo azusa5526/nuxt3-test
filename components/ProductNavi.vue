@@ -1,6 +1,8 @@
 <template>
 	<div v-if="naviContent" class="min-h-[480px] w-full px-4 sm:w-3/4 sm:px-0 md:w-1/2 lg:w-[1030px]">
-		<div class="mb-6 mt-32 text-6xl font-bold">{{ naviContent.title_eng }}</div>
+		<div class="mb-3 mt-[0px] text-[56px] font-bold leading-[56px] ct_md:mb-6 ct_md:mt-32">
+			{{ naviContent.title_eng }}
+		</div>
 		<div class="flex flex-col lg:flex-row lg:gap-x-8">
 			<div
 				class="order-2 mb-4 flex w-full shrink-0 flex-col leading-7 md:pt-1 lg:order-1 lg:mb-0 lg:w-2/5 lg:max-w-[385px]"
@@ -10,7 +12,7 @@
 				<button
 					href="#"
 					role="button"
-					class="w-52 max-w-[220px] self-center whitespace-nowrap border border-black bg-black px-10 py-3 text-center text-xl text-[#a58c55] duration-300 hover:bg-white lg:hidden"
+					class="w-52 max-w-[220px] self-center whitespace-nowrap border border-black bg-black px-10 py-2 text-center text-xl text-[#a58c55] duration-300 hover:bg-white lg:hidden"
 				>
 					MORE ->>
 				</button>

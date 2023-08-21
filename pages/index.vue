@@ -15,12 +15,12 @@
 			<CarouselProduct :products="onlineLimitedProductFetch.data" class="mx-auto max-w-[1300px]"></CarouselProduct>
 		</div>
 
-		<div class="mx-auto max-w-[1400px] px-5 py-24">
+		<div class="mx-auto max-w-[1400px] px-5 py-24 md:px-20">
 			<div class="my-10 text-center">ナビコンテンツ</div>
-			<NavIContents></NavIContents>
+			<NaviContents></NaviContents>
 		</div>
 
-		<div class="mx-auto max-w-[80vw] py-24">
+		<div class="mx-auto max-w-[500px] px-5 py-24 md:max-w-[80vw]">
 			<div class="my-10 text-center">トピックス</div>
 			<Topics></Topics>
 		</div>
@@ -54,20 +54,22 @@
 
 		<div class="bg-gray-200 py-24">
 			<div class="my-10 text-center">新製品</div>
-			<CarouselProductNew :products="newItemProductFetch.data" class="mx-auto max-w-[1300px]"></CarouselProductNew>
+			<CarouselProductNew :products="newItemProductFetch.data" class="mx-auto max-w-[1320px]"></CarouselProductNew>
 		</div>
 
-		<div class="mx-auto max-w-[1260px] py-24">
+		<div class="mx-auto max-w-[1260px] px-7 py-24">
 			<div class="my-24 text-center">ニュース</div>
 			<News></News>
 		</div>
 
-		<div class="relative mx-auto flex w-[65vw] max-w-[1020px] py-24">
+		<div class="relative mx-auto flex w-[70vw] max-w-[1020px] py-24">
 			<div class="absolute left-1/2 top-[36px] h-24 w-24 -translate-x-1/2 bg-white px-4">
 				<PiniaIcon class="h-full w-full"></PiniaIcon>
 			</div>
 
-			<a href="#" class="w-full border border-black pb-10 pt-12 text-center text-2xl">製品に関する大切なお知らせ ></a>
+			<a href="#" class="w-full border border-black px-4 pb-10 pt-12 text-center text-sm md:text-2xl">
+				製品に関する大切なお知らせ >
+			</a>
 		</div>
 
 		<div class="mx-auto flex max-w-[1260px] flex-col items-center py-24">

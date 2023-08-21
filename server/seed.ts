@@ -559,8 +559,7 @@ async function initNaviContents() {
 				route: '/headphone/navi/',
 				title_jp: 'ヘッドホン・イヤホンナビ',
 				title_eng: 'Headphone Earphone Navi',
-				content:
-					'スマートフォンとともに日々の暮らしに欠かせないヘッドホン・イヤホン。あなたが好きな音楽や動画をより快適に聴くために、何を基準に選べばいいか？ たくさんのヒントをご用意しました。お気に入りの1台にきっと出会えます。',
+				content: 'オーディオテクニカのヘッドホン・イヤホン：お気に入りの1台にきっと出会えます。',
 			},
 			{
 				image_url: '/upload/contents/navi/top_bnr_navi02.jpg',
@@ -568,7 +567,7 @@ async function initNaviContents() {
 				title_jp: 'リスニング レコード ナビ',
 				title_eng: 'Listening Record Navi',
 				content:
-					'時代は変わり、おうちで過ごす時間が増えました。レコードで音楽を聴きながら穏やかな時を過ごしたい。でも、何から揃えていけばいいかわからない。初めてレコードを体験する方でも安心して始められるノウハウをお届けします。',
+					'オーディオテクニカのアナログ製品：初めてレコードを体験する方でも安心して始められるノウハウをお届けします。',
 			},
 			{
 				image_url: '/upload/contents/navi/top_bnr_navi03.jpg',
@@ -576,7 +575,7 @@ async function initNaviContents() {
 				title_jp: 'マイクロホンナビ',
 				title_eng: 'Microphone Navi',
 				content:
-					'いい音で動画配信をしたい。テレワークでの打ち合わせで、相手にクリアな声を届けたい。その願いを叶えるマイクロホンには、さまざまな種類があります。あなたが使う目的に合わせて、最適な1本を選ぶためのお手伝いをします。',
+					'オーディオテクニカのマイクロホン：あなたが使う目的に合わせて、最適な1本を選ぶためのお手伝いをします。',
 			},
 		]);
 	}
