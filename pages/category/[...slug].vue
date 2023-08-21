@@ -34,8 +34,15 @@
 
 			<div class="flex border-t border-[#BFBFBF] ct_md:hidden">
 				<div class="w-[65%] grow border-r border-[#BFBFBF] pl-3 text-sm">
-					<select v-model="selectedFilter" name="pets" class="h-full w-full py-4 pl-10 pr-3 text-center">
-						<option v-for="(filter, index) in filterOptions" :key="filter.id" :value="filter">{{ filter.name }}</option>
+					<select v-model="selectedFilter" class="h-full w-full py-4 pl-10 pr-3 text-center">
+						<option
+							@click="test"
+							v-for="filter in filterOptions"
+							:key="filter.id"
+							:value="{ filter: filter, target: selectedProductTypes }"
+						>
+							{{ filter.name }}
+						</option>
 					</select>
 				</div>
 
@@ -212,7 +219,13 @@ const filterOptions = computed(() => {
 	return productRes.value?.types;
 });
 
-const selectedFilter = ref();
+const selectedFilter = ref<{ filter: ProductType; target: Set<string> }>();
+watch(selectedFilter, (newVal) => {
+	if (newVal) {
+		newVal.target.clear();
+		newVal.target.add(newVal.filter.id);
+	}
+});
 </script>
 
 <style scoped lang="scss">
