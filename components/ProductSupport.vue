@@ -1,9 +1,15 @@
 <template>
-	<div class="mx-auto mt-20 w-[1090px]">
-		<div class="mb-20 flex border-b border-[#BFBFBF] px-4 pb-14">
-			<div class="mr-10">
-				<div class="mb-7 text-lg">取扱説明書</div>
-				<div role="button" class="flex select-none items-center text-sm font-bold" @click="toggle">
+	<div class="mx-auto mt-14 w-full max-w-[1090px] ct_md:mt-20">
+		<div
+			class="mx-auto mb-20 flex max-w-[500px] flex-col items-center border-b border-[#BFBFBF] px-4 pb-14 ct_md:max-w-none ct_md:flex-row ct_md:items-start"
+		>
+			<div class="ct_md:mr-10">
+				<div class="mb-7 text-center text-lg ct_md:text-start">取扱説明書</div>
+				<div
+					role="button"
+					class="flex select-none items-center justify-center text-xs font-bold ct_md:justify-start ct_md:text-sm"
+					@click="toggle"
+				>
 					ご注意
 					<span class="mx-1">|</span>
 					ダウンロードされる方は必ずお読みください
@@ -31,13 +37,11 @@
 				</ul>
 			</div>
 
-			<div class="flex-shrink-0">
-				<div
-					role="button"
-					class="mt-5 w-96 border border-[#BFBFBF] py-3 text-center text-sm font-bold transition duration-300 hover:opacity-60"
-				>
-					取扱説明書(PDF)
-				</div>
+			<div
+				role="button"
+				class="mt-5 h-fit w-full max-w-[280px] border border-[#BFBFBF] py-3 text-center text-sm font-bold transition duration-300 hover:opacity-60 ct_md:max-w-[380px]"
+			>
+				取扱説明書(PDF)
 			</div>
 		</div>
 
@@ -53,7 +57,7 @@
 						<td>
 							<div
 								role="button"
-								class="ml-auto w-40 border border-[#BFBFBF] py-2 text-center font-bold transition hover:opacity-60"
+								class="ml-auto w-fit border border-[#BFBFBF] px-2 py-2 text-center font-bold transition hover:opacity-60 ct_md:w-40"
 							>
 								カートに追加
 							</div>

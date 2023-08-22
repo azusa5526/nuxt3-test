@@ -1,6 +1,6 @@
 <template>
 	<div v-if="naviContent" class="min-h-[480px] w-full px-4 sm:w-3/4 sm:px-0 md:w-1/2 lg:w-[1030px]">
-		<div class="mb-3 mt-[0px] text-[56px] font-bold leading-[56px] ct_md:mb-6 ct_md:mt-32">
+		<div class="mb-3 mt-0 text-[56px] font-bold leading-[56px] ct_md:mb-6">
 			{{ naviContent.title_eng }}
 		</div>
 		<div class="flex flex-col lg:flex-row lg:gap-x-8">
