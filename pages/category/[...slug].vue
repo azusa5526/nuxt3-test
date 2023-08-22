@@ -11,7 +11,7 @@
 			<div class="mb-10 px-8 ct_md:hidden">
 				<ExpensionItem class="grow">
 					<template #activator="{ isExpend }">
-						<div class="relative border-b border-[#BFBFBF] p-2 text-[12px]">
+						<div class="relative border-b border-[#BFBFBF] p-2 text-xs">
 							<span>{{ selectedSubCategoryName }}</span>
 							<SvgIcon
 								use="expand_more"
@@ -33,7 +33,7 @@
 			</div>
 
 			<div class="flex border-t border-[#BFBFBF] ct_md:hidden">
-				<div class="w-[65%] grow border-r border-[#BFBFBF] pl-3 text-sm">
+				<div class="w-[65%] grow border-r border-[#BFBFBF] pl-3 text-xs">
 					<select v-model="selectedFilter" class="h-full w-full py-4 pl-10 pr-3 text-center">
 						<option
 							v-for="filter in filterOptions"
