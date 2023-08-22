@@ -11,7 +11,7 @@
 			:to="{ name: 'home' }"
 		>
 			<h1 class="flex items-center text-xl font-bold">
-				<PiniaIcon class="!m-0 !mb-2 h-12 w-12"></PiniaIcon>
+				<PiniaIcon class="!m-0 !mb-2 h-10 w-10"></PiniaIcon>
 				audio-Technica
 			</h1>
 		</NuxtLink>
