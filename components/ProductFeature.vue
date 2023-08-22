@@ -8,7 +8,7 @@
 
 <script lang="ts" setup>
 import type { Product } from '~/types';
-defineProps<{ product: Product }>()
+defineProps<{ product: Product }>();
 </script>
 
 <style lang="scss">
@@ -18,13 +18,15 @@ defineProps<{ product: Product }>()
 	align-items: center;
 
 	img {
-		padding-top: 2rem;
-		padding-bottom: 2rem;
+		padding: 2rem;
 		margin: 0 auto;
-		max-width: 760px;
+		max-width: 820px;
+		width: 100%;
+		height: auto;
+		display: block;
 	}
 
-	img+img {
+	img + img {
 		margin-top: -1.75rem;
 	}
 
@@ -34,6 +36,7 @@ defineProps<{ product: Product }>()
 		margin: 0 auto;
 		font-size: 14px;
 		line-height: 24px;
+		padding: 0 1.25rem;
 	}
 
 	a:hover {
