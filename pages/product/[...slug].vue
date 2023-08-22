@@ -1,17 +1,26 @@
 <template>
 	<div class="flex flex-col">
-		<ul class="breadcrumb mb-16 mt-2 flex gap-16 pl-14 text-sm">
+		<ul class="breadcrumb mb-16 mt-2 hidden gap-16 pl-14 text-sm ct_md:flex">
 			<li>
 				<NuxtLink to="/">Home</NuxtLink>
 			</li>
 			<li>
 				<NuxtLink :to="category?.route ?? '/'">{{ category?.name }}</NuxtLink>
 			</li>
-			<li>ATH-M50x</li>
+			<li v-if="product">{{ product.model }}</li>
 		</ul>
 
-		<div v-if="product && selectedBranch" class="mx-auto mb-14 flex w-full max-w-[1328px] justify-between">
-			<div class="w-1/2">
+		<div
+			v-if="product && selectedBranch"
+			class="ct_md:0 relative mx-auto mb-4 mt-2 flex w-full max-w-[500px] flex-col justify-between ct_md:mb-14 ct_md:max-w-[1328px] ct_md:flex-row"
+		>
+			<div
+				class="absolute right-3 top-0 z-[35] ct_md:hidden"
+				v-if="product.images && typeof selectedImageIndex === 'number'"
+			>
+				{{ selectedImageIndex + 1 }} / {{ product.images.length }}
+			</div>
+			<div class="w-full ct_md:w-1/2">
 				<div class="relative mb-10">
 					<div class="overflow-x-hidden" ref="emblaNode">
 						<div class="flex w-full will-change-transform">
@@ -36,7 +45,7 @@
 					</button>
 				</div>
 
-				<div class="flex flex-wrap gap-2">
+				<div class="hidden flex-wrap gap-2 ct_md:flex">
 					<div
 						@click="
 							emblaApi?.scrollTo(index);
@@ -51,21 +60,21 @@
 					</div>
 				</div>
 			</div>
-			<div class="w-[45%]">
-				<div class="mb-12">
-					<p class="mb-6 text-sm">{{ product.name }}</p>
-					<h2 class="mb-6 text-3xl">
+			<div class="w-full ct_md:w-[45%]">
+				<div class="mb-12 flex flex-col items-center px-3 ct_md:items-start ct_md:px-0">
+					<p class="mb-5 text-sm">{{ product.name }}</p>
+					<h2 class="mb-6 flex flex-col items-center text-xl ct_md:flex-row ct_md:items-baseline ct_md:text-3xl">
 						{{ selectedBranch.model }}
-						<span class="ml-1 text-sm">オープン価格</span>
+						<span class="text-xs ct_md:ml-2 ct_md:text-sm">オープン価格</span>
 					</h2>
-					<p class="mb-10 text-sm">{{ product.description }}</p>
+					<p class="mb-10 text-xs ct_md:text-sm">{{ product.description }}</p>
 
 					<ul class="mb-2 flex" v-if="product.branches.length > 1">
 						<li
 							v-for="branch in product.branches"
 							:key="branch.id"
 							@click="onColorBranchClick(branch)"
-							class="mr-2 grid h-[22px] w-[22px] rotate-[-60deg] overflow-hidden rounded-full border border-black/25 hover:opacity-70"
+							class="mr-2 grid h-[22px] w-[22px] -rotate-[60deg] overflow-hidden rounded-full border border-black/25 hover:opacity-70"
 						>
 							<div
 								v-for="colorCode in branch.color"
@@ -77,21 +86,23 @@
 				</div>
 
 				<div class="flex flex-col bg-[#f7f7f7] p-7">
-					<p class="mb-4 text-2xl">
-						￥{{ selectedBranch.price }}
-						<span class="text-base">（税込）</span>
-					</p>
-					<span class="mb-4">{{ stockStatus }}</span>
-					<button class="mb-6 w-60 bg-black p-4 text-white hover:opacity-70">カートに追加（送料無料）</button>
-					<span class="mb-7 text-sm">通常1～3営業日で発送</span>
+					<div class="flex flex-col items-center ct_md:items-start">
+						<p class="mb-4 text-lg ct_md:text-2xl">
+							￥{{ selectedBranch.price }}
+							<span class="text-xs ct_md:text-base">（税込）</span>
+						</p>
+						<span class="mb-4">{{ stockStatus }}</span>
+						<button class="mb-6 w-60 bg-black p-4 text-white hover:opacity-70">カートに追加（送料無料）</button>
+						<span class="mb-7 text-xs ct_md:text-sm">通常1～3営業日で発送</span>
+					</div>
 
-					<div class="mb-5 flex max-w-[360px]">
+					<div class="mx-3 mb-5 flex max-w-[360px] ct_md:mx-0">
 						<img
 							src="/images/pc/souryou.jpg"
 							draggable="false"
 							class="mr-5 block aspect-square h-[100px] w-[100px] border border-gray-300"
 						/>
-						<div class="text-sm">
+						<div class="text-xs ct_md:text-sm">
 							<span class="font-bold">【送料】</span>
 							<br />
 							<span>
@@ -104,7 +115,7 @@
 						</div>
 					</div>
 
-					<div class="flex items-center">
+					<div class="mx-3 flex items-center ct_md:mx-0">
 						<img src="/images/pc/Q.png" draggable="false" class="mr-2 h-6 w-6" />
 						<a href="" class="text-sm underline">お買い物についてのFAQはこちら</a>
 					</div>
@@ -115,7 +126,7 @@
 		<div>
 			<div class="border-b border-gray-300">
 				<div
-					class="mx-auto grid max-w-[1092px] grid-cols-3 [&_button]:h-12 [&_button]:border-l [&_button]:border-t [&_button]:border-gray-300 [&_button]:text-sm"
+					class="mx-auto grid w-[90%] max-w-[1092px] grid-cols-3 ct_md:w-full [&_button]:h-9 [&_button]:border-l [&_button]:border-t [&_button]:border-gray-300 [&_button]:text-xs ct_md:[&_button]:h-12 ct_md:[&_button]:text-sm"
 				>
 					<button
 						@click="activateTab = ProductFeature"
@@ -141,9 +152,11 @@
 				</div>
 			</div>
 
-			<keep-alive v-if="product">
-				<component :is="activateTab" :product="product"></component>
-			</keep-alive>
+			<div class="mb-8 ct_md:mb-32">
+				<keep-alive v-if="product">
+					<component :is="activateTab" :product="product"></component>
+				</keep-alive>
+			</div>
 
 			<div v-if="category?.name" class="flex justify-center pb-48">
 				<ProductNavi :name="category.name"></ProductNavi>
@@ -207,25 +220,32 @@ const selectedImageIndex = ref(0);
 
 const canScrollNext = ref();
 const canScrollPrev = ref();
-const onScrollHandler = () => {
-	canScrollNext.value = emblaApi.value?.canScrollNext();
-	canScrollPrev.value = emblaApi.value?.canScrollPrev();
+const onSelectHandler = () => {
+	if (emblaApi.value) {
+		canScrollNext.value = emblaApi.value.canScrollNext();
+		canScrollPrev.value = emblaApi.value.canScrollPrev();
+		selectedImageIndex.value = emblaApi.value.selectedScrollSnap();
+	}
 };
 
 onMounted(() => {
-	if (emblaApi) onScrollHandler();
+	if (emblaApi) {
+		onSelectHandler();
+	}
 });
 
 watchEffect(() => {
-	if (emblaApi.value) emblaApi.value.on('scroll', onScrollHandler);
+	if (emblaApi.value) {
+		emblaApi.value.on('select', onSelectHandler);
+	}
 });
 
-const removeonScrollListener = () => {
-	if (emblaApi.value) emblaApi.value.off('scroll', onScrollHandler);
+const removeonSelectListener = () => {
+	if (emblaApi.value) emblaApi.value.off('select', onSelectHandler);
 };
 
 onUnmounted(() => {
-	removeonScrollListener();
+	removeonSelectListener();
 });
 
 function onColorBranchClick(branch: IProductBranch) {
