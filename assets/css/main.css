@@ -4,7 +4,7 @@
 
 :root {
 	--app-header-height: 64px;
-	--app-sidebar-width: 330px;
+	--app-sidebar-width: 300px;
 }
 @media screen(sm) {
 }
